@@ -176,6 +176,14 @@ $orders = $stmt->fetchAll();
       max-width: 210px;
     }
 
+    .float-right2 {
+      gap: 10px;
+    }
+
+    .make_appo .btn.white_btn {
+      margin-right: 10px;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -278,97 +286,7 @@ $orders = $stmt->fetchAll();
   <!-- end loader -->
 
   <!-- header -->
-  <header id="default_header" class="header_style_1">
-    <!-- header top -->
-    <div class="header_top">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="full">
-              <div class="topbar-left">
-                <ul class="list-inline">
-                  <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span
-                      class="topbar-hightlight">Desai nagar, Bhavnagar</span> </li>
-                  <li> <span class="topbar-label"><i class="fa-regular fa-envelope"></i></span> <span
-                      class="topbar-hightlight"><a href="mailto:info@yourdomain.com">Hello,
-                        <?= htmlspecialchars($_SESSION["username"]); ?> </a></span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 right_section_header_top">
-            <div class="float-left my-3">
-              <div class="social_icon">
-                <ul class="list-inline">
-                  <li><a class="fa-brands fa-facebook-f" href="https://www.facebook.com/" title="Facebook"
-                      target="_blank"></a></li>
-                  <li><a class="fa-brands fa-x-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a>
-                  </li>
-                  <li><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com" title="LinkedIn"
-                      target="_blank"></a></li>
-                  <li><a class="fa-brands fa-instagram" href="https://www.instagram.com" title="Instagram"
-                      target="_blank"></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="float-right2 d-flex flex-row mb-2 grp_btn">
-              <div class="make_appo"> <a class="btn white_btn" href="make_appointment.php">Make Appointment</a></div>
-              <div class="make_appo"> <a class="btn white_btn" style="width:180px; margin-left:18px;"
-                  href="<?= htmlspecialchars($_SESSION["username"] === "user" ? "./login.php" : "./logout.php"); ?>"
-                  style="margin-left: 15px;"><?= htmlspecialchars($_SESSION["username"] === "user" ? "Login" : "Logout"); ?></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <!-- end header top -->
-    <!-- header bottom -->
-    <div class="header_bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <!-- logo start -->
-            <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo" /></a> </div>
-            <!-- logo end -->
-          </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <!-- menu start -->
-            <div class="menu_side">
-              <div id="navbar_menu">
-                <ul class="first-ul">
-                  <li><a href="index.php">Home</a></li>
-                  <li><a href="about_us.php">About Us</a></li>
-                  <li class="shop-dropdown">
-                    <a href="service.php">Service</i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="service.php">Services</a></li>
-                      <li><a href="user_service_requests.php">Booked Services</a></li>
-                    </ul>
-                  </li>
-                  <li class="shop-dropdown">
-                    <a href="shop.php" class="active">Shop</i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="shop.php">All Products</a></li>
-                      <li><a href="cart.php">Shopping Cart</a></li>
-                      <li><a class="active" href="user_orders.php">My Orders</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="contact.php">Contact</a></li>
-                  <li><a href="search_shop.php">Near by shops</a></li>
-                  <li><a href="faq.php">FAQ</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- menu end -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- header bottom end -->
-  </header>
+  <?php include 'header.php'; ?>
   <!-- end header -->
 
   <!-- inner page banner -->
@@ -399,52 +317,52 @@ $orders = $stmt->fetchAll();
         <div class="col-md-12">
           <div class="orders-list">
             <?php if (empty($orders)): ?>
-                <div class="text-center">
-                  <h3>No orders found</h3>
-                  <p>You haven't placed any orders yet.</p>
-                  <a href="shop.php" class="btn main_bt">Start Shopping</a>
-                </div>
+              <div class="text-center">
+                <h3>No orders found</h3>
+                <p>You haven't placed any orders yet.</p>
+                <a href="shop.php" class="btn main_bt">Start Shopping</a>
+              </div>
             <?php else: ?>
-                <?php foreach ($orders as $order): ?>
-                    <div class="order-card">
-                      <div class="order-header d-flex justify-content-between">
-                        <div>
-                          <h4>Order #<?= $order['id'] ?></h4>
-                          <p>Placed on <?= date('F j, Y', strtotime($order['order_date'])) ?></p>
-                        </div>
-                        <div>
-                          <span class="order-status status-<?= strtolower($order['status']) ?>">
-                            <?= ucfirst($order['status']) ?>
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="order-items">
-                        <h5>Items:</h5>
-                        <?php
-                        $product_names = explode(',', $order['product_names']);
-                        $quantities = explode(',', $order['quantities']);
-                        $prices = explode(',', $order['prices']);
-                        for ($i = 0; $i < count($product_names); $i++): ?>
-                            <div class="item">
-                              <?= htmlspecialchars($product_names[$i]) ?> × <?= $quantities[$i] ?>
-                              <span class="float-right">₹<?= number_format($prices[$i] * $quantities[$i], 2) ?></span>
-                            </div>
-                        <?php endfor; ?>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
-                          <h5>Shipping Address:</h5>
-                          <p><?= htmlspecialchars($order['shipping_address']) ?></p>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <h5>Total Amount:</h5>
-                          <h4>₹<?= number_format($order['total_amount'], 2) ?></h4>
-                        </div>
-                      </div>
+              <?php foreach ($orders as $order): ?>
+                <div class="order-card">
+                  <div class="order-header d-flex justify-content-between">
+                    <div>
+                      <h4>Order #<?= $order['id'] ?></h4>
+                      <p>Placed on <?= date('F j, Y', strtotime($order['order_date'])) ?></p>
                     </div>
-                <?php endforeach; ?>
+                    <div>
+                      <span class="order-status status-<?= strtolower($order['status']) ?>">
+                        <?= ucfirst($order['status']) ?>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="order-items">
+                    <h5>Items:</h5>
+                    <?php
+                    $product_names = explode(',', $order['product_names']);
+                    $quantities = explode(',', $order['quantities']);
+                    $prices = explode(',', $order['prices']);
+                    for ($i = 0; $i < count($product_names); $i++): ?>
+                      <div class="item">
+                        <?= htmlspecialchars($product_names[$i]) ?> × <?= $quantities[$i] ?>
+                        <span class="float-right">₹<?= number_format($prices[$i] * $quantities[$i], 2) ?></span>
+                      </div>
+                    <?php endfor; ?>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Shipping Address:</h5>
+                      <p><?= htmlspecialchars($order['shipping_address']) ?></p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <h5>Total Amount:</h5>
+                      <h4>₹<?= number_format($order['total_amount'], 2) ?></h4>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
             <?php endif; ?>
           </div>
         </div>

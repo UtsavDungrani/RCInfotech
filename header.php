@@ -68,7 +68,7 @@
                                 <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us.php' ? 'active' : '' ?>"
                                         href="about_us.php">About Us</a></li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service.php' || basename($_SERVER['PHP_SELF']) == 'user_service_requests.php') ? 'active' : '' ?>"
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service.php' || basename($_SERVER['PHP_SELF']) == 'user_service_requests.php' || basename($_SERVER['PHP_SELF']) == 'service_display.php' || basename($_SERVER['PHP_SELF']) == 'service_success.php') ? 'active' : '' ?>"
                                         href="service.php">Service</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="service.php">Services</a></li>
@@ -76,7 +76,7 @@
                                     </ul>
                                 </li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop.php' || basename($_SERVER['PHP_SELF']) == 'cart.php' || basename($_SERVER['PHP_SELF']) == 'user_orders.php') ? 'active' : '' ?>"
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop.php' || basename($_SERVER['PHP_SELF']) == 'cart.php' || basename($_SERVER['PHP_SELF']) == 'user_orders.php' || basename($_SERVER['PHP_SELF']) == 'product.php' || basename($_SERVER['PHP_SELF']) == 'checkout.php' || basename($_SERVER['PHP_SELF']) == 'order_success.php') ? 'active' : '' ?>"
                                         href="shop.php">Shop</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="shop.php">All Products</a></li>
@@ -88,7 +88,7 @@
                                         href="contact.php">Contact</a></li>
                                 <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop.php' ? 'active' : '' ?>"
                                         href="search_shop.php">Near by shops</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'faq.php' ? 'active' : '' ?>"
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq.php' || basename($_SERVER['PHP_SELF']) == 'feedback.php') ? 'active' : '' ?>"
                                         href="faq.php">FAQ</a></li>
                             </ul>
                         </div>

@@ -125,6 +125,14 @@ if (!isset($_SESSION["username"])) {
       line-height: 1;
     }
 
+    .float-right2 {
+      gap: 10px;
+    }
+
+    .make_appo .btn.white_btn {
+      margin-right: 10px;
+    }
+
     /* When collapsed */
     #accordion .panel.panel-default .panel-heading p a.collapsed i.fa-angle-down {
       transform: translateY(-50%) rotate(0deg);
@@ -254,102 +262,7 @@ if (!isset($_SESSION["username"])) {
   <div class="bg_load"> <img class="loader_animation" src="images/loaders/loader.gif" alt="#" /> </div>
   <!-- end loader -->
   <!-- header -->
-  <header id="default_header" class="header_style_1">
-    <!-- header top -->
-    <div class="header_top">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="full">
-              <div class="topbar-left">
-                <ul class="list-inline">
-                  <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span
-                      class="topbar-hightlight">Desai nagar, Bhavnagar</span> </li>
-                  <li> <span class="topbar-label"><i class="fa-regular fa-envelope"></i></span> <span
-                      class="topbar-hightlight"><a href="mailto:info@yourdomain.com">Hello,
-                        <?= htmlspecialchars($_SESSION["username"]); ?> </a></span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 right_section_header_top">
-            <div class="float-left my-3">
-              <div class="social_icon">
-                <ul class="list-inline">
-                  <li><a class="fa-brands fa-facebook-f" href="https://www.facebook.com/" title="Facebook"
-                      target="_blank"></a></li>
-                  <li><a class="fa-brands fa-x-twitter" href="https://twitter.com" title="Twitter" target="_blank"></a>
-                  </li>
-                  <li><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com" title="LinkedIn"
-                      target="_blank"></a></li>
-                  <li><a class="fa-brands fa-instagram" href="https://www.instagram.com" title="Instagram"
-                      target="_blank"></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="float-right2 d-flex flex-row mb-2 grp_btn">
-              <div class="make_appo"> <a class="btn white_btn" href="make_appointment.php">Make Appointment</a></div>
-              <div class="make_appo"> <a class="btn white_btn" style="width:180px; margin-left:18px;"
-                  href="<?= htmlspecialchars($_SESSION["username"] === "user" ? "./login.php" : "./logout.php"); ?>"
-                  style="margin-left: 15px;"><?= htmlspecialchars($_SESSION["username"] === "user" ? "Login" : "Logout"); ?></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end header top -->
-    <!-- header bottom -->
-    <div class="header_bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <!-- logo start -->
-            <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo" /></a> </div>
-            <!-- logo end -->
-          </div>
-          <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <!-- menu start -->
-            <div class="menu_side">
-              <div id="navbar_menu">
-                <ul class="first-ul">
-                  <li><a href="index.php">Home</a></li>
-                  <li><a class="active" href="about_us.php">About Us</a></li>
-                  <li class="shop-dropdown">
-                    <a href="service.php">Service</i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="service.php">Services</a></li>
-                      <li><a href="user_service_requests.php">Booked Services</a></li>
-                    </ul>
-                  </li>
-                  <li class="shop-dropdown">
-                    <a href="shop.php">Shop</i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="shop.php">All Products</a></li>
-                      <li><a href="cart.php">Shopping Cart</a></li>
-                      <li><a href="user_orders.php">My Orders</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="contact.php">Contact</a></li>
-                  <li><a href="search_shop.php">Near by shops</a></li>
-                  <li><a href="faq.php">FAQ</a></li>
-                </ul>
-              </div>
-              <!-- <div class="search_icon">
-                <ul>
-                  <li><a href="#" data-toggle="modal" data-target="#search_bar"><i class="fa fa-search"
-                        aria-hidden="true"></i></a></li>
-                </ul>
-              </div> -->
-            </div>
-            <!-- menu end -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- header bottom end -->
-  </header>
+  <?php include 'header.php'; ?>
   <!-- end header -->
   <!-- inner page banner -->
   <div id="inner_banner" class="section inner_banner_section">
@@ -783,104 +696,7 @@ if (!isset($_SESSION["username"])) {
   </div>
   <!-- end section -->
   <!-- footer -->
-  <footer class="footer_style_2">
-    <div class="container-fuild">
-      <div class="row">
-        <div style="width: 500px;">
-          <div style="width: 100%"><iframe width="100%" height="630" frameborder="0" scrolling="no" marginheight="0"
-              marginwidth="0"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d472.0673927927595!2d72.11304969999999!3d21.760874899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f50f3945bcedb%3A0xbd03f1f2080a40c7!2sRIGHTS%20COMPUTER!5e0!3m2!1sen!2sin!4v1711384511011!5m2!1sen!2sin"><a
-                href="https://www.maps.ie/population/">Population calculator map</a></iframe></div>
-        </div>
-        <div class="footer_blog">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="main-heading left_text">
-                <h2>Social media</h2>
-              </div>
-              <!-- <p>Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.</p> -->
-              <ul class="social_icons">
-                <li class="social-icon in"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li class="social-icon in"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                <li class="social-icon tw"><a href="#"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-                </li>
-                <li class="social-icon fb"><a href="#"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <div class="main-heading left_text">
-                <h2>Additional links</h2>
-              </div>
-              <ul class="footer-menu">
-                <li>
-                  <a href="about_us.php"><i class="fa fa-angle-right"></i> About us</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Terms and conditions</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Privacy policy</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> News</a>
-                </li>
-                <li>
-                  <a href="contact.php"><i class="fa fa-angle-right"></i> Contact us</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <div class="main-heading left_text">
-                <h2>Services</h2>
-              </div>
-              <ul class="footer-menu">
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Data recovery</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Computer repair</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Mobile service</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Network solutions</a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-angle-right"></i> Technical support</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <div class="main-heading left_text">
-                <h2>Contact us</h2>
-              </div>
-              <p>
-                Pramukhdarshan complex, Desai nagar, Bhavnagar, Gujarat 364003<br />
-                <span style="font-size: 18px"><a href="tel:+9876543210">+91 9265121020</a></span>
-              </p>
-              <div class="footer_mail-section">
-                <form>
-                  <fieldset>
-                    <div class="field">
-                      <input placeholder="Email" type="text" />
-                      <button class="button_custom">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cprt">
-          <p>RCInfotech © Copyrights 2019 Design by RCInfotech</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php include 'footer.php'; ?>
   <!-- end footer -->
   <!-- js section -->
   <script src="js/jquery.min.js"></script>
