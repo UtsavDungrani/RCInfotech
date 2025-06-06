@@ -53,7 +53,7 @@
                         <div class="main-heading left_text">
                             <h2>Contact us</h2>
                         </div>
-                        <p>F-9,Pramukhdarshan complex, Desai nagar, Bhavnagar, Gujarat 364003<br>
+                        <p>F-9, Pramukhdarshan complex, Desai nagar, Bhavnagar, Gujarat 364003<br>
                             <span style="font-size:18px;"><a href="tel:+9876543210">+91 7878114066</a></span>
                         </p>
                         <div class="footer_mail-section">

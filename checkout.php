@@ -18,6 +18,12 @@ if (!isset($_SESSION['cart'])) {
   $_SESSION['cart'] = [];
 }
 
+// Redirect to index.php if cart is empty
+if (empty($_SESSION['cart'])) {
+  header("Location: index.php");
+  exit;
+}
+
 // Include PHPMailer classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -444,13 +450,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
           <div class="checkout-form">
             <h3>Shipping Details</h3>
             <?php if (!empty($errors)): ?>
-                <div class="error">
-                  <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                  </ul>
-                </div>
+              <div class="error">
+                <ul>
+                  <?php foreach ($errors as $error): ?>
+                    <li><?= htmlspecialchars($error) ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
             <?php endif; ?>
 
             <form method="post" action="checkout.php">
@@ -523,10 +529,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             <table class="table">
               <tbody>
                 <?php foreach ($cart_items as $item): ?>
-                    <tr>
-                      <td><?= htmlspecialchars($item['name']) ?> × <?= $item['quantity'] ?></td>
-                      <td class="text-right">₹<?= number_format($item['total'], 2) ?></td>
-                    </tr>
+                  <tr>
+                    <td><?= htmlspecialchars($item['name']) ?> × <?= $item['quantity'] ?></td>
+                    <td class="text-right">₹<?= number_format($item['total'], 2) ?></td>
+                  </tr>
                 <?php endforeach; ?>
                 <tr>
                   <td>Subtotal</td>

@@ -505,7 +505,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
               </div>
               <div class="service_cont">
                 <h3 class="service_head"><?= $service['name'] ?></h3>
-                <p><?= $service['page_des'] ?></p>
+                <p style="text-align: justify;"><?= $service['page_des'] ?></p>
                 <div class="bt_cont">
                   <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
                 </div>
@@ -666,7 +666,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
             </div>
             <div class="side_bar_blog">
               <h4>GET A QUOTE</h4>
-              <p>
+              <p style="text-align: justify;">
                 Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
                 need to be done.
               </p>

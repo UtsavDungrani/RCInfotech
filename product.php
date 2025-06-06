@@ -382,7 +382,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                 <span class="review">(5 customer review)</span>
               </div>
               <div class="detail-contant">
-                <p>
+                <p style="text-align: justify;">
                   <?php echo htmlspecialchars($product['description_small']); ?>
                   <br /><br />
                   <span class="stock" style="font-weight:600;"><?php echo (int) $product['stock']; ?> in stock</span>
@@ -433,7 +433,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                   <div class="tab-content">
                     <div id="description" class="tab-pane active">
                       <div class="product_desc">
-                        <p>
+                        <p style="text-align: justify;">
                           <?php echo nl2br(htmlspecialchars($product['description_large'])); ?>
                         </p>
                       </div>
@@ -461,7 +461,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                               <i class="fa fa-star-o" aria-hidden="true"></i>
                             </span>
                             <p class="msg">
-                              ThisThis book is a treatise on the theory of
+                              This book is a treatise on the theory of
                               ethics, very popular during the Renaissance. The
                               first line of Lorem Ipsum, "Lorem ipsum dolor
                               sit amet..
@@ -607,7 +607,7 @@ $total_products = $result_total->fetch_assoc()['total'];
             </div>
             <div class="side_bar_blog">
               <h4>GET A QUOTE</h4>
-              <p>
+              <p style="text-align: justify;">
                 Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
                 need to be done.
               </p>

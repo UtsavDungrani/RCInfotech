@@ -236,13 +236,13 @@ if (!isset($_SESSION["username"])) {
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 adress_cont margin_bottom_30">
 								<h3 class="text-center mb-4">Address</h3>
 								<div class="row justify-content-center">
-									<div class="col-lg-6 col-md-8 col-sm-10">
+									<div class="col-lg-7 col-md-8 col-sm-10">
 										<div class="information_bottom d-flex align-items-center mb-4">
 											<div class="icon_bottom me-3">
 												<i class="fa fa-road" aria-hidden="true"></i>
 											</div>
 											<div class="info_cont">
-												<h4>Pramukhdarshan complex, Desai nagar</h4>
+												<h4>F-9, Pramukhdarshan complex, Desai nagar</h4>
 												<p class="mb-0">Bhavnagar, Gujarat 364003</p>
 											</div>
 										</div>
@@ -261,7 +261,7 @@ if (!isset($_SESSION["username"])) {
 												<i class="fa fa-envelope" aria-hidden="true"></i>
 											</div>
 											<div class="info_cont">
-												<h4>ap.gohil001@gmail.com</h4>
+												<h4>rcinfotech11@gmail.com</h4>
 												<p class="mb-0">24/7 online support</p>
 											</div>
 										</div>
