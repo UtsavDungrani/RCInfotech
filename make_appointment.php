@@ -341,25 +341,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <?php include 'header.php'; ?>
   <!-- end header -->
   <!-- inner page banner -->
-  <div id="inner_banner" class="section inner_banner_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="title-holder">
-              <div class="title-holder-cell text-left">
-                <h1 class="page-title">Make Appointment</h1>
-                <ol class="breadcrumb">
-                  <li><a href="index.php">Home</a></li>
-                  <li class="active">Make Appointment</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php include 'breadcrumbs.php'; ?>
   <!-- end inner page banner -->
   <div class="section padding_layout_1">
     <div class="container">
