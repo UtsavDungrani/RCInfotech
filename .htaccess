@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /RCInfotech/
+
+# Enable directory listing and file access
+Options +Indexes +FollowSymLinks +MultiViews
+
+# Redirect /admin or /admin/ to admin/login.php
+RewriteRule ^admin/?$ admin/login.php [L]
+
+# Allow direct access to PHP files
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+    
