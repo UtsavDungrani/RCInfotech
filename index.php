@@ -1,9 +1,6 @@
 <?php
 # Initialize the session
-session_start();  
-
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
+session_start();
 
 # Set default username if not logged in
 if (!isset($_SESSION["username"])) {
@@ -20,6 +17,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt1 = $link->query("SELECT * FROM services");
 $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and store in $services
 ?>
+<?php include 'csp.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -623,7 +621,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
                 <a href="product.php?id=<?= $product['id'] ?>">
                   <div class="product_list">
                     <div class="product_img" style="height: 270px;">
-                      <img class="img-responsive img-product" src="get_image.php?id=<?= $product['id'] ?>"
+                      <img class="img-responsive img-product" src="get_product_image.php?id=<?= $product['id'] ?>"
                         alt="<?= $product['name'] ?>">
                     </div>
                     <div class="product_detail_btm">

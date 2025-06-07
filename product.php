@@ -2,9 +2,6 @@
 # Initialize the session
 session_start();
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
-
 # Set default username if not logged in
 if (!isset($_SESSION["username"])) {
   $_SESSION["username"] = "user";
@@ -37,6 +34,8 @@ $sql_total = "SELECT COUNT(*) as total FROM product";
 $result_total = $conn->query($sql_total);
 $total_products = $result_total->fetch_assoc()['total'];
 ?>
+<?php include 'csp.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -364,7 +363,7 @@ $total_products = $result_total->fetch_assoc()['total'];
             <div class="col-xl-6 col-lg-12 col-md-12">
               <div class="product_detail_feature_img hizoom hi2">
                 <div class="hizoom hi2">
-                  <img src="get_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
+                  <img src="get_product_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
                 </div>
               </div>
             </div>
@@ -562,7 +561,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                                 <a href="product.php?id=' . $related_product['id'] . '">
                   <div class="product_list">
                     <div class="product_img" style="height: 270px;">
-                                            <img class="img-responsive img-product" src="get_image.php?id=' . $related_product['id'] . '" alt="" />
+                                            <img class="img-responsive img-product" src="get_product_image.php?id=' . $related_product['id'] . '" alt="" />
                     </div>
                     <div class="product_detail_btm">
                       <div class="center">

@@ -1,6 +1,4 @@
 <?php
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
 
 // Initialize the session
 session_start();
@@ -202,6 +200,7 @@ $sql = "SELECT * FROM orders ORDER BY order_date DESC";
 $stmt = $link->query($sql);
 $orders = $stmt->fetchAll();
 ?>
+<?php include '../csp.php';?> 
 
 <!DOCTYPE html>
 <html lang="en">

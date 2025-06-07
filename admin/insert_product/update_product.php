@@ -6,9 +6,6 @@ require_once '../auth_check.php';
 // Check authentication
 checkAdminAuth();
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
-
 // Fetch all products
 $products = [];
 try {
@@ -18,6 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
+<?php include '../../csp.php';?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,7 +127,7 @@ try {
                                 <td><?= $product['name'] ?></td>
                                 <td>
                                     <?php if (!empty($product['image'])): ?>
-                                        <img src="../../get_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
+                                        <img src="../../get_product_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
                                             style="max-width: 100px; height: auto;">
                                     <?php else: ?>
                                         No Image

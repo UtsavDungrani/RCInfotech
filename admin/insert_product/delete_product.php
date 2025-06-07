@@ -2,8 +2,7 @@
 session_start();
 require_once '../../config/config.php';
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
+include '../../csp.php'; 
 
 // Check if product ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -28,3 +27,5 @@ try {
     header('Location: update_product.php');
     exit();
 }
+
+?>

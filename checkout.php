@@ -2,9 +2,6 @@
 # Initialize the session
 session_start();
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
-
 # Set default username if not logged in
 if (!isset($_SESSION["username"])) {
   $_SESSION["username"] = "user";
@@ -222,6 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
   }
 }
 ?>
+<?php include 'csp.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

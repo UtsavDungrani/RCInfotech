@@ -26,15 +26,14 @@ if (isset($_POST['catagory'])) {
 # Initialize the session
 session_start();
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
-
 # If user is not logged in then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE) {
   echo "<script>" . "window.location.href='./login.php';" . "</script>";
   exit;
 }
 ?>
+<?php include 'csp.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -6,9 +6,6 @@ require_once '../auth_check.php';
 // Check authentication
 checkAdminAuth();
 
-// Add CSP header
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
-
 // Fetch all services
 $services = [];
 try {
@@ -18,6 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
+<?php include '../../csp.php';?> 
 
 <!DOCTYPE html>
 <html lang="en">
