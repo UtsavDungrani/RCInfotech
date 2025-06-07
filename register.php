@@ -1,6 +1,9 @@
 <?php
 require_once "./config/config.php"; // config.php must set up $link as a PDO connection
 
+// Add CSP header
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
+
 $username_err = $email_err = $password_err = "";
 $username = $email = $password = "";
 

@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+// Add CSP header
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';");
+
 require_once 'config/config.php';
 
 // Check if the user is logged in
