@@ -29,31 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $contact = $_POST['contact'];
-    $photo_dir = $shop['photo_dir']; // Keep existing photo if no new one is uploaded
+    $image_data = $shop['image']; // Keep existing image if no new one is uploaded
 
     // Handle image upload
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = 'uploads/';
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
-        }
-
-        $file_name = uniqid() . '_' . basename($_FILES['photo']['name']);
-        $target_file = $upload_dir . $file_name;
-
-        // Check if image file is a actual image
-        $check = getimagesize($_FILES['photo']['tmp_name']);
-        if ($check !== false) {
-            // Move the file to uploads directory
-            if (move_uploaded_file($_FILES['photo']['tmp_name'], $target_file)) {
-                $photo_dir = 'uploads/' . $file_name;
-
-                // Delete old image if it exists
-                if (!empty($shop['photo_dir']) && file_exists($shop['photo_dir'])) {
-                    unlink($shop['photo_dir']);
-                }
-            }
-        }
+        $image_data = file_get_contents($_FILES['photo']['tmp_name']);
     }
 
     try {
@@ -61,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Name = ?, 
             Address = ?, 
             `Contact no` = ?,
-            photo_dir = ?
+            image = ?
             WHERE id = ?");
-        $stmt->execute([$name, $address, $contact, $photo_dir, $shop_id]);
+        $stmt->execute([$name, $address, $contact, $image_data, $shop_id]);
         header("Location: update_shop.php");
         exit();
     } catch (PDOException $e) {
@@ -180,10 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="photo">Shop Photo:</label>
                         <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
-                        <?php if (!empty($shop['photo_dir'])): ?>
-                                <img src="<?= $shop['photo_dir'] ?>" alt="Current Shop Photo"
-                                    style="max-width: 200px; margin-top: 10px;">
-                                <p>Current Image: <?= $shop['photo_dir'] ?></p>
+                        <?php if (!empty($shop['image'])): ?>
+                            <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>" alt="<?= $shop['Name'] ?>"
+                                style="max-width: 200px; margin-top: 10px;">
+                            <p>Current Image: <?= $shop['Name'] ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Shop</button>

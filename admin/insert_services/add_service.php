@@ -16,51 +16,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sh_description = $_POST['sh_description'];
     $description = $_POST['description'];
 
-    // Handle file upload
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $upload_dir = "uploads/";
+    // Read image as binary data
+    $image_data = file_get_contents($_FILES['image']['tmp_name']);
 
-        // Create uploads directory if it doesn't exist
-        if (!file_exists($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
+    try {
+        // Prepare SQL statement
+        $stmt = $link->prepare("INSERT INTO services (name, page_des, image, description) 
+                               VALUES (:name, :page_des, :image, :description)");
 
-        // Generate unique filename
-        $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-        $new_filename = uniqid() . '.' . $file_extension;
-        $target_file = $upload_dir . $new_filename;
+        // Bind parameters
+        $stmt->execute([
+            ':name' => $name,
+            ':page_des' => $sh_description,
+            ':image' => $image_data,
+            ':description' => $description
+        ]);
 
-        // Validate file type
-        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-        if (!in_array($file_extension, $allowed_types)) {
-            die("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
-        }
-
-        // Move uploaded file
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            try {
-                // Prepare SQL statement
-                $stmt = $link->prepare("INSERT INTO services (name, page_des, image_path, description) 
-                                     VALUES (:name, :page_des, :image_path, :description)");
-
-                // Bind parameters
-                $stmt->execute([
-                    ':name' => $name,
-                    ':page_des' => $sh_description,
-                    ':image_path' => $target_file,
-                    ':description' => $description
-                ]);
-
-                echo "<script>alert('Service added successfully!');</script>";
-            } catch (PDOException $e) {
-                error_log("Database error: " . $e->getMessage());
-                echo "<script>alert('Error adding service. Please try again.');</script>";
-            }
-        } else {
-            echo "<script>alert('Error uploading image. Please try again.');</script>";
-        }
-    } else {
-        echo "<script>alert('Please select an image for the service.');</script>";
+        echo "<script>alert('Service added successfully!');</script>";
+    } catch (PDOException $e) {
+        error_log("Database error: " . $e->getMessage());
+        echo "<script>alert('Error adding service. Please try again.');</script>";
     }
 }
 ?>

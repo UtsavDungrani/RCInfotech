@@ -305,43 +305,43 @@ if (!empty($_SESSION['cart'])) {
                 </thead>
                 <tbody>
                   <?php if (!empty($cart_items)): ?>
-                      <?php foreach ($cart_items as $item): ?>
-                          <tr>
-                            <td class="col-sm-8 col-md-6">
-                              <div class="media">
-                                <a class="thumbnail pull-left" href="#">
-                                  <img class="media-object" src="admin/insert_product/<?= $item['image'] ?>" alt="#">
-                                </a>
-                                <div class="media-body">
-                                  <h4 class="media-heading"><a href="#"><?= $item['name'] ?></a></h4>
-                                  <span>Status: </span>
-                                  <span class="text-<?= $item['stock'] > 0 ? 'success' : 'danger' ?>">
-                                    <?= $item['stock'] > 0 ? 'In Stock' : 'Out of Stock' ?>
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                              <input class="form-control" name="quantity[<?= $item['id'] ?>]" value="<?= $item['quantity'] ?>"
-                                type="number" min="1" max="10">
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center">
-                              <p class="price_table">₹<?= number_format($item['new_price'], 2) ?></p>
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center">
-                              <p class="price_table">₹<?= number_format($item['total'], 2) ?></p>
-                            </td>
-                            <td class="col-sm-1 col-md-1">
-                              <a href="cart.php?remove=<?= $item['id'] ?>" class="bt_main">
-                                <i class="fa fa-trash"></i> Remove
-                              </a>
-                            </td>
-                          </tr>
-                      <?php endforeach; ?>
-                  <?php else: ?>
+                    <?php foreach ($cart_items as $item): ?>
                       <tr>
-                        <td colspan="5" class="text-center">Your cart is empty</td>
+                        <td class="col-sm-8 col-md-6">
+                          <div class="media">
+                            <a class="thumbnail pull-left" href="#">
+                              <img class="media-object" src="get_image.php?id=<?= $item['id'] ?>" alt="#">
+                            </a>
+                            <div class="media-body">
+                              <h4 class="media-heading"><a href="#"><?= $item['name'] ?></a></h4>
+                              <span>Status: </span>
+                              <span class="text-<?= $item['stock'] > 0 ? 'success' : 'danger' ?>">
+                                <?= $item['stock'] > 0 ? 'In Stock' : 'Out of Stock' ?>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                          <input class="form-control" name="quantity[<?= $item['id'] ?>]" value="<?= $item['quantity'] ?>"
+                            type="number" min="1" max="10">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                          <p class="price_table">₹<?= number_format($item['new_price'], 2) ?></p>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                          <p class="price_table">₹<?= number_format($item['total'], 2) ?></p>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <a href="cart.php?remove=<?= $item['id'] ?>" class="bt_main">
+                            <i class="fa fa-trash"></i> Remove
+                          </a>
+                        </td>
                       </tr>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <tr>
+                      <td colspan="5" class="text-center">Your cart is empty</td>
+                    </tr>
                   <?php endif; ?>
                 </tbody>
               </table>
@@ -390,10 +390,10 @@ if (!empty($_SESSION['cart'])) {
                   </td>
                   <td class="text-center">
                     <?php if (!empty($cart_items)): ?>
-                        <a href="checkout.php" class="button">Proceed to Checkout</a>
+                      <a href="checkout.php" class="button">Proceed to Checkout</a>
                     <?php else: ?>
-                        <a href="#" class="button"
-                          style="background-color: #ccc; cursor: not-allowed; pointer-events: none;">Proceed to Checkout</a>
+                      <a href="#" class="button"
+                        style="background-color: #ccc; cursor: not-allowed; pointer-events: none;">Proceed to Checkout</a>
                     <?php endif; ?>
                   </td>
                 </tr>

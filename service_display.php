@@ -26,7 +26,7 @@ echo "#ser_" . $service_id . " { display: none; }";
 echo "</style>";
 
 // Get service details from database
-$sql = "SELECT name, description, image_path FROM services WHERE id = ?";
+$sql = "SELECT name, description, image FROM services WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $service_id);
 $stmt->execute();
@@ -40,16 +40,16 @@ if ($result && $result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $serviceName = $row['name'];
   $serviceDescription = $row['description'];
-  if ($row['image_path']) {
+  if ($row['image']) {
     // Use the image path directly instead of base64 encoding
-    $serviceImage = "" . $row['image_path'];
+    $serviceImage = "" . $row['image'];
   }
 }
 
 $stmt->close();
 
 // Add this code to fetch all services
-$sql_services = "SELECT id, name, image_path, page_des FROM services";
+$sql_services = "SELECT id, name, image, page_des FROM services";
 $result_services = $conn->query($sql_services);
 $services = [];
 if ($result_services && $result_services->num_rows > 0) {
@@ -199,7 +199,7 @@ $conn->close();
     #accordion .panel.panel-default .panel-heading p a:not(.collapsed) i.fa-angle-down {
       transform: translateY(-50%) rotate(180deg);
     }
-    
+
     .float-right2 {
       gap: 10px;
     }
@@ -335,8 +335,8 @@ $conn->close();
             <div class="col-md-12 service_blog margin_bottom_50">
               <div class="full">
                 <div class="service_img">
-                  <img class="img-responsive" src="admin/insert_services/<?php echo htmlspecialchars($serviceImage); ?>"
-                    style="width: 100%; height: 460px; object-fit: cover;" alt="img" id="service_image" />
+                  <img class="img-responsive" src="get_service_image.php?id=<?= $service_id ?>"
+                    style="width: 100%; height: 460px; object-fit: cover;" alt="Service Image" id="service_image" />
                 </div>
                 <div class="service_cont">
                   <h3 class="service_head" id="ser_des_name"><?php echo htmlspecialchars($serviceName); ?></h3>
@@ -349,21 +349,21 @@ $conn->close();
             </div>
 
             <?php foreach ($services as $service): ?>
-                <div class="col-md-4 service_blog" id="ser_<?= $service['id'] ?>">
-                  <div class="full">
-                    <div class="service_img">
-                      <img class="img-responsive" src="admin/insert_services/<?= $service['image_path'] ?>"
-                        alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
-                    </div>
-                    <div class="service_cont">
-                      <h3 class="service_head"><?= $service['name'] ?></h3>
-                      <p style="text-align: justify;"><?= $service['page_des'] ?></p>
-                      <div class="bt_cont">
-                        <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
-                      </div>
+              <div class="col-md-4 service_blog" id="ser_<?= $service['id'] ?>">
+                <div class="full">
+                  <div class="service_img">
+                    <img class="img-responsive" src="get_service_image.php?id=<?= $service['id'] ?>"
+                      alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
+                  </div>
+                  <div class="service_cont">
+                    <h3 class="service_head"><?= $service['name'] ?></h3>
+                    <p style="text-align: justify;"><?= $service['page_des'] ?></p>
+                    <div class="bt_cont">
+                      <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
                     </div>
                   </div>
                 </div>
+              </div>
             <?php endforeach; ?>
           </div>
           <div class="row" style="margin-bottom: 30px">

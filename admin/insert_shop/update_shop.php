@@ -113,33 +113,33 @@ try {
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Photo</th>
                             <th>Address</th>
                             <th>Contact</th>
-                            <th>Photo</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($shops as $shop): ?>
-                                <tr>
-                                    <td><?= $shop['id'] ?></td>
-                                    <td><?= $shop['Name'] ?></td>
-                                    <td><?= $shop['Address'] ?></td>
-                                    <td><?= $shop['Contact no'] ?></td>
-                                    <td>
-                                        <?php if (!empty($shop['photo_dir'])): ?>
-                                                <img src="<?= $shop['photo_dir'] ?>" alt="<?= $shop['Name'] ?>"
-                                                    style="max-width: 100px; height: auto;">
-                                        <?php else: ?>
-                                                No Image
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="edit_shop.php?id=<?= $shop['id'] ?>" class="btn btn-primary">Edit</a>
-                                        <a href="delete_shop.php?id=<?= $shop['id'] ?>" class="btn btn-danger bg-danger"
-                                            onclick="return confirm('Are you sure you want to delete this shop?')">Delete</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $shop['id'] ?></td>
+                                <td><?= $shop['Name'] ?></td>
+                                <td>
+                                    <?php if (!empty($shop['image'])): ?>
+                                        <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>"
+                                            alt="<?= $shop['Name'] ?>" style="max-width: 100px; max-height: auto;">
+                                    <?php else: ?>
+                                        No Image
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $shop['Address'] ?></td>
+                                <td><?= $shop['Contact no'] ?></td>
+                                <td>
+                                    <a href="edit_shop.php?id=<?= $shop['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_shop.php?id=<?= $shop['id'] ?>" class="btn btn-danger bg-danger"
+                                        onclick="return confirm('Are you sure you want to delete this shop?')">Delete</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

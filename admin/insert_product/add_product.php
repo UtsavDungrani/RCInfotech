@@ -16,57 +16,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // File upload handling
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Read the image file as binary data
+    $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
 
-    // Check if image file is a actual image
-    $check = getimagesize($_FILES["image"]["tmp_name"]);
-    if ($check === false) {
-        die("File is not an image.");
-    }
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO product (name, image, old_price, new_price, stock, description_small, description_large) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param(
+        "sbddiss",
+        $_POST['name'],
+        $imageData,
+        $_POST['old_price'],
+        $_POST['new_price'],
+        $_POST['stock'],
+        $_POST['description_small'],
+        $_POST['description_large']
+    );
 
-    // Check file size (5MB max)
-    if ($_FILES["image"]["size"] > 5000000) {
-        die("Sorry, your file is too large.");
-    }
-
-    // Allow certain file formats
-    if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-        die("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
-    }
-
-    // Generate unique filename
-    $new_filename = uniqid() . '.' . $imageFileType;
-    $final_target = $target_dir . $new_filename;
-
-    // Try to upload file
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $final_target)) {
-        // Prepare and bind
-        $stmt = $conn->prepare("INSERT INTO product (name, image, old_price, new_price, stock, description_small, description_large) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param(
-            "ssddiss",
-            $_POST['name'],
-            $final_target,
-            $_POST['old_price'],
-            $_POST['new_price'],
-            $_POST['stock'],
-            $_POST['description_small'],
-            $_POST['description_large']
-        );
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "<script>alert('Product added successfully!');</script>";
-        } else {
-            echo "<script>alert('Error adding product: " . $stmt->error . "');</script>";
-        }
-
-        $stmt->close();
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "<script>alert('Product added successfully!');</script>";
     } else {
-        echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
+        echo "<script>alert('Error adding product: " . $stmt->error . "');</script>";
     }
+
+    $stmt->close();
 }
 ?>
 

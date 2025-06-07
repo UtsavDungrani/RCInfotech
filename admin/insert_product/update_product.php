@@ -124,28 +124,28 @@ try {
                     </thead>
                     <tbody>
                         <?php foreach ($products as $product): ?>
-                                <tr>
-                                    <td><?= $product['id'] ?></td>
-                                    <td><?= $product['name'] ?></td>
-                                    <td>
-                                        <?php if (!empty($product['image'])): ?>
-                                                <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>"
-                                                    style="max-width: 100px; height: auto;">
-                                        <?php else: ?>
-                                                No Image
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $product['old_price'] ?></td>
-                                    <td><?= $product['new_price'] ?></td>
-                                    <td><?= $product['stock'] ?></td>
-                                    <td><?= $product['description_small'] ?></td>
-                                    <td><?= $product['description_large'] ?></td>
-                                    <td>
-                                        <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
-                                        <a href="delete_product.php?id=<?= $product['id'] ?>" class="btn btn-danger bg-danger"
-                                            onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $product['id'] ?></td>
+                                <td><?= $product['name'] ?></td>
+                                <td>
+                                    <?php if (!empty($product['image'])): ?>
+                                        <img src="../../get_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
+                                            style="max-width: 100px; height: auto;">
+                                    <?php else: ?>
+                                        No Image
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $product['old_price'] ?></td>
+                                <td><?= $product['new_price'] ?></td>
+                                <td><?= $product['stock'] ?></td>
+                                <td><?= $product['description_small'] ?></td>
+                                <td><?= $product['description_large'] ?></td>
+                                <td>
+                                    <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_product.php?id=<?= $product['id'] ?>" class="btn btn-danger bg-danger"
+                                        onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

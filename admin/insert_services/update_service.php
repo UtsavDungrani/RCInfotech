@@ -122,25 +122,25 @@ try {
                     </thead>
                     <tbody>
                         <?php foreach ($services as $service): ?>
-                                <tr>
-                                    <td><?= $service['id'] ?></td>
-                                    <td><?= $service['name'] ?></td>
-                                    <td>
-                                        <?php if (!empty($service['image_path'])): ?>
-                                                <img src="<?= $service['image_path'] ?>" alt="<?= $service['name'] ?>"
-                                                    style="max-width: 100px; height: auto;">
-                                        <?php else: ?>
-                                                No Image
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $service['page_des'] ?></td>
-                                    <td><?= $service['description'] ?></td>
-                                    <td>
-                                        <a href="edit_service.php?id=<?= $service['id'] ?>" class="btn btn-primary">Edit</a>
-                                        <a href="delete_service.php?id=<?= $service['id'] ?>" class="btn btn-danger bg-danger"
-                                            onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $service['id'] ?></td>
+                                <td><?= $service['name'] ?></td>
+                                <td>
+                                    <?php if (!empty($service['image'])): ?>
+                                        <img src="../../get_service_image.php?id=<?= $service['id'] ?>" alt="<?= $service['name'] ?>"
+                                            style="max-width: 100px; height: auto;">
+                                    <?php else: ?>
+                                        No Image
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $service['page_des'] ?></td>
+                                <td><?= $service['description'] ?></td>
+                                <td>
+                                    <a href="edit_service.php?id=<?= $service['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_service.php?id=<?= $service['id'] ?>" class="btn btn-danger bg-danger"
+                                        onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

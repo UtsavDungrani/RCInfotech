@@ -19,45 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST['name'];
         $address = $_POST['address'];
         $contact = $_POST['contact'];
-        $photo_dir = '';
+        $image_data = null;
 
         // Handle file upload
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-            $target_dir = "uploads/";
-
-            // Create uploads directory if it doesn't exist
-            if (!file_exists($target_dir)) {
-                mkdir($target_dir, 0777, true);
-            }
-
-            // Get file extension and create unique filename
-            $file_extension = strtolower(pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION));
-            $new_filename = uniqid() . '.' . $file_extension;
-            $target_file = $target_dir . $new_filename;
-
-            // Validate file type
-            $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-            if (!in_array($file_extension, $allowed_types)) {
-                echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
-                exit();
-            }
-
-            // Move uploaded file
-            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-                $photo_dir = $target_file;
-            } else {
-                echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
-                exit();
-            }
+            $image_data = file_get_contents($_FILES['photo']['tmp_name']);
         } else {
             echo "<script>alert('Please select a photo for the shop.');</script>";
             exit();
         }
 
         // Insert new shop
-        $sql = "INSERT INTO shop (Name, Address, `Contact no`, photo_dir) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO shop (Name, Address, `Contact no`, image) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$name, $address, $contact, $photo_dir]);
+        $stmt->execute([$name, $address, $contact, $image_data]);
 
         if ($stmt->affected_rows > 0) {
             echo "<script>alert('Shop added successfully!');</script>";

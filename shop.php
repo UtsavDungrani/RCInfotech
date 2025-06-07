@@ -298,36 +298,36 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-md-9">
           <div class="row">
             <?php foreach ($products as $product): ?>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
-                  <a href="product.php?id=<?= $product['id'] ?>">
-                    <div class="product_list">
-                      <div class="product_img" style="height: 270px;">
-                        <img class="img-responsive img-product" src="admin/insert_product/<?= $product['image'] ?>"
-                          alt="<?= $product['name'] ?>">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
+                <a href="product.php?id=<?= $product['id'] ?>">
+                  <div class="product_list">
+                    <div class="product_img" style="height: 270px;">
+                      <img class="img-responsive img-product" src="get_image.php?id=<?= $product['id'] ?>"
+                        alt="<?= $product['name'] ?>">
+                    </div>
+                    <div class="product_detail_btm">
+                      <div class="center">
+                        <h4><a href="product.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h4>
                       </div>
-                      <div class="product_detail_btm">
+                      <div class="starratin">
                         <div class="center">
-                          <h4><a href="product.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h4>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
                         </div>
-                        <div class="starratin">
-                          <div class="center">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                          </div>
-                        </div>
-                        <div class="product_price">
-                          <p>
-                            <span class="old_price">₹<?= $product['old_price'] ?></span> –
-                            <span class="new_price"> ₹<?= $product['new_price'] ?></span>
-                          </p>
-                        </div>
+                      </div>
+                      <div class="product_price">
+                        <p>
+                          <span class="old_price">₹<?= $product['old_price'] ?></span> –
+                          <span class="new_price"> ₹<?= $product['new_price'] ?></span>
+                        </p>
                       </div>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </a>
+              </div>
             <?php endforeach; ?>
           </div>
         </div>

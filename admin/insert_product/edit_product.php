@@ -32,31 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
     $description_small = $_POST['description_small'];
     $description_large = $_POST['description_large'];
-    $image_path = $product['image']; // Keep existing image if no new one is uploaded
+    $image_data = $product['image']; // Keep existing image if no new one is uploaded
 
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = 'uploads/';
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
-        }
-
-        $file_name = uniqid() . '_' . basename($_FILES['image']['name']);
-        $target_file = $upload_dir . $file_name;
-
-        // Check if image file is a actual image
-        $check = getimagesize($_FILES['image']['tmp_name']);
-        if ($check !== false) {
-            // Move the file to uploads directory
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-                $image_path = 'uploads/' . $file_name;
-
-                // Delete old image if it exists
-                if (!empty($product['image']) && file_exists($product['image'])) {
-                    unlink($product['image']);
-                }
-            }
-        }
+        $image_data = file_get_contents($_FILES['image']['tmp_name']);
     }
 
     try {
@@ -69,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             description_large = ?,
             image = ?
             WHERE id = ?");
-        $stmt->execute([$name, $old_price, $new_price, $stock, $description_small, $description_large, $image_path, $product_id]);
+        $stmt->execute([$name, $old_price, $new_price, $stock, $description_small, $description_large, $image_data, $product_id]);
         header("Location: update_product.php");
         exit();
     } catch (PDOException $e) {
@@ -202,9 +182,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="image">Product Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($product['image'])): ?>
-                                <img src="<?= $product['image'] ?>" alt="Current Product Image"
-                                    style="max-width: 200px; margin-top: 10px;">
-                                <p>Current Image: <?= $product['image'] ?></p>
+                            <img src="../../get_image.php?id=<?= $product['id'] ?>" alt="Current Product Image"
+                                style="max-width: 200px; margin-top: 10px;">
+                            <p>Current Image: <?= $product['name'] ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Product</button>

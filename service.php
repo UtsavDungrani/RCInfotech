@@ -338,21 +338,21 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div class="row">
         <?php foreach ($services as $service): ?>
-            <div class="col-md-4 service_blog">
-              <div class="full">
-                <div class="service_img">
-                  <img class="img-responsive" src="admin/insert_services/<?= $service['image_path'] ?>"
-                    alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
-                </div>
-                <div class="service_cont">
-                  <h3 class="service_head"><?= $service['name'] ?></h3>
-                  <p style="text-align: justify;"><?= $service['page_des'] ?></p>
-                  <div class="bt_cont">
-                    <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
-                  </div>
+          <div class="col-md-4 service_blog">
+            <div class="full">
+              <div class="service_img">
+                <img class="img-responsive" src="get_service_image.php?id=<?= $service['id'] ?>"
+                  alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
+              </div>
+              <div class="service_cont">
+                <h3 class="service_head"><?= $service['name'] ?></h3>
+                <p style="text-align: justify;"><?= $service['page_des'] ?></p>
+                <div class="bt_cont">
+                  <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
                 </div>
               </div>
             </div>
+          </div>
         <?php endforeach; ?>
       </div>
     </div>

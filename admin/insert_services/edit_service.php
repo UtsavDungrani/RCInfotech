@@ -26,26 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $page_des = $_POST['page_des'];
-    $image_path = $service['image_path'] ?? '';
+    $image_data = $service['image']; // Use current image if no new one uploaded
 
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = 'uploads/';
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
-        }
-
-        $file_name = uniqid() . '_' . basename($_FILES['image']['name']);
-        $target_file = $upload_dir . $file_name;
-
         $check = getimagesize($_FILES['image']['tmp_name']);
         if ($check !== false) {
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-                $image_path = 'uploads/' . $file_name;
-                if (!empty($service['image_path']) && file_exists($service['image_path'])) {
-                    unlink($service['image_path']);
-                }
-            }
+            $image_data = file_get_contents($_FILES['image']['tmp_name']);
+        } else {
+            $_SESSION['error'] = "File is not an image.";
+            header("Location: edit_service.php?id=$service_id");
+            exit();
         }
     }
 
@@ -54,13 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name = ?, 
             description = ?,
             page_des = ?,
-            image_path = ?
+            image = ?
             WHERE id = ?");
-        $stmt->execute([$name, $description, $page_des, $image_path, $service_id]);
+        $stmt->execute([$name, $description, $page_des, $image_data, $service_id]);
         header("Location: update_service.php");
         exit();
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
+        $_SESSION['error'] = "Error updating service.";
+        header("Location: edit_service.php?id=$service_id");
+        exit();
     }
 }
 ?>
@@ -145,6 +139,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="section padding_layout_1">
             <div class="container">
+                <!-- Display success/error messages -->
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                    <?php unset($_SESSION['success']); ?>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
+                    <?php unset($_SESSION['error']); ?>
+                <?php endif; ?>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
@@ -158,27 +162,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="name">Service Name</label>
                         <input type="text" class="form-control" id="name" name="name"
-                            value="<?= $service['name'] ?? '' ?>" required>
+                            value="<?= htmlspecialchars($service['name'] ?? '') ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="page_des">Page Description</label>
-                        <textarea class="form-control" id="page_des" name="page_des"
-                            rows="3"><?= $service['page_des'] ?? '' ?></textarea>
+                        <textarea class="form-control" id="page_des" name="page_des" rows="3"
+                            required><?= htmlspecialchars($service['page_des'] ?? '') ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description"
-                            rows="5"><?= $service['description'] ?? '' ?></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="5"
+                            required><?= htmlspecialchars($service['description'] ?? '') ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">Service Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
-                        <?php if (!empty($service['image_path'])): ?>
-                                <div style="margin-top: 10px;">
-                                    <img src="<?= $service['image_path'] ?>" alt="Current Service Image"
-                                        style="max-width: 200px;">
-                                    <p style="margin-top: 5px;">Current Image: <?= basename($service['image_path']) ?></p>
-                                </div>
+                        <?php if (!empty($service['image'])): ?>
+                            <div style="margin-top: 10px;">
+                                <img src="../../get_service_image.php?id=<?= $service_id ?>" alt="Current Service Image"
+                                    style="max-width: 200px;">
+                                <p style="margin-top: 5px;">Current Image: <?= $service['name'] ?></p>
+                            </div>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Service</button>
