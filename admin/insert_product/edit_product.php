@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<?php include '../../csp.php';?> 
+<?php include '../../csp.php'; ?>
 
 
 <!DOCTYPE html>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="../insert_services/update_service.php">Manage Services</a>
         <a href="../insert_shop/update_shop.php">Manage Shop</a>
         <a href="../manage_orders.php">Orders</a>
-        <a href="#">Users</a>
+        <a href="../users.php">Users</a>
         <a href="#">Settings</a>
         <a href="../../index.php">Back to Site</a>
     </div>

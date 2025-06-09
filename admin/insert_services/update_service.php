@@ -57,10 +57,9 @@ try {
         <a href="update_service.php" class="active">Manage Services</a>
         <a href="../insert_shop/update_shop.php">Manage Shop</a>
         <a href="../manage_orders.php">Orders</a>
-        <a href="#">Users</a>
+        <a href="../users.php">Users</a>
         <a href="#">Settings</a>
         <a href="../index.php">Back to Site</a>
-        <a href="../logout.php">Logout</a>
     </div>
 
     <!-- Main Content -->

@@ -121,6 +121,12 @@ if (!isset($_SESSION["username"])) {
       margin-right: 10px;
     }
 
+    .feedback-form {
+      padding: 1.5rem !important;
+      border-radius: 1.25rem !important;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -243,8 +249,7 @@ if (!isset($_SESSION["username"])) {
     <div class="container">
       <div class="row min-vh-400 justify-content-center align-items-center">
         <div class="col-lg-5">
-          <div
-            style="padding: 1.5rem!important; border-radius: 0.25rem!important; border: 3px solid #808080!important;">
+          <div class="feedback-form">
             <form>
               <div class="form-group">
                 <label for="exampleInputEmail1">

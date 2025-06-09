@@ -57,7 +57,7 @@ try {
         <a href="../insert_services/update_service.php">Manage Services</a>
         <a href="update_shop.php" class="active">Manage Shops</a>
         <a href="../manage_orders.php">Orders</a>
-        <a href="#">Users</a>
+        <a href="../users.php">Users</a>
         <a href="#">Settings</a>
         <a href="../../index.php">Back to Site</a>
     </div>

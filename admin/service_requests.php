@@ -15,7 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../csp.php';?> 
+<?php include '../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ try {
         <a href="insert_services/update_service.php">Manage Services</a>
         <a href="insert_shop/update_shop.php">Manage Shop</a>
         <a href="manage_orders.php">Orders</a>
-        <a href="#">Users</a>
+        <a href="users.php">Users</a>
         <a href="#">Settings</a>
         <a href="../index.php">Back to Site</a>
     </div>
@@ -118,27 +118,27 @@ try {
                             </thead>
                             <tbody>
                                 <?php foreach ($service_requests as $request): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($request['id']); ?></td>
-                                            <td><?php echo htmlspecialchars($request['fname']); ?>
-                                                <?php echo htmlspecialchars($request['lname']); ?>
-                                            </td>
-                                            <td style="max-width: 130px; word-wrap: break-word;">
-                                                <?php echo htmlspecialchars($request['email']); ?>
-                                            </td>
-                                            <td style="max-width: 150px; word-wrap: break-word;">
-                                                <?php echo htmlspecialchars($request['booked_by_email']); ?>
-                                            </td>
-                                            <td><?php echo htmlspecialchars($request['mobile']); ?></td>
-                                            <td><?php echo htmlspecialchars($request['subject']); ?></td>
-                                            <td style="max-width: 120px; word-wrap: break-word;">
-                                                <?php echo htmlspecialchars($request['description']); ?>
-                                            </td>
-                                            <td style="min-width: 101px; word-wrap: break-word;">
-                                                <?php echo htmlspecialchars($request['booking_time']); ?>
-                                            </td>
-                                            <td>
-                                                <span style="
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($request['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($request['fname']); ?>
+                                            <?php echo htmlspecialchars($request['lname']); ?>
+                                        </td>
+                                        <td style="max-width: 130px; word-wrap: break-word;">
+                                            <?php echo htmlspecialchars($request['email']); ?>
+                                        </td>
+                                        <td style="max-width: 150px; word-wrap: break-word;">
+                                            <?php echo htmlspecialchars($request['booked_by_email']); ?>
+                                        </td>
+                                        <td><?php echo htmlspecialchars($request['mobile']); ?></td>
+                                        <td><?php echo htmlspecialchars($request['subject']); ?></td>
+                                        <td style="max-width: 120px; word-wrap: break-word;">
+                                            <?php echo htmlspecialchars($request['description']); ?>
+                                        </td>
+                                        <td style="min-width: 101px; word-wrap: break-word;">
+                                            <?php echo htmlspecialchars($request['booking_time']); ?>
+                                        </td>
+                                        <td>
+                                            <span style="
                                             <?php
                                             $status = htmlspecialchars($request['status'] ?? 'Pending');
                                             if ($status === 'approved') {
@@ -151,21 +151,21 @@ try {
                                             ?>
                                             padding: 5px 15px; border-radius: 20px; display: inline-block;
                                         ">
-                                                    <?php echo $status; ?>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <form action="update_status.php" method="POST" style="display: inline;">
-                                                    <input type="hidden" name="id" value="<?php echo $request['id']; ?>">
-                                                    <button type="submit" name="status" value="approved"
-                                                        class="btn btn-success btn-sm"
-                                                        style="background-color: green; padding: 2px 8px; margin: 2px;">Approve</button>
-                                                    <button type="submit" name="status" value="rejected"
-                                                        class="btn btn-danger btn-sm"
-                                                        style="background-color: red; padding: 2px 8px; margin: 2px;">Reject</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                <?php echo $status; ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <form action="update_status.php" method="POST" style="display: inline;">
+                                                <input type="hidden" name="id" value="<?php echo $request['id']; ?>">
+                                                <button type="submit" name="status" value="approved"
+                                                    class="btn btn-success btn-sm"
+                                                    style="background-color: green; padding: 2px 8px; margin: 2px;">Approve</button>
+                                                <button type="submit" name="status" value="rejected"
+                                                    class="btn btn-danger btn-sm"
+                                                    style="background-color: red; padding: 2px 8px; margin: 2px;">Reject</button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

@@ -200,7 +200,7 @@ $sql = "SELECT * FROM orders ORDER BY order_date DESC";
 $stmt = $link->query($sql);
 $orders = $stmt->fetchAll();
 ?>
-<?php include '../csp.php';?> 
+<?php include '../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -304,7 +304,7 @@ $orders = $stmt->fetchAll();
         <a href="insert_services/update_service.php">Manage Services</a>
         <a href="insert_shop/update_shop.php">Manage Shop</a>
         <a href="manage_orders.php" class="active">Orders</a>
-        <a href="#">Users</a>
+        <a href="users.php">Users</a>
         <a href="#">Settings</a>
         <a href="../index.php">Back to Site</a>
     </div>
@@ -353,69 +353,69 @@ $orders = $stmt->fetchAll();
                 </div>
 
                 <?php if (empty($orders)): ?>
-                        <div class="alert alert-info">No orders found.</div>
+                    <div class="alert alert-info">No orders found.</div>
                 <?php else: ?>
-                        <?php foreach ($orders as $order): ?>
-                                <div class="order-card">
-                                    <div class="order-header d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h4>Order #<?= $order['id'] ?></h4>
-                                            <p class="mb-0">
-                                                Placed by: <?= htmlspecialchars($order['user_email']) ?><br>
-                                                Date: <?= date('F j, Y', strtotime($order['order_date'])) ?>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <form method="post" class="status-form">
-                                                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                                                <select name="new_status" class="form-control form-control-sm d-inline-block"
-                                                    style="width: auto; height: 40px;">
-                                                    <option value="pending" <?= $order['status'] == 'pending' ? 'selected' : '' ?>>Pending
-                                                    </option>
-                                                    <option value="processing" <?= $order['status'] == 'processing' ? 'selected' : '' ?>>
-                                                        Processing</option>
-                                                    <option value="shipped" <?= $order['status'] == 'shipped' ? 'selected' : '' ?>>Shipped
-                                                    </option>
-                                                    <option value="delivered" <?= $order['status'] == 'delivered' ? 'selected' : '' ?>>
-                                                        Delivered</option>
-                                                </select>
-                                                <button type="submit" name="update_status"
-                                                    class="btn btn-sm btn-primary">Update</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <div class="order-items">
-                                        <h5>Items:</h5>
-                                        <?php
-                                        $product_names = explode(',', $order['product_names']);
-                                        $quantities = explode(',', $order['quantities']);
-                                        $prices = explode(',', $order['prices']);
-                                        for ($i = 0; $i < count($product_names); $i++): ?>
-                                                <div class="item">
-                                                    <?= htmlspecialchars($product_names[$i]) ?> × <?= $quantities[$i] ?>
-                                                    <span class="float-right">₹<?= number_format($prices[$i] * $quantities[$i], 2) ?></span>
-                                                </div>
-                                        <?php endfor; ?>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h5>Customer Details:</h5>
-                                            <p>
-                                                Name: <?= htmlspecialchars($order['first_name'] . ' ' . $order['last_name']) ?><br>
-                                                Email: <?= htmlspecialchars($order['user_email']) ?><br>
-                                                Phone: <?= htmlspecialchars($order['phone']) ?><br>
-                                                Shipping Address: <?= htmlspecialchars($order['shipping_address']) ?>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-                                            <h5>Total Amount:</h5>
-                                            <h4>₹<?= number_format($order['total_amount'], 2) ?></h4>
-                                        </div>
-                                    </div>
+                    <?php foreach ($orders as $order): ?>
+                        <div class="order-card">
+                            <div class="order-header d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4>Order #<?= $order['id'] ?></h4>
+                                    <p class="mb-0">
+                                        Placed by: <?= htmlspecialchars($order['user_email']) ?><br>
+                                        Date: <?= date('F j, Y', strtotime($order['order_date'])) ?>
+                                    </p>
                                 </div>
-                        <?php endforeach; ?>
+                                <div>
+                                    <form method="post" class="status-form">
+                                        <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                        <select name="new_status" class="form-control form-control-sm d-inline-block"
+                                            style="width: auto; height: 40px;">
+                                            <option value="pending" <?= $order['status'] == 'pending' ? 'selected' : '' ?>>Pending
+                                            </option>
+                                            <option value="processing" <?= $order['status'] == 'processing' ? 'selected' : '' ?>>
+                                                Processing</option>
+                                            <option value="shipped" <?= $order['status'] == 'shipped' ? 'selected' : '' ?>>Shipped
+                                            </option>
+                                            <option value="delivered" <?= $order['status'] == 'delivered' ? 'selected' : '' ?>>
+                                                Delivered</option>
+                                        </select>
+                                        <button type="submit" name="update_status"
+                                            class="btn btn-sm btn-primary">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="order-items">
+                                <h5>Items:</h5>
+                                <?php
+                                $product_names = explode(',', $order['product_names']);
+                                $quantities = explode(',', $order['quantities']);
+                                $prices = explode(',', $order['prices']);
+                                for ($i = 0; $i < count($product_names); $i++): ?>
+                                    <div class="item">
+                                        <?= htmlspecialchars($product_names[$i]) ?> × <?= $quantities[$i] ?>
+                                        <span class="float-right">₹<?= number_format($prices[$i] * $quantities[$i], 2) ?></span>
+                                    </div>
+                                <?php endfor; ?>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Customer Details:</h5>
+                                    <p>
+                                        Name: <?= htmlspecialchars($order['first_name'] . ' ' . $order['last_name']) ?><br>
+                                        Email: <?= htmlspecialchars($order['user_email']) ?><br>
+                                        Phone: <?= htmlspecialchars($order['phone']) ?><br>
+                                        Shipping Address: <?= htmlspecialchars($order['shipping_address']) ?>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <h5>Total Amount:</h5>
+                                    <h4>₹<?= number_format($order['total_amount'], 2) ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>

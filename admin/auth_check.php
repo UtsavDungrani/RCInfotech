@@ -1,5 +1,4 @@
 <?php
-include '../csp.php'; 
 function checkAdminAuth()
 {
     // Check if admin is logged in
