@@ -76,12 +76,6 @@ document.addEventListener("cut", function (e) {
   return false;
 });
 
-// Disable paste
-document.addEventListener("paste", function (e) {
-  e.preventDefault();
-  return false;
-});
-
 // Additional protection against dev tools
 window.addEventListener("devtoolschange", function (e) {
   if (e.detail.open) {
