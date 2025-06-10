@@ -4,8 +4,7 @@
             <div style="width: 500px;">
                 <div style="width: 100%"><iframe width="100%" height="650" frameborder="0" scrolling="no"
                         marginheight="0" marginwidth="0"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d472.0673927927595!2d72.11304969999999!3d21.760874899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f50f3945bcedb%3A0xbd03f1f2080a40c7!2sRIGHTS%20COMPUTER!5e0!3m2!1sen!2sin!4v1711384511011!5m2!1sen!2sin"><a
-                            href="https://www.maps.ie/population/">Population calculator map</a></iframe></div>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d472.0673927927595!2d72.11304969999999!3d21.760874899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f50f3945bcedb%3A0xbd03f1f2080a40c7!2sRIGHTS%20COMPUTER!5e0!3m2!1sen!2sin!4v1711384511011!5m2!1sen!2sin"></iframe></div>
             </div>
             <div class="footer_blog">
                 <div class="row">
