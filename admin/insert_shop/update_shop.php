@@ -52,7 +52,7 @@ try {
         <a href="../service_requests.php">Service Requests</a>
         <a href="../insert_product/add_product.php">Add Product</a>
         <a href="../insert_services/add_service.php">Add Service</a>
-        <a href="add_shop.php">Add Shop</a>
+        <a href="add_shop.php">Add Shops</a>
         <a href="../insert_product/update_product.php">Manage Products</a>
         <a href="../insert_services/update_service.php">Manage Services</a>
         <a href="update_shop.php" class="active">Manage Shops</a>

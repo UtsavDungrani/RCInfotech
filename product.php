@@ -65,9 +65,7 @@ $total_products = $result_total->fetch_assoc()['total'];
   <link rel="stylesheet" href="css/custom.css" />
   <!-- wow Animation css -->
   <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/all.min.css">
-  <!-- zoom effect -->
-  <link rel="stylesheet" href="css/hizoom.css" />
+  <link rel="stylesheet" href="css/all.min.css">>
   <!-- end zoom effect -->
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -717,8 +715,6 @@ $total_products = $result_total->fetch_assoc()['total'];
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-  <!-- zoom effect -->
-  <script src="js/hizoom.js"></script>
   <script>
     $(".hi1").hiZoom({
       width: 300,

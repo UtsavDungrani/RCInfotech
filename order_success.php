@@ -59,8 +59,6 @@ if (!$order) {
   <!-- wow Animation css -->
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/all.min.css">
-  <!-- zoom effect -->
-  <link rel='stylesheet' href='css/hizoom.css'>
   <!-- end zoom effect -->
   <style>
     .success-page {

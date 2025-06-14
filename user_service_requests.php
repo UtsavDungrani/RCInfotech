@@ -434,8 +434,6 @@ try {
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-  <!-- zoom effect -->
-  <script src="js/hizoom.js"></script>
   <script>
     $(".hi1").hiZoom({
       width: 300,

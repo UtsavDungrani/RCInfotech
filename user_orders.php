@@ -57,7 +57,7 @@ $orders = $stmt->fetchAll();
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/all.min.css">
   <!-- zoom effect -->
-  <link rel='stylesheet' href='css/hizoom.css'>
+  <link rel='stylesheet' href='css/'>
   <!-- end zoom effect -->
   <style>
     .orders-list {

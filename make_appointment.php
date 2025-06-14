@@ -486,8 +486,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       }
     });
   </script>
-  <!-- zoom effect -->
-  <script src="js/hizoom.js"></script>
   <script>
     $(".hi1").hiZoom({
       width: 300,

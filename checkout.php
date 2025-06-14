@@ -250,8 +250,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
   <!-- wow Animation css -->
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/all.min.css">
-  <!-- zoom effect -->
-  <link rel='stylesheet' href='css/hizoom.css'>
   <!-- end zoom effect -->
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
