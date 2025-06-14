@@ -14,7 +14,7 @@ $image = $stmt->fetchColumn();
 
 if ($image) {
     header("Content-Type: image/jpeg");
-    echo $image;
+echo $image;
 } else {
     // Return a default image if no image is found
     header("Content-Type: image/jpeg");
