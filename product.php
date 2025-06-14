@@ -47,10 +47,18 @@ $total_products = $result_total->fetch_assoc()['total'];
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
   <!-- site metas -->
-  <title>RCInfotech</title>
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <title><?= htmlspecialchars($product['name']) ?> - RCInfotech</title>
+  <meta name="keywords" content="<?= htmlspecialchars($product['name']) ?>" />
+  <meta name="description" content="<?= htmlspecialchars($product['description_small']) ?>" />
+  <meta name="author" content="RCInfotech" />
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/bootstrap.min.css" as="style">
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="js/jquery.min.js" as="script">
+  <link rel="preload" href="js/bootstrap.min.js" as="script">
+  <link rel="preload" href="get_product_image.php?id=<?= $product_id ?>" as="image">
+
   <!-- site icons -->
   <link rel="icon" href="images/logos/logo-1.png" type="image/gif" />
   <!-- bootstrap css -->
@@ -65,13 +73,11 @@ $total_products = $result_total->fetch_assoc()['total'];
   <link rel="stylesheet" href="css/custom.css" />
   <!-- wow Animation css -->
   <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/all.min.css">>
-  <!-- end zoom effect -->
+  <link rel="stylesheet" href="css/all.min.css">
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <!-- Add this CSS in the head section or in your custom.css file -->
   <style>
     /* Hide all products by default */
     [id^="pro_"] {
@@ -343,7 +349,7 @@ $total_products = $result_total->fetch_assoc()['total'];
 <body id="default_theme" class="it_shop_detail">
   <!-- loader -->
   <div class="bg_load">
-    <img class="loader_animation" src="images/loaders/loader.gif" alt="#" />
+    <img class="loader_animation" src="images/loaders/loader.gif" alt="Loading..." />
   </div>
   <!-- end loader -->
   <!-- header -->
@@ -361,59 +367,24 @@ $total_products = $result_total->fetch_assoc()['total'];
             <div class="col-xl-6 col-lg-12 col-md-12">
               <div class="product_detail_feature_img hizoom hi2">
                 <div class="hizoom hi2">
-                  <img src="get_product_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
+                  <img src="get_product_image.php?id=<?= $product['id'] ?>"
+                    alt="<?= htmlspecialchars($product['name']) ?>" loading="lazy">
                 </div>
               </div>
             </div>
             <div class="col-xl-6 col-lg-12 col-md-12 product_detail_side detail_style1">
-              <div class="product-heading" id="product_heading">
-                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
+              <div class="product-heading">
+                <h2><?= htmlspecialchars($product['name']) ?></h2>
               </div>
               <div class="product-detail-side">
-                <span><del>₹<?php echo htmlspecialchars($product['old_price']); ?>.00</del></span><span
-                  class="new-price">₹<?php echo htmlspecialchars($product['new_price']); ?>.00</span>
-                <span class="rating">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
-                </span>
-                <span class="review">(5 customer review)</span>
+                <span class="new_price">₹<?= number_format($product['new_price'], 2) ?></span>
+                <span class="old_price">₹<?= number_format($product['old_price'], 2) ?></span>
               </div>
               <div class="detail-contant">
-                <p style="text-align: justify;">
-                  <?php echo htmlspecialchars($product['description_small']); ?>
-                  <br /><br />
-                  <span class="stock" style="font-weight:600;"><?php echo (int) $product['stock']; ?> in stock</span>
-                </p>
-                <form class="cart" method="post" action="cart.php">
-                  <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                  <div class="quantity">
-                    <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text"
-                      size="4" type="number" />
-                  </div>
-                  <button type="submit" name="add_to_cart" class="btn sqaure_bt">
-                    Add to cart
-                  </button>
-                </form>
+                <p><?= htmlspecialchars($product['description_small']) ?></p>
               </div>
               <div class="share-post">
-                <a href="#" class="share-text">Share</a>
-                <ul class="social_icons">
-                  <li>
-                    <a href="#"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                  </li>
-                </ul>
+                <a href="cart.php?add=<?= $product['id'] ?>" class="btn sqaure_bt">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -421,107 +392,13 @@ $total_products = $result_total->fetch_assoc()['total'];
             <div class="col-md-12">
               <div class="full">
                 <div class="tab_bar_section">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#reviews">Reviews (2)</a>
-                    </li>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" id="description-tab" data-toggle="tab"
+                        href="#description" role="tab">Description</a> </li>
                   </ul>
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                    <div id="description" class="tab-pane active">
-                      <div class="product_desc">
-                        <p style="text-align: justify;">
-                          <?php echo nl2br(htmlspecialchars($product['description_large'])); ?>
-                        </p>
-                      </div>
-                    </div>
-                    <div id="reviews" class="tab-pane fade">
-                      <div class="product_review">
-                        <h3>Reviews (2)</h3>
-                        <div class="commant-text row">
-                          <div class="col-lg-2 col-md-2 col-sm-4">
-                            <div class="profile">
-                              <img class="img-responsive" src="images/it_service/client1.png" alt="#" />
-                            </div>
-                          </div>
-                          <div class="col-lg-10 col-md-10 col-sm-8">
-                            <h5>David</h5>
-                            <p>
-                              <span class="c_date">March 2, 2018</span> |
-                              <span><a rel="nofollow" class="comment-reply-link" href="#">Reply</a></span>
-                            </p>
-                            <span class="rating">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </span>
-                            <p class="msg">
-                              This book is a treatise on the theory of
-                              ethics, very popular during the Renaissance. The
-                              first line of Lorem Ipsum, "Lorem ipsum dolor
-                              sit amet..
-                            </p>
-                          </div>
-                        </div>
-                        <div class="commant-text row">
-                          <div class="col-lg-2 col-md-2 col-sm-4">
-                            <div class="profile">
-                              <img class="img-responsive" src="images/it_service/client2.png" alt="#" />
-                            </div>
-                          </div>
-                          <div class="col-lg-10 col-md-10 col-sm-8">
-                            <h5>Jack</h5>
-                            <p>
-                              <span class="c_date">March 2, 2018</span> |
-                              <span><a rel="nofollow" class="comment-reply-link" href="#">Reply</a></span>
-                            </p>
-                            <span class="rating">
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star" aria-hidden="true"></i>
-                              <i class="fa fa-star-o" aria-hidden="true"></i>
-                            </span>
-                            <p class="msg">
-                              Nunc augue purus, posuere in accumsan sodales
-                              ac, euismod at est. Nunc faccumsan ermentum
-                              consectetur metus placerat mattis. Praesent
-                              mollis justo felis, accumsan faucibus mi maximus
-                              et. Nam hendrerit mauris id scelerisque
-                              placerat. Nam vitae imperdiet turpis
-                            </p>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="full review_bt_section">
-                              <div class="float-right">
-                                <a class="btn sqaure_bt" data-toggle="collapse" href="#collapseExample" role="button"
-                                  aria-expanded="false" aria-controls="collapseExample">Leave a Review</a>
-                              </div>
-                            </div>
-                            <div class="full">
-                              <div id="collapseExample" class="full collapse commant_box">
-                                <form accept-charset="UTF-8" action="index.html" method="post">
-                                  <input id="ratings-hidden" name="rating" type="hidden" />
-                                  <textarea class="form-control animated" cols="50" id="new-review" name="comment"
-                                    placeholder="Enter your review here..." required=""></textarea>
-                                  <div class="full_bt center">
-                                    <button class="btn sqaure_bt" type="submit">
-                                      Save
-                                    </button>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                      <p><?= nl2br(htmlspecialchars($product['description_large'])) ?></p>
                     </div>
                   </div>
                 </div>
@@ -707,14 +584,14 @@ $total_products = $result_total->fetch_assoc()['total'];
   <?php include 'footer.php'; ?>
   <!-- end footer -->
   <!-- js section -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js" defer></script>
+  <script src="js/bootstrap.min.js" defer></script>
   <!-- menu js -->
-  <script src="js/menumaker.js"></script>
+  <script src="js/menumaker.js" defer></script>
   <!-- wow animation -->
-  <script src="js/wow.js"></script>
+  <script src="js/wow.js" defer></script>
   <!-- custom js -->
-  <script src="js/custom.js"></script>
+  <script src="js/custom.js" defer></script>
   <script>
     $(".hi1").hiZoom({
       width: 300,
@@ -725,7 +602,7 @@ $total_products = $result_total->fetch_assoc()['total'];
       position: "right",
     });
   </script>
-  <script src="js/security.js"></script>
+  <script src="js/security.js" defer></script>
 </body>
 
 </html>

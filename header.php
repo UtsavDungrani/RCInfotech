@@ -1,3 +1,24 @@
+<?php
+// Add preload directives for critical resources
+$preload_css = [
+    'css/bootstrap.min.css',
+    'css/style.css',
+    'css/responsive.css',
+    'css/colors1.css'
+];
+
+$preload_js = [
+    'js/jquery.min.js',
+    'js/bootstrap.min.js'
+];
+
+foreach ($preload_css as $css) {
+    echo "<link rel='preload' href='$css' as='style'>\n";
+}
+foreach ($preload_js as $js) {
+    echo "<link rel='preload' href='$js' as='script'>\n";
+}
+?>
 <header id="default_header" class="header_style_1">
     <!-- header top -->
     <div class="header_top">
@@ -7,10 +28,12 @@
                     <div class="full">
                         <div class="topbar-left">
                             <ul class="list-inline">
-                                <li> <span class="topbar-label"><i class="fa fa-home"></i></span> <span
-                                        class="topbar-hightlight">Desai nagar, Bhavnagar</span> </li>
-                                <li> <span class="topbar-label"><i class="fa-regular fa-envelope"></i></span> <span
-                                        class="topbar-hightlight"><a href="mailto:info@yourdomain.com">Hello,
+                                <li> <span class="topbar-label"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                    <span class="topbar-hightlight">Desai nagar, Bhavnagar</span>
+                                </li>
+                                <li> <span class="topbar-label"><i class="fa-regular fa-envelope"
+                                            aria-hidden="true"></i></span> <span class="topbar-hightlight"><a
+                                            href="mailto:info@yourdomain.com">Hello,
                                             <?= htmlspecialchars($_SESSION["username"]); ?> </a></span>
                                 </li>
                             </ul>
@@ -22,14 +45,14 @@
                         <div class="social_icon">
                             <ul class="list-inline">
                                 <li><a class="fa-brands fa-facebook-f" href="https://www.facebook.com/" title="Facebook"
-                                        target="_blank"></a></li>
+                                        target="_blank" rel="noopener"></a></li>
                                 <li><a class="fa-brands fa-x-twitter" href="https://twitter.com" title="Twitter"
-                                        target="_blank"></a>
+                                        target="_blank" rel="noopener"></a>
                                 </li>
                                 <li><a class="fa-brands fa-linkedin-in" href="https://www.linkedin.com" title="LinkedIn"
-                                        target="_blank"></a></li>
+                                        target="_blank" rel="noopener"></a></li>
                                 <li><a class="fa-brands fa-instagram" href="https://www.instagram.com" title="Instagram"
-                                        target="_blank"></a></li>
+                                        target="_blank" rel="noopener"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <!-- logo start -->
-                    <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo" /></a> </div>
+                    <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo"/></a> </div>
                     <!-- logo end -->
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -92,12 +115,6 @@
                                         href="faq.php">FAQ</a></li>
                             </ul>
                         </div>
-                        <!-- <div class="search_icon">
-                <ul>
-                  <li><a href="#" data-toggle="modal" data-target="#search_bar"><i class="fa fa-search"
-                        aria-hidden="true"></i></a></li>
-                </ul>
-              </div> -->
                     </div>
                     <!-- menu end -->
                 </div>

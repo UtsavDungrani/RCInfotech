@@ -35,6 +35,13 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <meta name="author" content="">
   <!-- site icons -->
   <link rel="icon" href="images/logos/logo-1.png" type="image/gif" />
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/bootstrap.min.css" as="style">
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="js/jquery.min.js" as="script">
+  <link rel="preload" href="js/bootstrap.min.js" as="script">
+
   <!-- bootstrap css -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Site css -->
@@ -502,7 +509,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
             <div class="full">
               <div class="service_img">
                 <img class="img-responsive" src="get_service_image.php?id=<?= $service['id'] ?>"
-                  alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
+                  alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" loading="lazy" />
               </div>
               <div class="service_cont">
                 <h3 class="service_head"><?= $service['name'] ?></h3>
@@ -622,7 +629,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
                   <div class="product_list">
                     <div class="product_img" style="height: 270px;">
                       <img class="img-responsive img-product" src="get_product_image.php?id=<?= $product['id'] ?>"
-                        alt="<?= $product['name'] ?>">
+                        alt="<?= $product['name'] ?>" loading="lazy">
                     </div>
                     <div class="product_detail_btm">
                       <div class="center">
@@ -895,27 +902,27 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <?php include 'footer.php'; ?>
   <!-- end footer -->
   <!-- js section -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js" defer></script>
+  <script src="js/bootstrap.min.js" defer></script>
   <!-- menu js -->
-  <script src="js/menumaker.js"></script>
+  <script src="js/menumaker.js" defer></script>
   <!-- wow animation -->
-  <script src="js/wow.js"></script>
+  <script src="js/wow.js" defer></script>
   <!-- custom js -->
-  <script src="js/custom.js"></script>
+  <script src="js/custom.js" defer></script>
   <!-- revolution js files -->
-  <script src="revolution/js/jquery.themepunch.tools.min.js"></script>
-  <script src="revolution/js/jquery.themepunch.revolution.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.migration.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-  <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-  <script src="js/security.js"></script>
+  <script src="revolution/js/jquery.themepunch.tools.min.js" defer></script>
+  <script src="revolution/js/jquery.themepunch.revolution.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.actions.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.carousel.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.kenburn.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.layeranimation.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.migration.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.navigation.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.parallax.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.slideanims.min.js" defer></script>
+  <script src="revolution/js/extensions/revolution.extension.video.min.js" defer></script>
+  <script src="js/security.js" defer></script>
 </body>
 
 </html>
