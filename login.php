@@ -111,7 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- loader -->
   <div class="bg_load"> <img class="loader_animation" src="images/loaders/loader.gif" alt="#" /> </div>
   <!-- end loader -->
-   <?php echo "hello world";?>
   <div class="container">
     <div class="row min-vh-100 justify-content-center align-items-center">
       <div class="col-lg-5">
