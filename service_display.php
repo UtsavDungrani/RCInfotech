@@ -207,6 +207,10 @@ $conn->close();
       margin-right: 10px;
     }
 
+    .btn_booking {
+      width: 100%;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -342,6 +346,9 @@ $conn->close();
                   <p id="service_description">
                     <?php echo nl2br(htmlspecialchars($serviceDescription)); ?>
                   </p>
+                </div>
+                <div class="text-center">
+                  <a class="btn sqaure_bt btn_booking" href="make_appointment.php">Booking</a>
                 </div>
                 <hr class="hr" />
               </div>
@@ -711,7 +718,7 @@ $conn->close();
   <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-  <script src="js/security.js"></script>
+  <script src="js/security.js"></script> 
   <script>
     $(document).ready(function () {
       // Initialize the accordion with the first panel expanded
