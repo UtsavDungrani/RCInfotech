@@ -6,6 +6,6 @@ $stmt = $link->prepare("SELECT image FROM shop WHERE id = ?");  // Updated colum
 $stmt->execute([$id]);
 $image = $stmt->fetchColumn();
 
-header("Content-Type: image/jpeg");
+header("Content-Type: image/*");
 echo $image;
 ?>

@@ -309,7 +309,7 @@ $result = $conn->query($sql);
             echo '<div class="col-md-4 shop_card">
                         <div class="product_list">
                             <div class="product_img"> 
-                                <img class="w-100 p-4 img_con" src="get_shop_image.php?id=' . $row['id'] . '" alt="' . $row['Name'] . '"> 
+                                <img class="w-100 p-4 img_con" src="get_shop_image.php?id=' . $row['id'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
                             </div>
                             <div class="product_detail_btm">
                                 <div class="center">

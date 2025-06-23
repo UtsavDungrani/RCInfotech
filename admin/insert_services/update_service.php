@@ -59,7 +59,7 @@ try {
         <a href="../manage_orders.php">Orders</a>
         <a href="../users.php">Users</a>
         <a href="#">Settings</a>
-        <a href="../index.php">Back to Site</a>
+        <a href="../../index.php">Back to Site</a>
     </div>
 
     <!-- Main Content -->
