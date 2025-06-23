@@ -24,10 +24,10 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="testimonial-container">
+                <div class="testimonial-container" style="min-height: 150px;">
                   <div class="testimonial-content"> RC Infotech transformed our business with their smart IT solutions.
                     Their team is fast, reliable, and always available when we need them. </div>
-                  <div class="testimonial-photo"> <img src="images/it_service/client1.jpg" class="img-responsive"
+                  <div class="testimonial-photo"> <img src="images/it_service/testimonial1.png" class="img-responsive"
                       alt="#"> </div>
                   <div class="testimonial-meta">
                     <h4>Ashish Gohil</h4>
@@ -35,10 +35,10 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container">
+                <div class="testimonial-container" style="min-height: 150px;">
                   <div class="testimonial-content"> Excellent service and support! The website they built for us is
                     smooth, responsive, and exactly what we needed and also maintain it very well.</div>
-                  <div class="testimonial-photo"> <img src="images/it_service/client2.jpg" class="img-responsive"
+                  <div class="testimonial-photo"> <img src="images/it_service/testimonial2.png" class="img-responsive"
                       alt="#"> </div>
                   <div class="testimonial-meta">
                     <h4>Utsav Dungrani</h4>
@@ -46,10 +46,10 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container">
+                <div class="testimonial-container" style="min-height: 150px;">
                   <div class="testimonial-content"> Highly professional and skilled team. RC Infotech handled our
                     hardware setup and network issues perfectly.</div>
-                  <div class="testimonial-photo"> <img src="images/it_service/client3.jpg" class="img-responsive"
+                  <div class="testimonial-photo"> <img src="images/it_service/testimonial3.png" class="img-responsive"
                       alt="#"> </div>
                   <div class="testimonial-meta">
                     <h4>Ayush Joshi</h4>
@@ -57,13 +57,13 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container">
+                <div class="testimonial-container" style="min-height: 150px;">
                   <div class="testimonial-content"> Their quick response and affordable services helped us get our
                     project live on time. Highly recommended! </div>
-                  <div class="testimonial-photo"> <img src="images/it_service/client3.jpg" class="img-responsive"
+                  <div class="testimonial-photo"> <img src="images/it_service/testimonial4.png" class="img-responsive"
                       alt="#"> </div>
                   <div class="testimonial-meta">
-                    <h4>Maria Anderson</h4>
+                    <h4>Jignesh Solanki</h4>
                   </div>
                 </div>
               </div>
