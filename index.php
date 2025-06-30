@@ -474,21 +474,6 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   </div>
   <!-- end section -->
   <!-- section -->
-  <div class="section padding_layout_1">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="main_heading text_align_center">
-              <h2>Why Choose Us</h2>
-              <p class="large">Fastest repair service with best price!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- section -->
   <div class="section padding_layout_1 light_silver service_list">
     <div class="container">
       <div class="row">
