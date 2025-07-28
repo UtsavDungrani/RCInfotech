@@ -42,20 +42,7 @@ try {
     <!-- end loader -->
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="admin_home.php">Dashboard</a>
-        <a href="service_requests.php">Service Requests</a>
-        <a href="insert_product/add_product.php">Add Product</a>
-        <a href="insert_services/add_service.php">Add Service</a>
-        <a href="insert_shop/add_shop.php">Add Shops</a>
-        <a href="insert_product/update_product.php">Manage Products</a>
-        <a href="insert_services/update_service.php">Manage Services</a>
-        <a href="insert_shop/update_shop.php">Manage Shop</a>
-        <a href="manage_orders.php">Orders</a>
-        <a href="users.php" class="active">Users</a>
-        <a href="#">Settings</a>
-        <a href="../index.php">Back to Site</a>
-    </div>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/admin/navbar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">

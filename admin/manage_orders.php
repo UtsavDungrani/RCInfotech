@@ -196,9 +196,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
 }
 
 // Get all orders
-$sql = "SELECT * FROM orders ORDER BY order_date DESC";
-$stmt = $link->query($sql);
-$orders = $stmt->fetchAll();
+// Pagination setup
+$records_per_page = 10;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? (int) $_GET['page'] : 1;
+$offset = ($page - 1) * $records_per_page;
+$total_records = 0;
+$total_pages = 1;
+
+// Define filter and sort variables
+$status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
+$date_order = isset($_GET['date_order']) ? $_GET['date_order'] : 'desc';
+
+try {
+    // Build WHERE clause for status
+    $where = '';
+    $params = [];
+    if ($status_filter !== 'all') {
+        $where = 'WHERE status = :status';
+        $params[':status'] = $status_filter;
+    }
+    // Get total count with filter
+    $stmt_count = $link->prepare("SELECT COUNT(*) FROM orders $where");
+    if ($where) {
+        $stmt_count->bindParam(':status', $params[':status']);
+    }
+    $stmt_count->execute();
+    $total_records = $stmt_count->fetchColumn();
+    $total_pages = max(1, ceil($total_records / $records_per_page));
+    // Get paginated records with filter and sort
+    $order = ($date_order === 'asc') ? 'ASC' : 'DESC';
+    $sql = "SELECT * FROM orders $where ORDER BY order_date $order LIMIT :limit OFFSET :offset";
+    $stmt = $link->prepare($sql);
+    if ($where) {
+        $stmt->bindParam(':status', $params[':status']);
+    }
+    $stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    $orders = $stmt->fetchAll();
+} catch (PDOException $e) {
+    error_log("Database error: " . $e->getMessage());
+    $orders = [];
+}
 ?>
 <?php include '../csp.php'; ?>
 
@@ -294,20 +333,7 @@ $orders = $stmt->fetchAll();
     <!-- end loader -->
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="admin_home.php">Dashboard</a>
-        <a href="service_requests.php">Service Requests</a>
-        <a href="insert_product/add_product.php">Add Product</a>
-        <a href="insert_services/add_service.php">Add Service</a>
-        <a href="insert_shop/add_shop.php">Add Shops</a>
-        <a href="insert_product/update_product.php">Manage Products</a>
-        <a href="insert_services/update_service.php">Manage Services</a>
-        <a href="insert_shop/update_shop.php">Manage Shop</a>
-        <a href="manage_orders.php" class="active">Orders</a>
-        <a href="users.php">Users</a>
-        <a href="#">Settings</a>
-        <a href="../index.php">Back to Site</a>
-    </div>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/admin/navbar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -417,6 +443,35 @@ $orders = $stmt->fetchAll();
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
+                <!-- Pagination Bar -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <?php if ($page > 1): ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                    <li class="page-item <?php if ($i == $page)
+                                        echo 'active'; ?>">
+                                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                    </li>
+                                <?php endfor; ?>
+                                <?php if ($page < $total_pages): ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
