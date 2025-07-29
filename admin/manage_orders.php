@@ -371,12 +371,37 @@ try {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
-                            <div class="main_heading text_align_left">
+                            <div class="main_heading text_align_left" style="margin-bottom: 0;">
                                 <h2>Manage Orders</h2>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Filter/Sort Form (NEW) -->
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-12">
+                        <form method="GET" class="d-flex align-items-center justify-content-between" style="gap: 10px;">
+                            <div class="d-flex align-items-center" style="gap: 10px;">
+                                <label for="status" class="me-2 mb-0">Status:</label>
+                                <select name="status" id="status" class="form-control me-3" style="width: 140px;">
+                                    <option value="all" <?php echo ($status_filter === 'all' ? 'selected' : ''); ?>>All</option>
+                                    <option value="pending" <?php echo ($status_filter === 'pending' ? 'selected' : ''); ?>>Pending</option>
+                                    <option value="processing" <?php echo ($status_filter === 'processing' ? 'selected' : ''); ?>>Processing</option>
+                                    <option value="shipped" <?php echo ($status_filter === 'shipped' ? 'selected' : ''); ?>>Shipped</option>
+                                    <option value="delivered" <?php echo ($status_filter === 'delivered' ? 'selected' : ''); ?>>Delivered</option>
+                                </select>
+                                <label for="date_order" class="me-2 mb-0">Date:</label>
+                                <select name="date_order" id="date_order" class="form-control me-3" style="width: 150px;">
+                                    <option value="desc" <?php echo ($date_order === 'desc' ? 'selected' : ''); ?>>Newest First</option>
+                                    <option value="asc" <?php echo ($date_order === 'asc' ? 'selected' : ''); ?>>Oldest First</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" style="width:auto;">Filter</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Filter/Sort Form -->
 
                 <?php if (empty($orders)): ?>
                     <div class="alert alert-info">No orders found.</div>
@@ -443,14 +468,23 @@ try {
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                <!-- Pagination Bar -->
+                <!-- Pagination Bar (UPDATED) -->
                 <div class="row">
                     <div class="col-md-12">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center">
+                                <?php
+                                // Build query string for pagination links, preserving filters
+                                $query_params = $_GET;
+                                if (isset($query_params['page']))
+                                    unset($query_params['page']);
+                                $base_query = http_build_query($query_params);
+                                ?>
                                 <?php if ($page > 1): ?>
                                     <li class="page-item">
-                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                        <a class="page-link"
+                                            href="?<?php echo $base_query . ($base_query ? '&' : '') . 'page=' . ($page - 1); ?>"
+                                            aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
@@ -458,12 +492,15 @@ try {
                                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                     <li class="page-item <?php if ($i == $page)
                                         echo 'active'; ?>">
-                                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        <a class="page-link"
+                                            href="?<?php echo $base_query . ($base_query ? '&' : '') . 'page=' . $i; ?>"><?php echo $i; ?></a>
                                     </li>
                                 <?php endfor; ?>
                                 <?php if ($page < $total_pages): ?>
                                     <li class="page-item">
-                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                        <a class="page-link"
+                                            href="?<?php echo $base_query . ($base_query ? '&' : '') . 'page=' . ($page + 1); ?>"
+                                            aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
@@ -472,6 +509,7 @@ try {
                         </nav>
                     </div>
                 </div>
+                <!-- End Pagination Bar -->
             </div>
         </div>
     </div>
