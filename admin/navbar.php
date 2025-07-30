@@ -1,8 +1,45 @@
+<?php
+require_once __DIR__ . '/../config/config.php';
+// Fetch pending service requests count
+$pending_service_count = 0;
+try {
+    $stmt = $link->query("SELECT COUNT(*) FROM bookser WHERE status = 'pending'");
+    $pending_service_count = (int)$stmt->fetchColumn();
+} catch (Exception $e) {
+    $pending_service_count = 0;
+}
+$pending_order_count = 0;
+try {
+    $stmt = $link->query("SELECT COUNT(*) FROM orders WHERE status = 'pending'");
+    $pending_order_count = (int)$stmt->fetchColumn();
+} catch (Exception $e) {
+    $pending_order_count = 0;
+}
+?>
 <div class="sidebar">
     <a href="/RCInfotech/admin/admin_home.php"
         class="<?= basename($_SERVER['PHP_SELF']) == 'admin_home.php' ? 'active' : '' ?>">Dashboard</a>
     <a href="/RCInfotech/admin/service_requests.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests.php' ? 'active' : '' ?>">Service Requests</a>
+        class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests.php' ? 'active' : '' ?>">
+    Service Requests
+    <?php if ($pending_service_count > 0): ?>
+        <span style="
+            display: inline-block;
+            min-width: 22px;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            background: #007bff;
+            border-radius: 50%;
+            margin-left: 8px;
+            text-align: center;
+            vertical-align: middle;
+        ">
+            <?= $pending_service_count ?>
+        </span>
+    <?php endif; ?>
+</a>
     <a href="/RCInfotech/admin/insert_product/add_product.php"
         class="<?= basename($_SERVER['PHP_SELF']) == 'add_product.php' ? 'active' : '' ?>">Add Product</a>
     <a href="/RCInfotech/admin/insert_services/add_service.php"
@@ -16,7 +53,24 @@
     <a href="/RCInfotech/admin/insert_shop/update_shop.php"
         class="<?= (basename($_SERVER['PHP_SELF']) == 'update_shop.php' || basename($_SERVER['PHP_SELF']) == 'edit_shop.php') ? 'active' : '' ?>">Manage Shop</a>
     <a href="/RCInfotech/admin/manage_orders.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders.php' ? 'active' : '' ?>">Orders</a>
+        class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders.php' ? 'active' : '' ?>">Orders
+        <?php if ($pending_service_count > 0): ?>
+        <span style="
+            display: inline-block;
+            min-width: 22px;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            background: #007bff;
+            border-radius: 50%;
+            margin-left: 8px;
+            text-align: center;
+            vertical-align: middle;
+        ">
+            <?= $pending_order_count ?>
+        </span>
+    <?php endif; ?></a>
     <a href="/RCInfotech/admin/users.php"
         class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
