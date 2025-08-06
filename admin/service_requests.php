@@ -17,30 +17,53 @@ $total_pages = 1;
 
 // Define filter and sort variables
 $status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
+$service_filter = isset($_GET['service']) ? $_GET['service'] : 'all';
 $date_order = isset($_GET['date_order']) ? $_GET['date_order'] : 'desc';
 
+// Fetch all available services for the filter dropdown
+$available_services = [];
 try {
-    // Build WHERE clause for status
-    $where = '';
+    $stmt_services = $link->query("SELECT DISTINCT name FROM services ORDER BY name");
+    $available_services = $stmt_services->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log("Database error fetching services: " . $e->getMessage());
+}
+
+try {
+    // Build WHERE clause for status and service filters
+    $where_conditions = [];
     $params = [];
+    
     if ($status_filter !== 'all') {
-        $where = 'WHERE status = :status';
+        $where_conditions[] = 'status = :status';
         $params[':status'] = $status_filter;
     }
+    
+    if ($service_filter !== 'all') {
+        $where_conditions[] = 'subject = :service';
+        $params[':service'] = $service_filter;
+    }
+    
+    $where = '';
+    if (!empty($where_conditions)) {
+        $where = 'WHERE ' . implode(' AND ', $where_conditions);
+    }
+    
     // Get total count with filter
     $stmt_count = $link->prepare("SELECT COUNT(*) FROM bookser $where");
-    if ($where) {
-        $stmt_count->bindParam(':status', $params[':status']);
+    foreach ($params as $key => $value) {
+        $stmt_count->bindValue($key, $value);
     }
     $stmt_count->execute();
     $total_records = $stmt_count->fetchColumn();
     $total_pages = max(1, ceil($total_records / $records_per_page));
+    
     // Get paginated records with filter and sort
     $order = ($date_order === 'asc') ? 'ASC' : 'DESC';
     $sql = "SELECT * FROM bookser $where ORDER BY booking_time $order LIMIT :limit OFFSET :offset";
     $stmt = $link->prepare($sql);
-    if ($where) {
-        $stmt->bindParam(':status', $params[':status']);
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value);
     }
     $stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -134,6 +157,17 @@ try {
                                     <option value="approved" <?php echo ($status_filter === 'approved' ? 'selected' : ''); ?>>Approved</option>
                                     <option value="rejected" <?php echo ($status_filter === 'rejected' ? 'selected' : ''); ?>>Rejected</option>
                                 </select>
+                                <label for="service" class="me-2 mb-0">Service:</label>
+                                <select name="service" id="service" class="form-control me-3" style="width: 140px;">
+                                    <option value="all" <?php echo ($service_filter === 'all' ? 'selected' : ''); ?>>All
+                                    </option>
+                                    <?php foreach ($available_services as $service): ?>
+                                        <option value="<?php echo htmlspecialchars($service['name']); ?>"
+                                            <?php echo ($service_filter === htmlspecialchars($service['name']) ? 'selected' : ''); ?>>
+                                            <?php echo htmlspecialchars($service['name']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                                 <label for="date_order" class="me-2 mb-0">Date:</label>
                                 <select name="date_order" id="date_order" class="form-control me-3"
                                     style="width: 150px;">
@@ -158,7 +192,7 @@ try {
                                     <th style="max-width: 130px; word-wrap: break-word;">Email</th>
                                     <th style="max-width: 150px; word-wrap: break-word;">Account info</th>
                                     <th>Mobile</th>
-                                    <th>Subject</th>
+                                    <th>Service</th>
                                     <th style="max-width: 120px; word-wrap: break-word;">Description</th>
                                     <th style="min-width: 101px; word-wrap: break-word;">Booking Time</th>
                                     <th>Status</th>

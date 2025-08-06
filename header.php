@@ -78,7 +78,7 @@ foreach ($preload_js as $js) {
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <!-- logo start -->
-                    <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo"/></a> </div>
+                    <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo" /></a> </div>
                     <!-- logo end -->
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -113,6 +113,8 @@ foreach ($preload_js as $js) {
                                         href="search_shop.php">Near by shops</a></li>
                                 <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq.php' || basename($_SERVER['PHP_SELF']) == 'feedback.php') ? 'active' : '' ?>"
                                         href="faq.php">FAQ</a></li>
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'active' : '' ?>"
+                                        href="profile.php">Profile</a></li>
                             </ul>
                         </div>
                     </div>
