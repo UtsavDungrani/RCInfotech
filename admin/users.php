@@ -77,6 +77,70 @@ try {
         .table tbody tr:hover {
             background-color: #f8f9fa;
         }
+
+        /* Modal styles matching profile.php */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .modal-header {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .modal-header h5 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .modal-image-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close-modal {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        .close-modal:hover {
+            color: #039ee3;
+        }
     </style>
 </head>
 
@@ -142,7 +206,6 @@ try {
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
-                                    <th>Password</th>
                                     <th>Registration date</th>
                                     <th>Actions</th>
                                 </tr>
@@ -154,7 +217,8 @@ try {
                                         <td>
                                             <?php if (!empty($user['photo'])): ?>
                                                 <img src="data:image/jpeg;base64,<?= base64_encode($user['photo']) ?>"
-                                                    alt="User Photo" class="user-photo" title="Click to view larger">
+                                                    alt="User Photo" class="user-photo" title="Click to view larger"
+                                                    onclick="openModal(this.src, '<?= htmlspecialchars($user['name'] ?? $user['username']) ?>')">
                                             <?php else: ?>
                                                 <div class="user-avatar">
                                                     <?= strtoupper(substr($user['username'], 0, 1)) ?>
@@ -166,7 +230,6 @@ try {
                                         <td><?php echo htmlspecialchars($user['email']); ?></td>
                                         <td><?php echo htmlspecialchars($user['phone']); ?></td>
                                         <td><?php echo htmlspecialchars($user['address']); ?></td>
-                                        <td><?php echo htmlspecialchars($user['password']); ?></td>
                                         <td><?php echo htmlspecialchars($user['reg_date']); ?></td>
                                         <td>
                                             <a href="edit_user.php?id=<?= $user['id'] ?>" class="btn btn-primary">Edit</a>
@@ -190,6 +253,54 @@ try {
         }, 2000);
     </script>
 
+    <!-- Image Modal (Updated for User Photos) -->
+    <div id="imageModal" class="modal" tabindex="-1"
+        style="display:none; position:fixed; z-index:1050; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:350px; margin:auto;">
+            <div class="modal-content" style="border-radius:20px; overflow:hidden;">
+                <div class="modal-header border-0"
+                    style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:20px 20px 0 0;">
+                    <h5 class="modal-title w-100 text-center" id="userPhotoModalLabel"
+                        style="margin:16px 0 0 0; font-size:1.2rem;">
+                        User's Profile Photo
+                    </h5>
+                </div>
+                <div class="modal-body text-center" style="background:#fff; padding:24px 16px 16px 16px;">
+                    <img class="modal-image" id="modalImage" alt="User Photo"
+                        style="width:100%; border-radius:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+                <div class="modal-footer border-0 justify-content-center"
+                    style="background:#fff; border-radius:0 0 20px 20px; padding-bottom:24px;">
+                    <button type="button" class="btn btn-primary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        /* Modal custom styles */
+        #imageModal .modal-dialog {
+            max-width: 350px;
+        }
+
+        #imageModal .modal-content {
+            border-radius: 20px;
+        }
+
+        #imageModal .modal-header,
+        #imageModal .modal-footer {
+            border: none;
+        }
+
+        #imageModal .modal-title {
+            font-weight: 600;
+        }
+
+        #imageModal .modal-image {
+            width: 90%;
+            border-radius: 15px;
+        }
+    </style>
+
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menumaker.js"></script>
@@ -197,82 +308,44 @@ try {
     <script src="../js/custom.js"></script>
     <script src="../js/security.js"></script>
     <script>
-        // Function to show larger photo when clicked
         document.addEventListener('DOMContentLoaded', function () {
-            const userPhotos = document.querySelectorAll('.user-photo');
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const modalTitle = document.getElementById('userPhotoModalLabel');
 
-            userPhotos.forEach(photo => {
-                photo.addEventListener('click', function () {
-                    const imgSrc = this.src;
-                    const userName = this.closest('tr').querySelector('td:nth-child(3)').textContent;
+            window.openModal = function (src, userName) {
+                if (imageModal && modalImage) {
+                    imageModal.style.display = 'flex';
+                    modalImage.src = src;
+                    modalTitle.textContent = userName + "'s Profile Photo";
+                    document.body.style.overflow = 'hidden';
+                }
+            };
 
-                    // Create modal
-                    const modal = document.createElement('div');
-                    modal.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0,0,0,0.8);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 9999;
-                        cursor: pointer;
-                    `;
+            function closeModal() {
+                if (imageModal) {
+                    imageModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
 
-                    const modalContent = document.createElement('div');
-                    modalContent.style.cssText = `
-                        background: white;
-                        padding: 20px;
-                        border-radius: 10px;
-                        text-align: center;
-                        max-width: 90%;
-                        max-height: 90%;
-                    `;
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
 
-                    const img = document.createElement('img');
-                    img.src = imgSrc;
-                    img.style.cssText = `
-                        max-width: 100%;
-                        max-height: 400px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                    `;
-
-                    const title = document.createElement('h4');
-                    title.textContent = userName + "'s Profile Photo";
-                    title.style.cssText = `
-                        margin: 10px 0;
-                        color: #333;
-                    `;
-
-                    const closeBtn = document.createElement('button');
-                    closeBtn.textContent = 'Close';
-                    closeBtn.style.cssText = `
-                        background: #007bff;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        margin-top: 15px;
-                    `;
-
-                    modalContent.appendChild(title);
-                    modalContent.appendChild(img);
-                    modalContent.appendChild(closeBtn);
-                    modal.appendChild(modalContent);
-                    document.body.appendChild(modal);
-
-                    // Close modal on click
-                    modal.addEventListener('click', function (e) {
-                        if (e.target === modal || e.target === closeBtn) {
-                            document.body.removeChild(modal);
-                        }
-                    });
+            if (imageModal) {
+                imageModal.addEventListener('click', function (e) {
+                    if (e.target === imageModal) {
+                        closeModal();
+                    }
                 });
+            }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
             });
         });
     </script>

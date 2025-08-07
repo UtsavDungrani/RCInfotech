@@ -11,15 +11,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
+    $fullName = $_POST['full-name'] ?? '';
+    $phoneNumber = $_POST['phone-number'] ?? '';
+    $address = $_POST['address'] ?? '';
     $role = $_POST['role'] ?? 'user';
 
+    // Handle photo upload
+    $photo_data = null;
+    $photo_sql = "";
+    $photo_params = [];
+
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+        $max_size = 5 * 1024 * 1024; // 5MB
+
+        if (!in_array($_FILES['photo']['type'], $allowed_types)) {
+            $_SESSION['error'] = "Please upload a valid image file (JPEG, PNG, GIF).";
+            header("Location: edit_user.php?id=" . $id);
+            exit();
+        }
+
+        if ($_FILES['photo']['size'] > $max_size) {
+            $_SESSION['error'] = "Image size should be less than 5MB.";
+            header("Location: edit_user.php?id=" . $id);
+            exit();
+        }
+
+        $photo_data = file_get_contents($_FILES['photo']['tmp_name']);
+        $photo_sql = ", photo = :photo";
+        $photo_params[':photo'] = $photo_data;
+    }
+
     try {
-        $stmt = $link->prepare("UPDATE users SET name = :name, email = :email, role = :role WHERE id = :id");
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+        $sql = "UPDATE users SET 
+            username = :username, 
+            email = :email, 
+            name = :name,
+            phone = :phone, 
+            address = :address" .
+            ($photo_data ? ", photo = :photo" : "") .
+            " WHERE id = :id";
+
+        $params = [
+            ':username' => $name,
+            ':email' => $email,
+            ':name' => $fullName,
+            ':phone' => $phoneNumber,
+            ':address' => $address,
+            ':id' => $id
+        ];
+
+        if ($photo_data) {
+            $params[':photo'] = $photo_data;
+        }
+
+        $stmt = $link->prepare($sql);
+        $stmt->execute($params);
 
         $_SESSION['success'] = "User updated successfully!";
         header("Location: users.php");
@@ -68,6 +115,24 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="../css/admin-styles.css">
     <link rel="stylesheet" href="../css/all.min.css">
+    <style>
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body id="default_theme" class="it_service">
@@ -129,8 +194,17 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $user['id'] ?? '' ?>">
+
+                    <!-- Current Photo Display -->
+                    <?php if (!empty($user['photo'])): ?>
+                        <div class="text-center mb-3">
+                            <img src="data:image/jpeg;base64,<?= base64_encode($user['photo']) ?>"
+                                alt="Current Profile Photo" class="profile-photo">
+                        </div>
+                    <?php endif; ?>
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name"
@@ -141,6 +215,32 @@ if (isset($_GET['id'])) {
                         <input type="email" class="form-control" id="email" name="email"
                             value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
                     </div>
+                    <div class="form-group">
+                        <label for="full-name">Full name</label>
+                        <input type="text" class="form-control" id="full-name" name="full-name"
+                            value="<?= htmlspecialchars($user['name'] ?? '') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" class="form-control" id="phone_number" name="phone-number"
+                            pattern="^[6-9][0-9]{9}$" maxlength="10"
+                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                            title="Please enter valid 10 digit Indian mobile number starting with 6-9"
+                            value="<?= htmlspecialchars($user['phone'] ?? '') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            value="<?= htmlspecialchars($user['address'] ?? '') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Profile Photo</label>
+                        <input type="file" class="form-control" id="photo" name="photo"
+                            accept="image/jpeg,image/png,image/gif">
+                        <small class="form-text text-muted">Upload JPEG, PNG, or GIF (max 5MB)</small>
+                        <img id="photoPreview" class="photo-preview" alt="Photo Preview">
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Update User</button>
                     <a href="users.php" class="btn btn-secondary">Cancel</a>
                 </form>
@@ -159,6 +259,33 @@ if (isset($_GET['id'])) {
     <script src="../js/wow.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/security.js"></script>
+    <script>
+        document.getElementById('photo').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('photoPreview');
+
+            if (file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file');
+                    this.value = '';
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size must be less than 5MB');
+                    this.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 
 </html>
