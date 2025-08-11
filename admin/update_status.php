@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
                     $mail->addReplyTo('support@rcinfotech.com', 'IT Next Services');
 
                     // Add recipient email - if form email is provided use that, otherwise use booked_by_email
-                    $recipient_email = !empty($request['email']) ? $request['email'] : $request['booked_by_email'];
+                    $recipient_email = !empty($request['email']) ? $request['email'] : $request['email'];
                     $mail->addAddress($recipient_email, $request['fname'] . ' ' . $request['lname']);
 
                     // Content

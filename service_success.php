@@ -17,7 +17,7 @@ if ($booking_id === 0) {
 require './config/config.php';
 
 // Get booking details
-$sql = "SELECT * FROM bookser WHERE id = ? AND booked_by_email = ?";
+$sql = "SELECT * FROM bookser WHERE id = ? AND email = ?";
 $stmt = $link->prepare($sql);
 $stmt->execute([$booking_id, $_SESSION["email"]]);
 $booking = $stmt->fetch();

@@ -88,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     // Create order in database
     $shipping_address = "$address, $city, $state - $zip";
     $order_total = $total + 49; // Adding shipping cost
-    $user_email = $_SESSION['email'];
 
     // Prepare product details from cart items
     $product_names = [];
@@ -104,11 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     $quantities_str = implode(',', $quantities);
     $prices_str = implode(',', $prices);
 
-    $sql = "INSERT INTO orders (user_email, first_name, last_name, email, phone, shipping_address, total_amount, product_names, quantities, prices, order_date) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO orders (first_name, last_name, email, phone, shipping_address, total_amount, product_names, quantities, prices, order_date) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
     $stmt = $link->prepare($sql);
-    $stmt->execute([$user_email, $first_name, $last_name, $email, $phone, $shipping_address, $order_total, $product_names_str, $quantities_str, $prices_str]);
+    $stmt->execute([$first_name, $last_name, $email, $phone, $shipping_address, $order_total, $product_names_str, $quantities_str, $prices_str]);
 
     if ($stmt->rowCount() > 0) {
       $order_id = $link->lastInsertId();

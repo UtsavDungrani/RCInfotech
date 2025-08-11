@@ -17,11 +17,11 @@ if ($_SESSION["username"] === "user") {
 require './config/config.php';
 
 // Get user's orders
-$username = $_SESSION['email'];
-$sql = "SELECT * FROM orders WHERE user_email = ? ORDER BY order_date DESC";
+$email = $_SESSION['email'];
+$sql = "SELECT * FROM orders WHERE email = ? ORDER BY order_date DESC";
 
 $stmt = $link->prepare($sql);
-$stmt->execute([$username]);
+$stmt->execute([$email]);
 $orders = $stmt->fetchAll();
 ?>
 <?php include 'csp.php'; ?>

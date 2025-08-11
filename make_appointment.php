@@ -18,7 +18,14 @@ if (!isset($_SESSION["email"]) || $_SESSION["email"] === "") {
 // Fetch services from database
 $stmt = $link->prepare("SELECT id, name FROM services");
 $stmt->execute();
+
 $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Always fetch user info for the logged-in user
+$email = $_SESSION["email"];
+$user_info = "SELECT * FROM users WHERE email = '$email'";
+$user_result = $link->query($user_info);
+$user_row = $user_result ? $user_result->fetch(PDO::FETCH_ASSOC) : null;
 
 // Include PHPMailer classes
 use PHPMailer\PHPMailer\PHPMailer;
@@ -29,7 +36,6 @@ require 'phpmailer/vendor/autoload.php';
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   $fname = $_POST["frm_name"];
   $lname = $_POST["frm_lname"];
-  $form_email = $_POST["frm_email"];
   $mobile = $_POST["frm_contact"];
 
   // Validate Indian mobile number
@@ -40,13 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
   $services = $_POST["frm_services"];
   $description = $_POST["frm_descri"];
-  $booked_by_email = $_SESSION["email"]; // Email from the session (logged-in user)
+  $email = $_SESSION["email"]; // Email from the session (logged-in user)
 
   // Use PDO prepared statement
-  $sql = "INSERT INTO bookser (fname, lname, email, mobile, subject, description, booked_by_email, status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')";
+  $sql = "INSERT INTO bookser (fname, lname, email, mobile, subject, description, status) 
+            VALUES (?, ?, ?, ?, ?, ?, 'pending')";
   $stmt = $link->prepare($sql);
-  $result = $stmt->execute([$fname, $lname, $form_email, $mobile, $services, $description, $booked_by_email]);
+  $result = $stmt->execute([$fname, $lname, $email, $mobile, $services, $description]);
 
   if ($result) {
     // Get the last inserted booking ID
@@ -79,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $mail->addReplyTo('support@rcinfotech.com', 'IT Next Services');
 
       // Add recipient email - if form email is provided use that, otherwise use booked_by_email
-      $recipient_email = !empty($form_email) ? $form_email : $booked_by_email;
+      $recipient_email = !empty($form_email) ? $form_email : $email;
       $mail->addAddress($recipient_email, $fname . ' ' . $lname);
 
       // Content
@@ -368,13 +374,15 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                         <input class="field_custom" placeholder="Last Name" type="text" required name="frm_lname" />
                       </div>
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <input class="field_custom" placeholder="Email (Optional)" type="email" name="frm_email" />
+                        <input class="field_custom" placeholder="Email" type="email" name="frm_email"
+                          value="<?php echo $_SESSION['email'] ?>" readonly />
                       </div>
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <input class="field_custom" placeholder="Phone Number" type="tel" required name="frm_contact"
                           pattern="^[6-9][0-9]{9}$" maxlength="10"
                           onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-                          title="Please enter valid 10 digit Indian mobile number starting with 6-9" />
+                          title="Please enter valid 10 digit Indian mobile number starting with 6-9"
+                          value="<?php echo isset($user_row["phone"]) ? htmlspecialchars($user_row["phone"]) : '' ?>" />
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <select class="field_custom" name="frm_services" required>
@@ -395,25 +403,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                       </div>
                     </fieldset>
                   </form>
-                  <!-- <form <?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class='frm'>
-                    <h1>PHP - MySQL CRUD</h1>
-                    <hr>
-                    <div class='group'>
-                      <label>Name : </label>
-                      <input type='text' name='frm_name' required>
-                    </div>
-                    <div class='group'>
-                      <label>Email : </label>
-                      <input type='email' name='frm_email' required>
-                    </div>
-                    <div class='group'>
-                      <label>Contact : </label>
-                      <input type='text' name='frm_contact' required>
-                    </div>
-                    <div class='group'>
-                      <input type='submit' name='submit' class='btn-green' value='Save Details'>
-                    </div>
-                  </form> -->
                 </div>
               </div>
             </div>
@@ -496,7 +485,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       position: "right",
     });
   </script>
-  <script src="js/security.js"></script>
+  <!-- <script src="js/security.js"></script> -->
 </body>
 
 </html>

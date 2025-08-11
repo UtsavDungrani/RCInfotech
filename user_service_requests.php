@@ -26,7 +26,7 @@ try {
                           b.email as booked_for_email,
                           b.mobile as booked_for_phone
                           FROM bookser b 
-                          WHERE b.booked_by_email = :email 
+                          WHERE b.email = :email 
                           ORDER BY b.booking_time DESC");
   $stmt->execute(['email' => $email]);
   $service_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);

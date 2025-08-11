@@ -190,7 +190,6 @@ try {
                                     <th>ID</th>
                                     <th>First Name</th>
                                     <th style="max-width: 130px; word-wrap: break-word;">Email</th>
-                                    <th style="max-width: 150px; word-wrap: break-word;">Account info</th>
                                     <th>Mobile</th>
                                     <th>Service</th>
                                     <th style="max-width: 120px; word-wrap: break-word;">Description</th>
@@ -209,9 +208,6 @@ try {
                                         </td>
                                         <td style="max-width: 130px; word-wrap: break-word;">
                                             <?php echo htmlspecialchars($request['email']); ?>
-                                        </td>
-                                        <td style="max-width: 150px; word-wrap: break-word;">
-                                            <?php echo htmlspecialchars($request['booked_by_email']); ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($request['mobile']); ?></td>
                                         <td><?php echo htmlspecialchars($request['subject']); ?></td>

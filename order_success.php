@@ -17,7 +17,7 @@ if ($order_id === 0) {
 require './config/config.php';
 
 // Get order details
-$sql = "SELECT * FROM orders WHERE id = ? AND user_email = ?";
+$sql = "SELECT * FROM orders WHERE id = ? AND email = ?";
 $stmt = $link->prepare($sql);
 $stmt->execute([$order_id, $_SESSION["email"]]);
 $order = $stmt->fetch();

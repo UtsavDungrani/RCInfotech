@@ -175,17 +175,17 @@ try {
 }
 
 // Get user order count
-$sql = "SELECT COUNT(*) as order_count FROM orders WHERE user_email = :user_email";
+$sql = "SELECT COUNT(*) as order_count FROM orders WHERE email = :email";
 try {
     $stmt = $link->prepare($sql);
-    $stmt->bindParam(':user_email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $orders_count = $stmt->fetch(PDO::FETCH_ASSOC)['order_count'];
 } catch (PDOException $e) {
     $orders_count = 0;
 }
 
-$sql = "SELECT COUNT(*) as services_count FROM bookser WHERE booked_by_email = :email";
+$sql = "SELECT COUNT(*) as services_count FROM bookser WHERE email = :email";
 try {
     $stmt = $link->prepare($sql);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);

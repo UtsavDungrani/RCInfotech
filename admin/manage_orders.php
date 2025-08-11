@@ -412,7 +412,7 @@ try {
                                 <div>
                                     <h4>Order #<?= $order['id'] ?></h4>
                                     <p class="mb-0">
-                                        Placed by: <?= htmlspecialchars($order['user_email']) ?><br>
+                                        Placed by: <?= htmlspecialchars($order['email']) ?><br>
                                         Date: <?= date('F j, Y', strtotime($order['order_date'])) ?>
                                     </p>
                                 </div>
@@ -455,7 +455,7 @@ try {
                                     <h5>Customer Details:</h5>
                                     <p>
                                         Name: <?= htmlspecialchars($order['first_name'] . ' ' . $order['last_name']) ?><br>
-                                        Email: <?= htmlspecialchars($order['user_email']) ?><br>
+                                        Email: <?= htmlspecialchars($order['email']) ?><br>
                                         Phone: <?= htmlspecialchars($order['phone']) ?><br>
                                         Shipping Address: <?= htmlspecialchars($order['shipping_address']) ?>
                                     </p>
