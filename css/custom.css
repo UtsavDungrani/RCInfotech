@@ -1,0 +1,620 @@
+/* ========================================
+   DISPOSABLE.CSS - Consolidated Styles
+   All inline styles from PHP files in root directory
+   ======================================== */
+
+/* ========================================
+   COMMON STYLES (Used across multiple files)
+   ======================================== */
+
+/* Button Styles */
+.button {
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Loader Animation */
+.loader_animation {
+  animation: none;
+}
+
+/* Group Button Spacing */
+.grp_btn {
+  margin-top: 13px;
+}
+
+/* Float Right with Gap */
+.float-right2 {
+  gap: 10px;
+}
+
+/* Make Appointment Button Spacing */
+.make_appo .btn.white_btn {
+  margin-right: 10px;
+}
+
+/* ========================================
+   DROPDOWN MENU STYLES
+   ======================================== */
+
+/* Dropdown Container */
+.menu_side .first-ul li {
+  position: relative;
+}
+
+/* Show Dropdown on Hover */
+.menu_side .first-ul li:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+}
+
+/* Dropdown List Items */
+.dropdown-menu li {
+  display: block;
+  width: 100%;
+}
+
+/* Dropdown Links */
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown Link Hover */
+.dropdown-menu li a:hover {
+  background: #039ee3;
+  color: #fff;
+}
+
+/* Shop Dropdown Arrow */
+.menu_side .first-ul li.shop-dropdown > a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  margin-left: 5px;
+}
+
+/* ========================================
+   FOOTER STYLES
+   ======================================== */
+
+/* Footer Mail Section Input */
+.footer_mail-section .field input {
+  max-width: 210px;
+}
+
+/* ========================================
+   IMAGE STYLES
+   ======================================== */
+
+/* Product Images */
+.img-product {
+  height: 270px;
+}
+
+/* Service Images */
+.ser_img {
+  height: 242px;
+  width: 363px;
+}
+
+/* Product Image Container */
+.product_img {
+  width: 270px !important;
+  height: 270px !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product_img img {
+  width: 270px !important;
+  height: 270px !important;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Image Container */
+.img_con {
+  height: 370px;
+}
+
+/* ========================================
+   TEXT STYLES
+   ======================================== */
+
+/* Text Justify */
+.text_justify {
+  text-align: justify;
+}
+
+/* Text Center */
+.text_center {
+  text-align: center !important;
+}
+
+/* Color Black */
+.color_black {
+  color: #000 !important;
+}
+
+/* ========================================
+   LAYER STYLES
+   ======================================== */
+
+/* Layer Background */
+.layer_nr_bg {
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.layer_nr_1 {
+  z-index: 5;
+  background-color: rgba(29, 29, 29, 0.85);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   ACCORDION STYLES
+   ======================================== */
+
+/* Accordion Panel Headings */
+#accordion .panel.panel-default .panel-heading p a {
+  position: relative;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Accordion Arrow Icon */
+#accordion .panel.panel-default .panel-heading p a i.fa-angle-down {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* When Collapsed */
+#accordion .panel.panel-default .panel-heading p a.collapsed i.fa-angle-down {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* When Expanded */
+#accordion
+  .panel.panel-default
+  .panel-heading
+  p
+  a:not(.collapsed)
+  i.fa-angle-down {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* ========================================
+   SUCCESS PAGE STYLES
+   ======================================== */
+
+/* Success Page Container */
+.success-page {
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Success Page Icon */
+.success-page i {
+  color: #4caf50;
+  font-size: 100px;
+  line-height: 200px;
+  margin-bottom: 20px;
+}
+
+/* Success Page Heading */
+.success-page h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Order Details */
+.order-details {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+/* ========================================
+   CART STYLES
+   ======================================== */
+
+/* Checkout Button Disabled */
+.check_out_btn {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Shopping Cart Table */
+.shopping-cart table tbody tr td {
+  padding: 25px 13px;
+}
+
+/* ========================================
+   FEEDBACK FORM STYLES
+   ======================================== */
+
+/* Feedback Form */
+.feedback-form {
+  padding: 1.5rem !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   PRODUCT STYLES
+   ======================================== */
+
+/* Hide Products by Default */
+[id^="pro_"] {
+  display: none;
+}
+
+/* Product Detail Bottom */
+.product_detail_btm {
+  margin: 0 20px;
+}
+
+/* ========================================
+   SEARCH STYLES
+   ======================================== */
+
+/* Search Input */
+.search {
+  width: 30%;
+  height: 3rem;
+  margin-left: auto;
+}
+
+/* ========================================
+   ORDER STATUS STYLES
+   ======================================== */
+
+/* Orders List */
+.orders-list {
+  margin: 30px 0;
+}
+
+/* Order Card */
+.order-card {
+  background: #f8f8f8;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Order Header */
+.order-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Order Status */
+.order-status {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Status Pending */
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Status Processing */
+.status-processing {
+  background: #cce5ff;
+  color: #004085;
+}
+
+/* Status Shipped */
+.status-shipped {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Status Delivered */
+.status-delivered {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+/* Order Items */
+.order-items {
+  margin: 15px 0;
+  padding: 10px;
+  background: #fff;
+  border-radius: 3px;
+}
+
+/* ========================================
+   SERVICE REQUEST STATUS STYLES
+   ======================================== */
+
+/* Status Display */
+.status_display {
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+/* Status Approved */
+.status_approved {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Status Rejected */
+.status_rejected {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Status Pending */
+.status_pending {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ========================================
+   BUTTON STYLES
+   ======================================== */
+
+/* Button Minimum Width */
+a.btn,
+button.btn {
+  min-width: 175px;
+}
+
+/* ========================================
+   PADDING STYLES
+   ======================================== */
+
+/* Padding Bottom */
+.pd_1 {
+  padding-bottom: 0;
+}
+
+/* Padding Top */
+.pd_2 {
+  padding-top: 80px;
+}
+
+/* Margin Top */
+.mt_15 {
+  margin-top: 15px;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+@media only screen and (max-width: 767px) {
+  /* Group Button Mobile */
+  .grp_btn {
+    margin-bottom: 10px !important;
+  }
+
+  /* Make Appointment Mobile */
+  .make_appo {
+    margin: 0 !important;
+  }
+
+  .make_appo .btn {
+    width: 160px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+
+  /* Float Right Mobile */
+  .float-right2 {
+    justify-content: center !important;
+    gap: 18px !important;
+    padding: 0 10px !important;
+  }
+
+  /* Logo Mobile */
+  .logo {
+    max-width: 150px;
+    height: auto;
+  }
+
+  /* Header Mobile */
+  .header_top {
+    padding: 10px 0;
+  }
+
+  .header_top .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Navigation Mobile */
+  .menu_side {
+    padding: 10px 0;
+  }
+
+  .menu_side .first-ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .menu_side .first-ul li {
+    width: 100%;
+  }
+
+  .menu_side .first-ul li a {
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+
+  /* Dropdown Mobile */
+  .dropdown-menu {
+    position: static;
+    display: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+  }
+
+  .menu_side .first-ul li:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* Search Mobile */
+  .search {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Image Mobile */
+  .img-product {
+    height: 200px;
+  }
+
+  .ser_img {
+    height: 180px;
+    width: 100%;
+  }
+
+  .product_img {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .product_img img {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .img_con {
+    height: 250px;
+  }
+
+  /* Success Page Mobile */
+  .success-page i {
+    font-size: 60px;
+    line-height: 120px;
+  }
+
+  .success-page h2 {
+    font-size: 20px;
+  }
+
+  /* Order Card Mobile */
+  .order-card {
+    padding: 15px;
+  }
+
+  /* Feedback Form Mobile */
+  .feedback-form {
+    padding: 1rem !important;
+  }
+
+  /* Button Mobile */
+  a.btn,
+  button.btn {
+    min-width: 140px;
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .loader_animation,
+  .bg_load {
+    display: none !important;
+  }
+
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  .float-right2 {
+    justify-content: flex-start !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY STYLES
+   ======================================== */
+
+/* Focus Styles */
+.dropdown-menu li a:focus,
+.button:focus,
+.btn:focus {
+  outline: 2px solid #039ee3;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .dropdown-menu li a:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  .status_approved {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .status_rejected {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .status_pending {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-menu li a,
+  #accordion .panel.panel-default .panel-heading p a i.fa-angle-down {
+    transition: none;
+  }
+}

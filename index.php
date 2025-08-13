@@ -242,8 +242,6 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
       }
 
       .product_img {
-        height: 270px !important;
-        /* Adjusted height for square appearance */
         overflow: hidden;
       }
 
