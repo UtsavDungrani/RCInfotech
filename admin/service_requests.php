@@ -216,20 +216,19 @@ try {
                                             <?php echo htmlspecialchars($request['booking_time']); ?>
                                         </td>
                                         <td>
-                                            <span style="
                                             <?php
                                             $status = htmlspecialchars($request['status'] ?? 'Pending');
+                                            $statusClass = '';
                                             if ($status === 'approved') {
-                                                echo 'background-color: green; color: white;';
+                                                $statusClass = 'status_approved';
                                             } elseif ($status === 'rejected') {
-                                                echo 'background-color: red; color: white;';
+                                                $statusClass = 'status_rejected';
                                             } elseif ($status === 'pending') {
-                                                echo 'background-color: blue; color: white;';
+                                                $statusClass = 'status_pending';
                                             }
                                             ?>
-                                            padding: 5px 15px; border-radius: 20px; display: inline-block;
-                                        ">
-                                                <?php echo $status; ?>
+                                            <span class="status_display <?php echo $statusClass; ?>">
+                                                <?php echo ucfirst($status); ?>
                                             </span>
                                         </td>
                                         <td>

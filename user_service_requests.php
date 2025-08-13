@@ -98,10 +98,35 @@ try {
 
     .dropdown-menu li a {
       display: block;
-      padding: 10px 15px;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.3s ease;
+    }
+
+    /* Status display styles */
+    .status_display {
+      padding: 5px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .status_approved {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .status_rejected {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .status_pending {
+      background-color: #007bff;
+      color: white;
+    }
+
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
     }
 
     .dropdown-menu li a:hover {
@@ -127,9 +152,7 @@ try {
       margin-right: 10px;
     }
 
-    .status_display {
-      
-    }
+    .status_display {}
 
     @media only screen and (max-width: 767px) {
       .grp_btn {
@@ -276,41 +299,40 @@ try {
               </thead>
               <tbody>
                 <?php if (empty($service_requests)): ?>
-                    <tr>
-                      <td colspan="7" class="text-center">No service requests found.</td>
-                    </tr>
+                  <tr>
+                    <td colspan="7" class="text-center">No service requests found.</td>
+                  </tr>
                 <?php else: ?>
-                    <?php $index = 1; ?>
-                    <?php foreach ($service_requests as $request): ?>
-                        <tr>
-                          <td><?php echo $index++; ?></td>
-                          <td><?php echo htmlspecialchars($request['booked_for_name']); ?></td>
-                          <td>
-                            Email: <?php echo htmlspecialchars($request['booked_for_email']); ?><br>
-                            Phone: <?php echo htmlspecialchars($request['booked_for_phone']); ?>
-                          </td>
-                          <td><?php echo htmlspecialchars($request['subject']); ?></td>
-                          <td><?php echo htmlspecialchars($request['description']); ?></td>
-                          <td><?php echo htmlspecialchars($request['booking_time']); ?></td>
-                          <td>
-                            <span class="status_display" style="
-                                                <?php
-                                                $status = htmlspecialchars($request['status'] ?? 'Pending');
-                                                if ($status === 'approved') {
-                                                  echo 'background-color: green; color: white;';
-                                                } elseif ($status === 'rejected') {
-                                                  echo 'background-color: red; color: white;';
-                                                } elseif ($status === 'pending') {
-                                                  echo 'background-color: blue; color: white;';
-                                                }
-                                                ?>
-                                                padding: 5px 15px; border-radius: 20px; display: inline-block;
-                                            ">
-                              <?php echo ucfirst($status); ?>
-                            </span>
-                          </td>
-                        </tr>
-                    <?php endforeach; ?>
+                  <?php $index = 1; ?>
+                  <?php foreach ($service_requests as $request): ?>
+                    <tr>
+                      <td><?php echo $index++; ?></td>
+                      <td><?php echo htmlspecialchars($request['booked_for_name']); ?></td>
+                      <td>
+                        Email: <?php echo htmlspecialchars($request['booked_for_email']); ?><br>
+                        Phone: <?php echo htmlspecialchars($request['booked_for_phone']); ?>
+                      </td>
+                      <td><?php echo htmlspecialchars($request['subject']); ?></td>
+                      <td><?php echo htmlspecialchars($request['description']); ?></td>
+                      <td><?php echo htmlspecialchars($request['booking_time']); ?></td>
+                      <td>
+                        <?php
+                        $status = htmlspecialchars($request['status'] ?? 'Pending');
+                        $statusClass = '';
+                        if ($status === 'approved') {
+                          $statusClass = 'status_approved';
+                        } elseif ($status === 'rejected') {
+                          $statusClass = 'status_rejected';
+                        } elseif ($status === 'pending') {
+                          $statusClass = 'status_pending';
+                        }
+                        ?>
+                        <span class="status_display <?php echo $statusClass; ?>">
+                          <?php echo ucfirst($status); ?>
+                        </span>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 <?php endif; ?>
               </tbody>
             </table>

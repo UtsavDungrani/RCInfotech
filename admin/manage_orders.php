@@ -132,26 +132,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
             $prices = explode(',', $order['prices']);
 
 
-            $items_html = '<table class="main_tbl">';
+            $items_html = '<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #ddd;">';
             $items_html .= '<tr>
-                                <th class="tbl_cell">Product</th>
-                                <th class="tbl_cell">Quantity</th>
-                                <th class="tbl_cell">Price</th>
-                                <th class="tbl_cell">Total</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Product</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Quantity</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Price</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Total</th>
                             </tr>';
 
             for ($i = 0; $i < count($product_names); $i++) {
                 $items_html .= '<tr>';
-                $items_html .= '<td class="tbl_cell">' . htmlspecialchars($product_names[$i]) . '</td>';
-                $items_html .= '<td class="tbl_cell">' . $quantities[$i] . '</td>';
-                $items_html .= '<td class="tbl_cell">₹' . number_format($prices[$i], 2) . '</td>';
-                $items_html .= '<td class="tbl_cell">₹' . number_format($prices[$i] * $quantities[$i], 2) . '</td>';
+                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">' . htmlspecialchars($product_names[$i]) . '</td>';
+                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">' . $quantities[$i] . '</td>';
+                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">₹' . number_format($prices[$i], 2) . '</td>';
+                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">₹' . number_format($prices[$i] * $quantities[$i], 2) . '</td>';
                 $items_html .= '</tr>';
             }
 
             $items_html .= '<tr>';
-            $items_html .= '<th class="tbl_cell text_right" colspan="3">Total</th>';
-            $items_html .= '<td class="tbl_cell">₹' . number_format($order['total_amount'], 2) . '</td>';
+            $items_html .= '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold; text-align: right;" colspan="3">Total</th>';
+            $items_html .= '<td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">₹' . number_format($order['total_amount'], 2) . '</td>';
             $items_html .= '</tr>';
             $items_html .= '</table>';
 
@@ -385,7 +385,8 @@ try {
                             <div class="d-flex align-items-center gap_10">
                                 <label for="status" class="me-2 mb-0">Status:</label>
                                 <select name="status" id="status" class="form-control me-3 width_140">
-                                    <option value="all" <?php echo ($status_filter === 'all' ? 'selected' : ''); ?>>All</option>
+                                    <option value="all" <?php echo ($status_filter === 'all' ? 'selected' : ''); ?>>All
+                                    </option>
                                     <option value="pending" <?php echo ($status_filter === 'pending' ? 'selected' : ''); ?>>Pending</option>
                                     <option value="processing" <?php echo ($status_filter === 'processing' ? 'selected' : ''); ?>>Processing</option>
                                     <option value="shipped" <?php echo ($status_filter === 'shipped' ? 'selected' : ''); ?>>Shipped</option>
@@ -393,8 +394,10 @@ try {
                                 </select>
                                 <label for="date_order" class="me-2 mb-0">Date:</label>
                                 <select name="date_order" id="date_order" class="form-control me-3 width_150">
-                                    <option value="desc" <?php echo ($date_order === 'desc' ? 'selected' : ''); ?>>Newest First</option>
-                                    <option value="asc" <?php echo ($date_order === 'asc' ? 'selected' : ''); ?>>Oldest First</option>
+                                    <option value="desc" <?php echo ($date_order === 'desc' ? 'selected' : ''); ?>>Newest
+                                        First</option>
+                                    <option value="asc" <?php echo ($date_order === 'asc' ? 'selected' : ''); ?>>Oldest
+                                        First</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm width_auto">Filter</button>
@@ -419,7 +422,8 @@ try {
                                 <div>
                                     <form method="post" class="status-form">
                                         <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                                        <select name="new_status" class="form-control form-control-sm d-inline-block status_select">
+                                        <select name="new_status"
+                                            class="form-control form-control-sm d-inline-block status_select">
                                             <option value="pending" <?= $order['status'] == 'pending' ? 'selected' : '' ?>>Pending
                                             </option>
                                             <option value="processing" <?= $order['status'] == 'processing' ? 'selected' : '' ?>>

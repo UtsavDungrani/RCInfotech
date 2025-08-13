@@ -310,20 +310,35 @@
   border-radius: 4px;
 }
 
+.mail_body {
+  font-family: Arial, sans-serif;
+}
+
 .status_select{
   width: auto; 
   height: 40px !important;
 }
 
-.main_tbl {
-  width: 100%; 
-  border-collapse: collapse; 
-  margin-bottom: 20px;
+.status_display {
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
 }
 
-.tbl_cell {
-  border: 1px solid #ddd; 
-  padding: 8px;
+.status_approved {
+  background-color: #28a745;
+  color: white;
+}
+
+.status_rejected {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status_pending {
+  background-color: #007bff;
+  color: white;
 }
 
 .height_auto {
