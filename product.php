@@ -213,6 +213,18 @@ $total_products = $result_total->fetch_assoc()['total'];
       margin-right: 10px;
     }
 
+    .text_justify {
+      text-align: justify;
+    }
+
+    .mb_35 {
+      margin-bottom: 35px;
+    }
+
+    .fw_600 {
+      font-weight: 600;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -384,10 +396,10 @@ $total_products = $result_total->fetch_assoc()['total'];
                 <span class="review">(5 customer review)</span>
               </div>
               <div class="detail-contant">
-                <p style="text-align: justify;">
+                <p class="text_justify">
                   <?php echo htmlspecialchars($product['description_small']); ?>
                   <br /><br />
-                  <span class="stock" style="font-weight:600;"><?php echo (int) $product['stock']; ?> in stock</span>
+                  <span class="stock fw_600"><?php echo (int) $product['stock']; ?> in stock</span>
                 </p>
                 <form class="cart" method="post" action="cart.php">
                   <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
@@ -435,7 +447,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                   <div class="tab-content">
                     <div id="description" class="tab-pane active">
                       <div class="product_desc">
-                        <p style="text-align: justify;">
+                        <p class="text_justify">
                           <?php echo nl2br(htmlspecialchars($product['description_large'])); ?>
                         </p>
                       </div>
@@ -533,7 +545,7 @@ $total_products = $result_total->fetch_assoc()['total'];
           <div class="row">
             <div class="col-md-12">
               <div class="full">
-                <div class="main_heading text_align_left" style="margin-bottom: 35px">
+                <div class="main_heading text_align_left mb_35">
                   <h3>Related products</h3>
                 </div>
               </div>
@@ -560,7 +572,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
                                 <a href="product.php?id=' . $related_product['id'] . '">
                   <div class="product_list">
-                    <div class="product_img" style="height: 270px;">
+                    <div class="product_img">
                                             <img class="img-responsive img-product" src="get_product_image.php?id=' . $related_product['id'] . '" alt="" />
                     </div>
                     <div class="product_detail_btm">
@@ -609,7 +621,7 @@ $total_products = $result_total->fetch_assoc()['total'];
             </div>
             <div class="side_bar_blog">
               <h4>GET A QUOTE</h4>
-              <p style="text-align: justify;">
+              <p class="text_justify">
                 Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
                 need to be done.
               </p>

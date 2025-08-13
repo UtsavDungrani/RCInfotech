@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -163,10 +163,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="image">Service Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($service['image'])): ?>
-                            <div style="margin-top: 10px;">
+                            <div class="mt_10">
                                 <img src="../../get_service_image.php?id=<?= $service_id ?>" alt="Current Service Image"
-                                    style="max-width: 200px;">
-                                <p style="margin-top: 5px;">Current Image: <?= $service['name'] ?></p>
+                                    class="max_width_200">
+                                <p class="mt_5">Current Image: <?= $service['name'] ?></p>
                             </div>
                         <?php endif; ?>
                     </div>

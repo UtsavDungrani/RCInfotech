@@ -127,6 +127,10 @@ if (!isset($_SESSION["username"])) {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
+    .color_black {
+      color: #000 !important;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -254,7 +258,7 @@ if (!isset($_SESSION["username"])) {
               <div class="form-group">
                 <label for="exampleInputEmail1">
                   <h3>
-                    <p style="color:#000000;">Email address</p>
+                    <p class="color_black">Email address</p>
                   </h3>
                 </label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -263,7 +267,7 @@ if (!isset($_SESSION["username"])) {
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">
                   <h3>
-                    <p style="color:#000000;">Description</p>
+                    <p class="color_black">Description</p>
                   </h3>
                 </label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>

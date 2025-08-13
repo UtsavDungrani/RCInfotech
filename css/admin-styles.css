@@ -288,3 +288,142 @@
 .admin-dropdown a:hover {
   background-color: #f1f1f1;
 }
+
+.pending_req_counter {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background: #007bff;
+  border-radius: 50%;
+  margin-left: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img_preview_con {
+  max-width: 200px; 
+  max-height: 200px; 
+  border: 1px solid #ddd; 
+  border-radius: 4px;
+}
+
+.status_select{
+  width: auto; 
+  height: 40px !important;
+}
+
+.main_tbl {
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-bottom: 20px;
+}
+
+.tbl_cell {
+  border: 1px solid #ddd; 
+  padding: 8px;
+}
+
+.height_auto {
+  height: auto !important;
+}
+
+.height_75 {
+  height: 75px !important;
+}
+
+.max_height_auto {
+  max-height: auto !important;
+}
+
+.width_140 {
+  width: 140px !important;
+}
+
+.width_150 {
+  width: 150px !important;
+}
+
+.width_auto {
+  width: auto !important;
+}
+
+.max_width_200 {
+  max-width: 200px !important;
+}
+
+.max_width_100 {
+  max-width: 100px !important;
+}
+
+.max_width_130 {
+  max-width: 130px !important;
+}
+
+.max_width_120 {
+  max-width: 120px !important;
+}
+
+.min_width_101 {
+  min-width: 101px !important;
+}
+
+.btn_approve {
+  background-color: green; 
+  padding: 2px 8px; 
+  margin: 2px;
+}
+
+.btn_reject {
+  background-color: red; 
+  padding: 2px 8px; 
+  margin: 2px;
+}
+
+.action_done {
+  color: #888; 
+  font-size: 18px; 
+  font-weight: bold;
+}
+
+.word_wrap_brk_world {
+  word-wrap: break-word !important;
+}
+
+.disp_inline {
+  display: inline !important;
+}
+
+.disp_none {
+  display: none !important;
+}
+
+.mt_30 {
+  margin-top: 30px !important;
+}
+
+.mt_10 {
+  margin-top: 10px !important;
+}
+
+.mt_5 {
+  margin-top: 5px !important;
+}
+
+.mb_0 {
+  margin-bottom: 0 !important;
+}
+
+.mb_20 {
+  margin-bottom: 20px !important;
+}
+
+.gap_10 {
+  gap: 10px !important;
+}
+
+.text_right {
+  text-align: right !important;
+}

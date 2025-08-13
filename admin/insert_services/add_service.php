@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">

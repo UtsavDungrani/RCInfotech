@@ -636,6 +636,82 @@ try {
         .close-modal:hover {
             color: #039ee3;
         }
+
+        /* Modal custom styles */
+        #imageModal .modal-dialog {
+            max-width: 350px;
+        }
+
+        #imageModal .modal-content {
+            border-radius: 20px;
+        }
+
+        #imageModal .modal-header,
+        #imageModal .modal-footer {
+            border: none;
+        }
+
+        #imageModal .modal-title {
+            font-weight: 600;
+        }
+
+        #imageModal .modal-image {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .main_img_con {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main_inner_con {
+            max-width: 350px;
+            margin: auto;
+        }
+
+        .main_inner_content_con {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .main_content_header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .main_header_text {
+            margin: 16px 0 0 0;
+            font-size: 1.2rem;
+        }
+
+        .main_con_body {
+            background: #fff;
+            padding: 24px 16px 16px 16px;
+        }
+
+        .main_image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(50, 41, 41, 0.1);
+        }
+
+        .image_close_btn {
+            background: #fff;
+            border-radius: 0 0 20px 20px;
+            padding-bottom: 24px;
+        }
     </style>
 </head>
 
@@ -957,7 +1033,7 @@ try {
     <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
     <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
     <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-    <!-- <script src="js/security.js"></script> -->
+    <script src="js/security.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Photo upload preview
@@ -1032,52 +1108,23 @@ try {
     </script>
 
     <!-- Image Modal (Updated for Profile Photo) -->
-    <div id="imageModal" class="modal" tabindex="-1"
-        style="display:none; position:fixed; z-index:1050; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
-        <div class="modal-dialog modal-dialog-centered" style="max-width:350px; margin:auto;">
-            <div class="modal-content" style="border-radius:20px; overflow:hidden;">
-                <div class="modal-header border-0"
-                    style="display:flex; flex-direction:column; align-items:center; background:#fff; border-radius:20px 20px 0 0;">
-                    <h5 class="modal-title w-100 text-center" id="profilePhotoModalLabel"
-                        style="margin:16px 0 0 0; font-size:1.2rem;">
+    <div id="imageModal" class="modal main_img_con" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered main_inner_con">
+            <div class="modal-content main_inner_content_con">
+                <div class="modal-header border-0 main_content_header">
+                    <h5 class="modal-title w-100 text-center main_header_text" id="profilePhotoModalLabel">
                         <?= htmlspecialchars($user_data['name'] ?? $username) ?>'s Profile Photo
                     </h5>
                 </div>
-                <div class="modal-body text-center" style="background:#fff; padding:24px 16px 16px 16px;">
-                    <img class="modal-image" id="modalImage" alt="Profile Photo"
-                        style="width:100%; border-radius:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div class="modal-body text-center main_con_body">
+                    <img class="modal-image main_image" id="modalImage" alt="Profile Photo">
                 </div>
-                <div class="modal-footer border-0 justify-content-center"
-                    style="background:#fff; border-radius:0 0 20px 20px; padding-bottom:24px;">
+                <div class="modal-footer border-0 justify-content-center image_close_btn">
                     <button type="button" class="btn btn-primary" id="closeModalBtn">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <style>
-        /* Modal custom styles */
-        #imageModal .modal-dialog {
-            max-width: 350px;
-        }
-
-        #imageModal .modal-content {
-            border-radius: 20px;
-        }
-
-        #imageModal .modal-header,
-        #imageModal .modal-footer {
-            border: none;
-        }
-
-        #imageModal .modal-title {
-            font-weight: 600;
-        }
-
-        #imageModal .modal-image {
-            width: 90%;
-            border-radius: 15px;
-        }
-    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const imageModal = document.getElementById('imageModal');

@@ -144,6 +144,20 @@ if (!isset($_SESSION["username"])) {
       transform: translateY(-50%) rotate(180deg);
     }
 
+    .mt_15 {
+      margin-top: 15px;
+    }
+
+    .mt_30 {
+      margin-top: 30px;
+    }
+
+    .flex_3 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -267,12 +281,12 @@ if (!isset($_SESSION["username"])) {
     <div class="container">
       <div class="row">
         <div class="col-md-9">
-          <div class="row" style="margin-bottom: 30px;">
+          <div class="row">
             <div class="col-md-12">
               <div class="full margin_bottom_30">
                 <div class="accordion border_circle">
                   <div class="bs-example">
-                    <div class="panel-group" id="accordion" style="margin-top: 0;">
+                    <div class="panel-group" id="accordion">
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <p class="panel-title">
@@ -459,7 +473,7 @@ if (!isset($_SESSION["username"])) {
               </div>
             </div>
             <div class="center"><a class="btn sqaure_bt" href="feedback.php">Feedback Form</a></div>
-            <div style="height:110px;"></div>
+            <div class="mt_30 flex_3">
             <div class="col-md-4">
               <div class="full">
                 <div class="service_blog_inner">
@@ -487,8 +501,9 @@ if (!isset($_SESSION["username"])) {
                 </div>
               </div>
             </div>
+            </div>
             <div class="col-md-12">
-              <div class="full" style="margin-top: 15px;">
+              <div class="full mt_15">
                 <h3>Need file recovery?</h3>
                 <p>The process of restoring access to files that have been lost due to user error, storage corruption,
                   or unexpected outages. This is done by putting together the remaining fragments, rebuilding from

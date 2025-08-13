@@ -148,6 +148,10 @@ if (!isset($_SESSION["username"])) {
       max-width: 210px;
     }
 
+    .mt_35 {
+      margin-top: 35px !important;
+    }
+
     /* Mobile view (max-width: 767px) */
     @media only screen and (max-width: 767px) {
       .grp_btn {
@@ -308,12 +312,12 @@ if (!isset($_SESSION["username"])) {
           </div>
         </div>
       </div>
-      <div class="row" style="margin-top: 35px">
+      <div class="row mt_35">
         <div class="col-md-8">
           <div class="full margin_bottom_30">
             <div class="accordion border_circle">
               <div class="bs-example">
-                <div class="panel-group" id="accordion" style="margin-top: 0;">
+                <div class="panel-group" id="accordion">
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <p class="panel-title">
@@ -395,7 +399,7 @@ if (!isset($_SESSION["username"])) {
           </div>
         </div>
         <div class="col-md-4">
-          <div class="full" style="margin-top: 35px">
+          <div class="full mt_35">
             <h3>Need file recovery?</h3>
             <p>
               The process of restoring access to files that have been lost due to user error, storage corruption, or

@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="full">
           <div class="main_heading text_align_left">
-            <h2 style="text-transform: none;">What Clients Say?</h2>
+            <h2>What Clients Say?</h2>
             <p class="large">Here are testimonials from clients..</p>
           </div>
         </div>
@@ -24,7 +24,7 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="testimonial-container" style="min-height: 150px;">
+                <div class="testimonial-container min_height_150">
                   <div class="testimonial-content"> RC Infotech transformed our business with their smart IT solutions.
                     Their team is fast, reliable, and always available when we need them. </div>
                   <div class="testimonial-photo"> <img src="images/it_service/testimonial1.png" class="img-responsive"
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container" style="min-height: 150px;">
+                <div class="testimonial-container min_height_150">
                   <div class="testimonial-content"> Excellent service and support! The website they built for us is
                     smooth, responsive, and exactly what we needed and also maintain it very well.</div>
                   <div class="testimonial-photo"> <img src="images/it_service/testimonial2.png" class="img-responsive"
@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container" style="min-height: 150px;">
+                <div class="testimonial-container min_height_150">
                   <div class="testimonial-content"> Highly professional and skilled team. RC Infotech handled our
                     hardware setup and network issues perfectly.</div>
                   <div class="testimonial-photo"> <img src="images/it_service/testimonial3.png" class="img-responsive"
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="testimonial-container" style="min-height: 150px;">
+                <div class="testimonial-container min_height_150">
                   <div class="testimonial-content"> Their quick response and affordable services helped us get our
                     project live on time. Highly recommended! </div>
                   <div class="testimonial-photo"> <img src="images/it_service/testimonial4.png" class="img-responsive"

@@ -67,6 +67,18 @@
   box-sizing: border-box;
 }
 
+.f_map {
+  width: 500px;
+}
+
+.f_map_inner {
+  width: 100%;
+}
+
+.min_height_150 {
+  min-height: 150px;
+}
+
 html,
 body {
   color: #898989;

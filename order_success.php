@@ -162,6 +162,13 @@ if (!$order) {
       margin-right: 10px;
     }
 
+    .mt_30 {
+      margin-top: 30px;
+    }
+
+    .mb_15 {
+      margin-bottom: 15px !important;
+    }
 
     @media only screen and (max-width: 767px) {
       .grp_btn {
@@ -327,7 +334,7 @@ if (!$order) {
                 </tr>
               </table>
 
-              <h4 style="margin-top: 20px; margin-bottom: 15px;">Ordered Items</h4>
+              <h4 class="mb_15">Ordered Items</h4>
               <table class="table table_detail">
                 <thead>
                   <tr>
@@ -369,7 +376,7 @@ if (!$order) {
               </table>
             </div>
 
-            <div style="margin-top: 30px;">
+            <div class="mt_30">
               <a href="shop.php" class="btn main_bt">Continue Shopping</a>
             </div>
           </div>

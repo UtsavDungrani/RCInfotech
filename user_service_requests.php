@@ -127,6 +127,10 @@ try {
       margin-right: 10px;
     }
 
+    .status_display {
+      
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -289,7 +293,7 @@ try {
                           <td><?php echo htmlspecialchars($request['description']); ?></td>
                           <td><?php echo htmlspecialchars($request['booking_time']); ?></td>
                           <td>
-                            <span style="
+                            <span class="status_display" style="
                                                 <?php
                                                 $status = htmlspecialchars($request['status'] ?? 'Pending');
                                                 if ($status === 'approved') {

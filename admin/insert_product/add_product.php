@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -146,9 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                         <small class="form-text text-muted">Supported formats: JPG, JPEG, PNG, GIF. Maximum size:
                             5MB</small>
-                        <div id="imagePreview" class="mt-2" style="display: none;">
-                            <img id="preview" src="#" alt="Preview"
-                                style="max-width: 200px; max-height: 200px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div id="imagePreview" class="mt-2 disp_none">
+                            <img id="preview" src="#" alt="Preview" class="img_preview_con">
                         </div>
                     </div>
 

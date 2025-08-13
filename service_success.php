@@ -163,6 +163,10 @@ if (!$booking) {
       margin-right: 10px;
     }
 
+    .mt_30 {
+      margin-top: 30px;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -316,7 +320,7 @@ if (!$booking) {
               </table>
             </div>
 
-            <div style="margin-top: 30px;">
+            <div class="mt_30">
               <a href="service.php" class="btn main_bt">Continue to Services</a>
             </div>
           </div>

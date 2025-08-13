@@ -104,7 +104,7 @@ try {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -145,12 +145,12 @@ try {
                     </div>
                 </div>
                 <!-- Filter/Sort Form -->
-                <div class="row" style="margin-bottom: 20px;">
+                <div class="row mb_20">
                     <div class="col-md-12">
-                        <form method="GET" class="d-flex align-items-center justify-content-between" style="gap: 10px;">
-                            <div class="d-flex align-items-center" style="gap: 10px;">
+                        <form method="GET" class="d-flex align-items-center justify-content-between gap_10">
+                            <div class="d-flex align-items-center gap_10">
                                 <label for="status" class="me-2 mb-0">Status:</label>
-                                <select name="status" id="status" class="form-control me-3" style="width: 140px;">
+                                <select name="status" id="status" class="form-control me-3 width_140">
                                     <option value="all" <?php echo ($status_filter === 'all' ? 'selected' : ''); ?>>All
                                     </option>
                                     <option value="pending" <?php echo ($status_filter === 'pending' ? 'selected' : ''); ?>>Pending</option>
@@ -158,7 +158,7 @@ try {
                                     <option value="rejected" <?php echo ($status_filter === 'rejected' ? 'selected' : ''); ?>>Rejected</option>
                                 </select>
                                 <label for="service" class="me-2 mb-0">Service:</label>
-                                <select name="service" id="service" class="form-control me-3" style="width: 140px;">
+                                <select name="service" id="service" class="form-control me-3 width_140">
                                     <option value="all" <?php echo ($service_filter === 'all' ? 'selected' : ''); ?>>All
                                     </option>
                                     <?php foreach ($available_services as $service): ?>
@@ -169,16 +169,14 @@ try {
                                     <?php endforeach; ?>
                                 </select>
                                 <label for="date_order" class="me-2 mb-0">Date:</label>
-                                <select name="date_order" id="date_order" class="form-control me-3"
-                                    style="width: 150px;">
+                                <select name="date_order" id="date_order" class="form-control me-3 width_150">
                                     <option value="desc" <?php echo ($date_order === 'desc' ? 'selected' : ''); ?>>Newest
                                         First</option>
                                     <option value="asc" <?php echo ($date_order === 'asc' ? 'selected' : ''); ?>>Oldest
                                         First</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm"
-                                style="width:auto;">Filter</button>
+                            <button type="submit" class="btn btn-primary btn-sm width_auto">Filter</button>
                         </form>
                     </div>
                 </div>
@@ -189,11 +187,11 @@ try {
                                 <tr>
                                     <th>ID</th>
                                     <th>First Name</th>
-                                    <th style="max-width: 130px; word-wrap: break-word;">Email</th>
+                                    <th class="word_wrap_brk_world max_width_130">Email</th>
                                     <th>Mobile</th>
                                     <th>Service</th>
-                                    <th style="max-width: 120px; word-wrap: break-word;">Description</th>
-                                    <th style="min-width: 101px; word-wrap: break-word;">Booking Time</th>
+                                    <th class="word_wrap_brk_world max_width_120">Description</th>
+                                    <th class="word_wrap_brk_world min_width_101">Booking Time</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -206,15 +204,15 @@ try {
                                         <td><?php echo htmlspecialchars($request['fname']); ?>
                                             <?php echo htmlspecialchars($request['lname']); ?>
                                         </td>
-                                        <td style="max-width: 130px; word-wrap: break-word;">
+                                        <td class="word_wrap_brk_world max_width_130">
                                             <?php echo htmlspecialchars($request['email']); ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($request['mobile']); ?></td>
                                         <td><?php echo htmlspecialchars($request['subject']); ?></td>
-                                        <td style="max-width: 120px; word-wrap: break-word;">
+                                        <td class="word_wrap_brk_world max_width_120">
                                             <?php echo htmlspecialchars($request['description']); ?>
                                         </td>
-                                        <td style="min-width: 101px; word-wrap: break-word;">
+                                        <td class="word_wrap_brk_world min_width_101">
                                             <?php echo htmlspecialchars($request['booking_time']); ?>
                                         </td>
                                         <td>
@@ -236,17 +234,15 @@ try {
                                         </td>
                                         <td>
                                             <?php if ($status === 'pending'): ?>
-                                                <form action="update_status.php" method="POST" style="display: inline;">
+                                                <form action="update_status.php" method="POST" class="disp_inline">
                                                     <input type="hidden" name="id" value="<?php echo $request['id']; ?>">
                                                     <button type="submit" name="status" value="approved"
-                                                        class="btn btn-success btn-sm"
-                                                        style="background-color: green; padding: 2px 8px; margin: 2px;">Approve</button>
+                                                        class="btn btn-success btn-sm btn_approve">Approve</button>
                                                     <button type="submit" name="status" value="rejected"
-                                                        class="btn btn-danger btn-sm"
-                                                        style="background-color: red; padding: 2px 8px; margin: 2px;">Reject</button>
+                                                        class="btn btn-danger btn-sm btn_reject">Reject</button>
                                                 </form>
                                             <?php else: ?>
-                                                <span style="color: #888; font-size: 18px; font-weight: bold;">Finalized</span>
+                                                <span class="action_done">Finalized</span>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -312,7 +308,7 @@ try {
     <script src="../js/menumaker.js"></script>
     <script src="../js/wow.js"></script>
     <script src="../js/custom.js"></script>
-    <script src="../js/security.js"></script>
+    <!-- <script src="../js/security.js"></script> -->
 </body>
 
 </html>

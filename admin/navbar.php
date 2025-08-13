@@ -23,19 +23,7 @@ try {
         class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests.php' ? 'active' : '' ?>">
         Service Requests
         <?php if ($pending_service_count > 0): ?>
-            <span style="
-            display: inline-block;
-            min-width: 22px;
-            padding: 2px 6px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #fff;
-            background: #007bff;
-            border-radius: 50%;
-            margin-left: 8px;
-            text-align: center;
-            vertical-align: middle;
-        ">
+            <span class="pending_req_counter">
                 <?= $pending_service_count ?>
             </span>
         <?php endif; ?>
@@ -58,19 +46,7 @@ try {
     <a href="/RCInfotech/admin/manage_orders.php"
         class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders.php' ? 'active' : '' ?>">Orders
         <?php if ($pending_order_count > 0): ?>
-            <span style="
-            display: inline-block;
-            min-width: 22px;
-            padding: 2px 6px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #fff;
-            background: #007bff;
-            border-radius: 50%;
-            margin-left: 8px;
-            text-align: center;
-            vertical-align: middle;
-        ">
+            <span class="pending_req_counter">
                 <?= $pending_order_count ?>
             </span>
         <?php endif; ?>

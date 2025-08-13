@@ -188,7 +188,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
       }
 
       .product_img {
-        height: 180px !important;
+        height: 270px !important;
         /* Adjusted height for square appearance */
         overflow: hidden;
       }
@@ -298,7 +298,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
                 <a href="product.php?id=<?= $product['id'] ?>">
                   <div class="product_list">
-                    <div class="product_img" style="height: 270px;">
+                    <div class="product_img">
                       <img class="img-responsive img-product" src="get_product_image.php?id=<?= $product['id'] ?>"
                         alt="<?= $product['name'] ?>">
                     </div>

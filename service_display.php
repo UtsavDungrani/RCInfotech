@@ -211,6 +211,29 @@ $conn->close();
       width: 100%;
     }
 
+    .ser_img {
+      height: 242px;
+      width: 363px;
+    }
+
+    .ser_main_img {
+      width: 100%; 
+      height: 460px; 
+      object-fit: cover;
+    }
+
+    .text_justify {
+      text-align: justify;
+    }
+
+    .mb_30 {
+      margin-bottom: 30px;
+    }
+
+    .mt_15 {
+      margin-top: 15px;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -338,12 +361,12 @@ $conn->close();
             <div class="col-md-12 service_blog margin_bottom_50">
               <div class="full">
                 <div class="service_img">
-                  <img class="img-responsive" src="get_service_image.php?id=<?= $service_id ?>"
-                    style="width: 100%; height: 460px; object-fit: cover;" alt="Service Image" id="service_image" />
+                  <img class="img-responsive ser_main_img" src="get_service_image.php?id=<?= $service_id ?>"
+                    alt="Service Image" id="service_image" />
                 </div>
                 <div class="service_cont">
                   <h3 class="service_head" id="ser_des_name"><?php echo htmlspecialchars($serviceName); ?></h3>
-                  <p id="service_description">
+                  <p class="text_justify" id="service_description">
                     <?php echo nl2br(htmlspecialchars($serviceDescription)); ?>
                   </p>
                 </div>
@@ -358,12 +381,12 @@ $conn->close();
               <div class="col-md-4 service_blog" id="ser_<?= $service['id'] ?>">
                 <div class="full">
                   <div class="service_img">
-                    <img class="img-responsive" src="get_service_image.php?id=<?= $service['id'] ?>"
-                      alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
+                    <img class="img-responsive ser_img" src="get_service_image.php?id=<?= $service['id'] ?>"
+                      alt="<?= $service['name'] ?>" />
                   </div>
                   <div class="service_cont">
                     <h3 class="service_head"><?= $service['name'] ?></h3>
-                    <p style="text-align: justify;"><?= $service['page_des'] ?></p>
+                    <p class="text_justify"><?= $service['page_des'] ?></p>
                     <div class="bt_cont">
                       <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
                     </div>
@@ -372,12 +395,12 @@ $conn->close();
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="row" style="margin-bottom: 30px">
+          <div class="row mb_30">
             <div class="col-md-12">
               <div class="full margin_bottom_30">
                 <div class="accordion border_circle">
                   <div class="bs-example">
-                    <div class="panel-group" id="accordion" style="margin-top: 0;">
+                    <div class="panel-group" id="accordion">
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <p class="panel-title">
@@ -488,7 +511,7 @@ $conn->close();
               </div>
             </div>
             <div class="col-md-12">
-              <div class="full" style="margin-top: 15px;">
+              <div class="full mt_15">
                 <h3>Need file recovery?</h3>
                 <p>The process of restoring access to files that have been lost due to user error, storage corruption,
                   or unexpected outages. This is done by putting together the remaining fragments, rebuilding from
@@ -718,7 +741,7 @@ $conn->close();
   <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-  <script src="js/security.js"></script> 
+  <script src="js/security.js"></script>
   <script>
     $(document).ready(function () {
       // Initialize the accordion with the first panel expanded

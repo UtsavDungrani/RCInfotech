@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($product['image'])): ?>
                             <img src="../../get_product_image.php?id=<?= $product['id'] ?>" alt="Current Product Image"
-                                style="max-width: 200px; margin-top: 10px;">
+                                class="max_width_200 mt_10">
                             <p>Current Image: <?= $product['name'] ?></p>
                         <?php endif; ?>
                     </div>

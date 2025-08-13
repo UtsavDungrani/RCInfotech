@@ -51,7 +51,7 @@ try {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -112,7 +112,7 @@ try {
                                 <td>
                                     <?php if (!empty($shop['image'])): ?>
                                         <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>"
-                                            alt="<?= $shop['Name'] ?>" style="max-width: 100px; max-height: auto;">
+                                            alt="<?= $shop['Name'] ?>" class="max_width_100 max_height_auto">
                                     <?php else: ?>
                                         No Image
                                     <?php endif; ?>

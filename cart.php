@@ -177,6 +177,15 @@ if (!empty($_SESSION['cart'])) {
       margin-right: 10px;
     }
 
+    .text_center {
+      text-align: center !important;
+    }
+
+    .check_out_btn {
+      background-color: #ccc !important;
+      cursor: not-allowed !important;
+      pointer-events: none !important;
+    }
 
     @media only screen and (max-width: 767px) {
       .grp_btn {
@@ -318,7 +327,7 @@ if (!empty($_SESSION['cart'])) {
                             </div>
                           </div>
                         </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <td class="col-sm-1 col-md-1 text_center">
                           <input class="form-control" name="quantity[<?= $item['id'] ?>]" value="<?= $item['quantity'] ?>"
                             type="number" min="1" max="10">
                         </td>
@@ -389,8 +398,7 @@ if (!empty($_SESSION['cart'])) {
                     <?php if (!empty($cart_items)): ?>
                       <a href="checkout.php" class="button">Proceed to Checkout</a>
                     <?php else: ?>
-                      <a href="#" class="button"
-                        style="background-color: #ccc; cursor: not-allowed; pointer-events: none;">Proceed to Checkout</a>
+                      <a href="#" class="button check_out_btn">Proceed to Checkout</a>
                     <?php endif; ?>
                   </td>
                 </tr>

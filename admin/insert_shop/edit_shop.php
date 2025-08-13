@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Main Content -->
     <div class="main-content">
-        <header id="default_header" class="header_style_1" style="height: 75px;">
+        <header id="default_header" class="header_style_1 height_75">
             <div class="header_top">
                 <div class="container-fluid">
                     <div class="row">
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
                         <?php if (!empty($shop['image'])): ?>
                             <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>" alt="<?= $shop['Name'] ?>"
-                                style="max-width: 200px; margin-top: 10px;">
+                                class="max_width_100 mt_10">
                             <p>Current Image: <?= $shop['Name'] ?></p>
                         <?php endif; ?>
                     </div>

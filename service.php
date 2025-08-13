@@ -127,6 +127,15 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
       margin-right: 10px;
     }
 
+    .ser_img {
+      height: 242px;
+      width: 363px;
+    }
+
+    .text_justify {
+      text-align: justify;
+    }
+
     @media only screen and (max-width: 767px) {
       .grp_btn {
         margin-bottom: 10px !important;
@@ -340,12 +349,12 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="col-md-4 service_blog">
             <div class="full">
               <div class="service_img">
-                <img class="img-responsive" src="get_service_image.php?id=<?= $service['id'] ?>"
-                  alt="<?= $service['name'] ?>" style="height: 242px; width: 350px;" />
+                <img class="img-responsive ser_img" src="get_service_image.php?id=<?= $service['id'] ?>"
+                  alt="<?= $service['name'] ?>" />
               </div>
               <div class="service_cont">
                 <h3 class="service_head"><?= $service['name'] ?></h3>
-                <p style="text-align: justify;"><?= $service['page_des'] ?></p>
+                <p class="text_justify"><?= $service['page_des'] ?></p>
                 <div class="bt_cont">
                   <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
                 </div>
