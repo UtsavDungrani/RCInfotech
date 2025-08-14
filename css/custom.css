@@ -388,6 +388,10 @@
     font-size: 12px;
     margin: 0 1px;
   }
+
+  .search {
+    width: 47% !important;
+  }
 }
 
 .text_center {
