@@ -221,7 +221,7 @@ $result = $conn->query($sql);
       }
     });
   </script>
-  <!-- <script src="js/security.js"></script> -->
+  <script src="js/security.js"></script>
 </body>
 
 </html>

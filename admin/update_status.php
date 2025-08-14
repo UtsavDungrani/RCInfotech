@@ -77,22 +77,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
 
                     $mail->Body = "
                     <html>
-                    <body style='font-family: Arial, sans-serif;'>
+                    <head>
+                        <style>
+                            body { font-family: Arial, sans-serif; }
+                            table { border-collapse: collapse; width: 100%; max-width: 600px; }
+                            td { padding: 8px; border: 1px solid #ddd; }
+                            .strong { font-weight: bold; }
+                        </style>
+                    </head>
+                    <body>
                         <h2>Service Request Status Update</h2>
                         <p>Dear {$request['fname']} {$request['lname']},</p>
-                        <p>Your service request for <strong>{$request['subject']}</strong> {$status_message}.</p>
-                        <table style='border-collapse: collapse; width: 100%; max-width: 600px;'>
+                        <p>Your service request for <span class='strong'>{$request['subject']}</span> {$status_message}.</p>
+                        <table>
                             <tr>
-                                <td style='padding: 8px; border: 1px solid #ddd;'><strong>Service:</strong></td>
-                                <td style='padding: 8px; border: 1px solid #ddd;'>{$request['subject']}</td>
+                                <td class='strong'>Service:</td>
+                                <td>{$request['subject']}</td>
                             </tr>
                             <tr>
-                                <td style='padding: 8px; border: 1px solid #ddd;'><strong>Description:</strong></td>
-                                <td style='padding: 8px; border: 1px solid #ddd;'>{$request['description']}</td>
+                                <td class='strong'>Description:</td>
+                                <td>{$request['description']}</td>
                             </tr>
                             <tr>
-                                <td style='padding: 8px; border: 1px solid #ddd;'><strong>Current Status:</strong></td>
-                                <td style='padding: 8px; border: 1px solid #ddd;'>" . ucfirst($status) . "</td>
+                                <td class='strong'>Current Status:</td>
+                                <td>" . ucfirst($status) . "</td>
                             </tr>
                         </table>
                         <p>{$next_steps}</p>

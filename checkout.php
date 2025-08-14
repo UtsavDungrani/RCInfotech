@@ -147,16 +147,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $items_html = '';
         foreach ($cart_items as $item) {
           $items_html .= "<tr>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>{$item['name']}</td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>{$item['quantity']}</td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>₹" . number_format($item['new_price'], 2) . "</td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>₹" . number_format($item['total'], 2) . "</td>
+                        <td>{$item['name']}</td>
+                        <td>{$item['quantity']}</td>
+                        <td>₹" . number_format($item['new_price'], 2) . "</td>
+                        <td>₹" . number_format($item['total'], 2) . "</td>
                     </tr>";
         }
 
         $mail->Body = "
                 <html>
-                <body style='font-family: Arial, sans-serif;'>
+                <head>
+                  <style>
+                    body {
+                      font-family: Arial, sans-serif;
+                    }
+                    table {
+                      border-collapse: collapse; 
+                      width: 100%; 
+                      max-width: 600px;
+                    }
+                    th {
+                      padding: 8px; 
+                      border: 1px solid #ddd; 
+                      background-color: #f8f8f8;
+                    }
+                    td {
+                      padding: 8px; 
+                      border: 1px solid #ddd;
+                    }
+                    .text_right {
+                      text-align: right;
+                    }
+                  </style>
+                </head>
+                <body>
                     <h2>Order Confirmation</h2>
                     <p>Dear {$first_name} {$last_name},</p>
                     <p>Thank you for your order! Your order has been successfully placed.</p>
@@ -166,25 +190,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                     <p><strong>Order Date:</strong> " . date('F j, Y') . "</p>
                     
                     <h3>Items Ordered:</h3>
-                    <table style='border-collapse: collapse; width: 100%; max-width: 600px;'>
+                    <table>
                         <tr>
-                            <th style='padding: 8px; border: 1px solid #ddd; background-color: #f8f8f8;'>Product</th>
-                            <th style='padding: 8px; border: 1px solid #ddd; background-color: #f8f8f8;'>Quantity</th>
-                            <th style='padding: 8px; border: 1px solid #ddd; background-color: #f8f8f8;'>Price</th>
-                            <th style='padding: 8px; border: 1px solid #ddd; background-color: #f8f8f8;'>Total</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
                         </tr>
                         {$items_html}
                         <tr>
-                            <td colspan='3' style='padding: 8px; border: 1px solid #ddd; text-align: right;'><strong>Subtotal:</strong></td>
-                            <td style='padding: 8px; border: 1px solid #ddd;'>₹" . number_format($total, 2) . "</td>
+                            <td colspan='3' class='text_right'><strong>Subtotal:</strong></td>
+                            <td>₹" . number_format($total, 2) . "</td>
                         </tr>
                         <tr>
-                            <td colspan='3' style='padding: 8px; border: 1px solid #ddd; text-align: right;'><strong>Shipping:</strong></td>
-                            <td style='padding: 8px; border: 1px solid #ddd;'>₹49.00</td>
+                            <td colspan='3' class='text_right'><strong>Shipping:</strong></td>
+                            <td>₹49.00</td>
                         </tr>
                         <tr>
-                            <td colspan='3' style='padding: 8px; border: 1px solid #ddd; text-align: right;'><strong>Total:</strong></td>
-                            <td style='padding: 8px; border: 1px solid #ddd;'><strong>₹" . number_format($order_total, 2) . "</strong></td>
+                            <td colspan='3' class='text_right'><strong>Total:</strong></td>
+                            <td><strong>₹" . number_format($order_total, 2) . "</strong></td>
                         </tr>
                     </table>
                     

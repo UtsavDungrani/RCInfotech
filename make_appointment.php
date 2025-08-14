@@ -92,30 +92,49 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $mail->isHTML(true);
       $mail->Subject = 'Service Booking Confirmation - IT Next';
       $mail->Body = "
-            <html>
-            <body style='font-family: Arial, sans-serif;'>
-                <h2>Service Booking Confirmation</h2>
-                <p>Dear {$fname} {$lname},</p>
-                <p>Thank you for booking a service with IT Next. Here are your booking details:</p>
-                <table style='border-collapse: collapse; width: 100%; max-width: 600px;'>
-                    <tr>
-                        <td style='padding: 8px; border: 1px solid #ddd;'><strong>Service:</strong></td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>{$services}</td>
-                    </tr>
-                    <tr>
-                        <td style='padding: 8px; border: 1px solid #ddd;'><strong>Description:</strong></td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>{$description}</td>
-                    </tr>
-                    <tr>
-                        <td style='padding: 8px; border: 1px solid #ddd;'><strong>Contact Number:</strong></td>
-                        <td style='padding: 8px; border: 1px solid #ddd;'>{$mobile}</td>
-                    </tr>
-                </table>
-                <p>Your service request has been received and is currently pending. We will review it and update you on any status changes.</p>
-                <p>You can track your service request status in the 'Booked Services' section of your account.</p>
-                <p>Best regards,<br>IT Next Team</p>
-            </body>
-            </html>";
+        <html>
+        <head>
+          <style>
+            body { 
+              font-family: Arial, sans-serif; 
+            }
+            table { 
+              border-collapse: collapse; 
+              width: 100%; 
+              max-width: 600px; 
+            }
+            td { 
+              padding: 8px; 
+              border: 1px solid #ddd; 
+            }
+            .strong { 
+              font-weight: bold; 
+            }
+          </style>
+        </head>
+        <body>
+          <h2>Service Booking Confirmation</h2>
+          <p>Dear {$fname} {$lname},</p>
+          <p>Thank you for booking a service with IT Next. Here are your booking details:</p>
+          <table>
+            <tr>
+              <td class='strong'>Service:</td>
+              <td>{$services}</td>
+            </tr>
+            <tr>
+              <td class='strong'>Description:</td>
+              <td>{$description}</td>
+            </tr>
+            <tr>
+              <td class='strong'>Contact Number:</td>
+              <td>{$mobile}</td>
+            </tr>
+          </table>
+          <p>Your service request has been received and is currently pending. We will review it and update you on any status changes.</p>
+          <p>You can track your service request status in the 'Booked Services' section of your account.</p>
+          <p>Best regards,<br>IT Next Team</p>
+        </body>
+        </html>";
       $mail->AltBody = "Plain text version of your email";
 
       $mail->send();
@@ -317,7 +336,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       position: "right",
     });
   </script>
-  <!-- <script src="js/security.js"></script> -->
+  <script src="js/security.js"></script>
 </body>
 
 </html>

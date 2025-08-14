@@ -111,28 +111,9 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/colors1.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="../css/admin-styles.css">
     <link rel="stylesheet" href="../css/all.min.css">
-    <style>
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .photo-preview {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: none;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 
 <body id="default_theme" class="it_service">

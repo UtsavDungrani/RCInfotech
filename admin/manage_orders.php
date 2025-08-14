@@ -132,49 +132,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
             $prices = explode(',', $order['prices']);
 
 
-            $items_html = '<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #ddd;">';
+            $items_html = '<table>';
             $items_html .= '<tr>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Product</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Quantity</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Price</th>
-                                <th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold;">Total</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
                             </tr>';
 
             for ($i = 0; $i < count($product_names); $i++) {
                 $items_html .= '<tr>';
-                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">' . htmlspecialchars($product_names[$i]) . '</td>';
-                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">' . $quantities[$i] . '</td>';
-                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">₹' . number_format($prices[$i], 2) . '</td>';
-                $items_html .= '<td style="border: 1px solid #ddd; padding: 8px;">₹' . number_format($prices[$i] * $quantities[$i], 2) . '</td>';
+                $items_html .= '<td>' . htmlspecialchars($product_names[$i]) . '</td>';
+                $items_html .= '<td>' . $quantities[$i] . '</td>';
+                $items_html .= '<td>₹' . number_format($prices[$i], 2) . '</td>';
+                $items_html .= '<td>₹' . number_format($prices[$i] * $quantities[$i], 2) . '</td>';
                 $items_html .= '</tr>';
             }
 
             $items_html .= '<tr>';
-            $items_html .= '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f8f9fa; font-weight: bold; text-align: right;" colspan="3">Total</th>';
-            $items_html .= '<td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">₹' . number_format($order['total_amount'], 2) . '</td>';
+            $items_html .= '<th colspan="3" class="total_box">Total</th>';
+            $items_html .= '<td>₹' . number_format($order['total_amount'], 2) . '</td>';
             $items_html .= '</tr>';
             $items_html .= '</table>';
 
             $mail->Body = "
             <html>
-            <body style='font-family: Arial, sans-serif;'>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-bottom: 20px;
+                        border: 1px solid #ddd;
+                    }
+                    th {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        font-weight: bold;
+                    }
+                    td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    .total_box {
+                        text-align: right;
+                    }
+                </style>
+            </head>
+            <body>
                 <h2>Order Status Update</h2>
                 <p>Dear {$order['first_name']} {$order['last_name']},</p>
                 <p>{$status_message}</p>
-                
                 <h3>Order Details:</h3>
                 <p><strong>Order Number:</strong> #{$order_id}</p>
                 <p><strong>Order Date:</strong> " . date('F j, Y', strtotime($order['order_date'])) . "</p>
                 <p><strong>New Status:</strong> {$new_status}</p>
-                
                 <h3>Ordered Items:</h3>
                 {$items_html}
-                
                 <h3>Shipping Address:</h3>
                 <p>{$order['shipping_address']}</p>
-                
                 <p>If you have any questions about your order, please don't hesitate to contact our customer service.</p>
-                
                 <p>Best regards,<br>IT Next Store Team</p>
             </body>
             </html>";
@@ -254,77 +275,9 @@ try {
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/colors1.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="../css/admin-styles.css">
     <link rel="stylesheet" href="../css/all.min.css">
-    <style>
-        .loader_animation {
-            animation: none;
-        }
-
-        .wrapper {
-            width: 100%;
-            padding: 20px;
-        }
-
-        .order-card {
-            background: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .order-header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .order-status {
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-processing {
-            background: #cce5ff;
-            color: #004085;
-        }
-
-        .status-shipped {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status-delivered {
-            background: #d1e7dd;
-            color: #0f5132;
-        }
-
-        .order-items {
-            margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 3px;
-        }
-
-        .status-form {
-            display: inline-block;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-    </style>
 </head>
 
 <body id="default_theme" class="it_service">

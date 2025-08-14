@@ -52,14 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/colors1.css" />
-    <link rel="stylesheet" href="../css/custom.css" />
     <link rel="stylesheet" href="../css/animate.css" />
     <link rel="stylesheet" href="../css/admin-styles.css">
-    <style>
-        .loader_animation {
-            animation: none;
-        }
-    </style>
 </head>
 
 <body>
