@@ -96,7 +96,7 @@ try {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i>Logout</a>
                                 </div>
                             </div>
                         </div>
