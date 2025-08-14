@@ -67,7 +67,7 @@ try {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                         <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ try {
                                 <td><?= $shop['Name'] ?></td>
                                 <td>
                                     <?php if (!empty($shop['image'])): ?>
-                                        <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>"
+                                        <img src="../../get_shop_image?id=<?= $shop['id'] ?>"
                                             alt="<?= $shop['Name'] ?>" class="max_width_100 max_height_auto">
                                     <?php else: ?>
                                         No Image
@@ -114,8 +114,8 @@ try {
                                 <td><?= $shop['Address'] ?></td>
                                 <td><?= $shop['Contact no'] ?></td>
                                 <td>
-                                    <a href="edit_shop.php?id=<?= $shop['id'] ?>" class="btn btn-primary">Edit</a>
-                                    <a href="delete_shop.php?id=<?= $shop['id'] ?>" class="btn btn-danger bg-danger"
+                                    <a href="edit_shop?id=<?= $shop['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_shop?id=<?= $shop['id'] ?>" class="btn btn-danger bg-danger"
                                         onclick="return confirm('Are you sure you want to delete this shop?')">Delete</a>
                                 </td>
                             </tr>

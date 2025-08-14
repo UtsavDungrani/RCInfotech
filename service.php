@@ -160,14 +160,14 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="col-md-4 service_blog">
             <div class="full">
               <div class="service_img">
-                <img class="img-responsive ser_img" src="get_service_image.php?id=<?= $service['id'] ?>"
+                <img class="img-responsive ser_img" src="get_service_image?id=<?= $service['id'] ?>"
                   alt="<?= $service['name'] ?>" />
               </div>
               <div class="service_cont">
                 <h3 class="service_head"><?= $service['name'] ?></h3>
                 <p class="text_justify"><?= $service['page_des'] ?></p>
                 <div class="bt_cont">
-                  <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
+                  <a class="btn sqaure_bt" href="service_display?id=<?= $service['id'] ?>">View Service</a>
                 </div>
               </div>
             </div>
@@ -258,26 +258,6 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div> -->
   <!-- section -->
   <?php include 'testimonial.php'; ?>
-  <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon"> <img src="images/it_service/phone_icon.png" alt="#" /> </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont"> <a class="btn dark_gray_bt" href="contact.php">Contact us</a> </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

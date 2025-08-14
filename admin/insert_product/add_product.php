@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ]);
 
                         if ($result) {
-                            echo "<script>alert('Product added successfully!'); window.location.href='../admin_home.php';</script>";
+                            echo "<script>alert('Product added successfully!'); window.location.href='../admin_home';</script>";
                         } else {
                             echo "<script>alert('Error adding product: " . implode(", ", $stmt->errorInfo()) . "');</script>";
                         }
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                 </div>
-                <form action="add_product.php" method="post" enctype="multipart/form-data">
+                <form action="add_product" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Product Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Add Product</button>
-                        <a href="../admin_home.php" class="btn btn-secondary">Cancel</a>
+                        <a href="../admin_home" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>

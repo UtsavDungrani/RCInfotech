@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             image = ?
             WHERE id = ?");
         $stmt->execute([$name, $old_price, $new_price, $stock, $description_small, $description_large, $image_data, $product_id]);
-        header("Location: update_product.php");
+        header("Location: update_product");
         exit();
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -162,13 +162,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="image">Product Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($product['image'])): ?>
-                            <img src="../../get_product_image.php?id=<?= $product['id'] ?>" alt="Current Product Image"
+                            <img src="../../get_product_image?id=<?= $product['id'] ?>" alt="Current Product Image"
                                 class="max_width_200 mt_10">
                             <p>Current Image: <?= $product['name'] ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Product</button>
-                    <a href="update_product.php" class="btn btn-secondary">Cancel</a>
+                    <a href="update_product" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

@@ -4,7 +4,7 @@ require_once '../config/config.php';
 
 // Check if already logged in
 if (isset($_SESSION['admin_id'])) {
-    header("Location: admin_home.php");
+    header("Location: admin_home");
     exit();
 }
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Login successful
                 $_SESSION['admin_id'] = $admin['id'];
                 $_SESSION['admin_username'] = $admin['username'];
-                header("Location: admin_home.php");
+                header("Location: admin_home");
                 exit();
             } else {
                 $error = "Invalid password";

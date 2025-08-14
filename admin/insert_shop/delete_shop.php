@@ -6,7 +6,7 @@ include '../../csp.php';
 
 // Check if shop ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header('Location: update_shop.php');
+    header('Location: update_shop');
     exit();
 }
 
@@ -19,11 +19,11 @@ try {
 
     // Redirect back to update page with success message
     $_SESSION['message'] = 'Shop deleted successfully';
-    header('Location: update_shop.php');
+    header('Location: update_shop');
     exit();
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());
     $_SESSION['error'] = 'Error deleting shop';
-    header('Location: update_shop.php');
+    header('Location: update_shop');
     exit();
 }

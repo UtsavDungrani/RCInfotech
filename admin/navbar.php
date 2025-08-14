@@ -17,10 +17,10 @@ try {
 }
 ?>
 <div class="sidebar">
-    <a href="/RCInfotech/admin/admin_home.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'admin_home.php' ? 'active' : '' ?>">Dashboard</a>
-    <a href="/RCInfotech/admin/service_requests.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests.php' ? 'active' : '' ?>">
+    <a href="/RCInfotech/admin/admin_home"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
+    <a href="/RCInfotech/admin/service_requests"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests' ? 'active' : '' ?>">
         Service Requests
         <?php if ($pending_service_count > 0): ?>
             <span class="pending_req_counter">
@@ -28,31 +28,31 @@ try {
             </span>
         <?php endif; ?>
     </a>
-    <a href="/RCInfotech/admin/insert_product/add_product.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_product.php' ? 'active' : '' ?>">Add Product</a>
-    <a href="/RCInfotech/admin/insert_services/add_service.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_service.php' ? 'active' : '' ?>">Add Service</a>
-    <a href="/RCInfotech/admin/insert_shop/add_shop.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_shop.php' ? 'active' : '' ?>">Add Shops</a>
-    <a href="/RCInfotech/admin/insert_product/update_product.php"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_product.php' || basename($_SERVER['PHP_SELF']) == 'edit_product.php') ? 'active' : '' ?>">Manage
+    <a href="/RCInfotech/admin/insert_product/add_product"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'add_product' ? 'active' : '' ?>">Add Product</a>
+    <a href="/RCInfotech/admin/insert_services/add_service"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'add_service' ? 'active' : '' ?>">Add Service</a>
+    <a href="/RCInfotech/admin/insert_shop/add_shop"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
+    <a href="/RCInfotech/admin/insert_product/update_product"
+        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_product' || basename($_SERVER['PHP_SELF']) == 'edit_product') ? 'active' : '' ?>">Manage
         Products</a>
-    <a href="/RCInfotech/admin/insert_services/update_service.php"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_service.php' || basename($_SERVER['PHP_SELF']) == 'edit_service.php') ? 'active' : '' ?>">Manage
+    <a href="/RCInfotech/admin/insert_services/update_service"
+        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_service' || basename($_SERVER['PHP_SELF']) == 'edit_service') ? 'active' : '' ?>">Manage
         Services</a>
-    <a href="/RCInfotech/admin/insert_shop/update_shop.php"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_shop.php' || basename($_SERVER['PHP_SELF']) == 'edit_shop.php') ? 'active' : '' ?>">Manage
+    <a href="/RCInfotech/admin/insert_shop/update_shop"
+        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_shop' || basename($_SERVER['PHP_SELF']) == 'edit_shop') ? 'active' : '' ?>">Manage
         Shop</a>
-    <a href="/RCInfotech/admin/manage_orders.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders.php' ? 'active' : '' ?>">Orders
+    <a href="/RCInfotech/admin/manage_orders"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders' ? 'active' : '' ?>">Orders
         <?php if ($pending_order_count > 0): ?>
             <span class="pending_req_counter">
                 <?= $pending_order_count ?>
             </span>
         <?php endif; ?>
     </a>
-    <a href="/RCInfotech/admin/users.php"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : '' ?>">Users</a>
+    <a href="/RCInfotech/admin/users"
+        class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
-    <a href="/RCInfotech/index.php">Back to Site</a>
+    <a href="/RCInfotech/index">Back to Site</a>
 </div>

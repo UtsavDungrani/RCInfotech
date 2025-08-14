@@ -5,7 +5,7 @@ require_once '../../config/config.php';
 include '../../csp.php'; 
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header('Location: update_service.php');
+    header('Location: update_service');
     exit();
 }
 
@@ -16,11 +16,11 @@ try {
     $stmt->execute([$serviceId]);
 
     $_SESSION['message'] = 'Service deleted successfully';
-    header('Location: update_service.php');
+    header('Location: update_service');
     exit();
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());
     $_SESSION['error'] = 'Error deleting service';
-    header('Location: update_service.php');
+    header('Location: update_service');
     exit();
 }

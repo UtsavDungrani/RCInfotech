@@ -4,14 +4,14 @@ session_start();
 
 // If user is not logged in then redirect to login page
 if (!isset($_SESSION["username"]) || $_SESSION["username"] === "") {
-  header("Location: login.php");
+  header("Location: login");
   exit;
 }
 
 // Ensure the email is set in the session after login
 if (!isset($_SESSION["email"]) || $_SESSION["email"] === "") {
   echo "<script>" . "alert('Email not found in session. Please log in again.');" . "</script>";
-  header("Location: login.php");
+  header("Location: login");
   exit;
 }
 
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     }
 
     // Redirect to service_success.php with the booking ID
-    header("Location: service_success.php?booking_id=" . $booking_id);
+    header("Location: service_success?booking_id=" . $booking_id);
     exit;
   } else {
     echo "<script>" . "alert('Something Went Wrong.');" . "</script>";
@@ -265,29 +265,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <!-- section -->
   <?php include 'testimonial.php'; ?>
   <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon">
-                <img src="images/it_service/phone_icon.png" alt="#" />
-              </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont">
-                <a class="btn dark_gray_bt" href="contact.php">Contact us</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

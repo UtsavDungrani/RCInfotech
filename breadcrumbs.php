@@ -19,14 +19,14 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php echo ucwords(str_replace(['-', '_'], ' ', basename($_SERVER['PHP_SELF'], '.php'))); ?>
                             </h1>
                             <ol class="breadcrumb">
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="index">Home</a></li>
                                 <?php
                                 $current_page = basename($_SERVER['PHP_SELF'], '.php');
                                 if ($current_page == 'feedback') {
-                                    echo '<li><a href="faq.php">FAQ</a></li>';
+                                    echo '<li><a href="faq">FAQ</a></li>';
                                     echo '<li class="active">' . ucwords(str_replace('-', ' ', $current_page)) . '</li>';
                                 } elseif ($current_page == 'checkout') {
-                                    echo '<li><a href="cart.php">Cart</a></li>';
+                                    echo '<li><a href="cart">Cart</a></li>';
                                     echo '<li class="active">' . ucwords(str_replace('-', ' ', $current_page)) . '</li>';
                                 } elseif ($current_page == 'product') {
                                     // Fetch the product name if the ID is provided in the URL
@@ -37,7 +37,7 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             $product_name = $product['name'];
                                         }
                                     }
-                                    echo '<li><a href="shop.php">Shop</a></li>';
+                                    echo '<li><a href="shop">Shop</a></li>';
                                     if ($product_name) {
                                         echo '<li class="active">' . htmlspecialchars($product_name) . '</li>';
                                     } else {
@@ -54,22 +54,22 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             }
                                         }
                                     }
-                                    echo '<li><a href="service.php">Services</a></li>';
+                                    echo '<li><a href="">Services</a></li>';
                                     if ($service_name) {
                                         echo '<li class="active">' . htmlspecialchars($service_name) . '</li>';
                                     } else {
                                         echo '<li class="active">Service</li>';
                                     }
                                 } elseif ($current_page == 'service_success') {
-                                    echo '<li><a href="make_appointment.php">Make Appointment</a></li>';
+                                    echo '<li><a href="make_appointment">Make Appointment</a></li>';
                                     echo '<li class="active">Service Booking Success</li>';
                                 } elseif ($current_page == 'service') {
                                     echo '<li class="active">Services</li>';
                                 } elseif ($current_page == 'user_orders') {
-                                    echo '<li><a href="shop.php">Shop</a></li>';
+                                    echo '<li><a href="shop">Shop</a></li>';
                                     echo '<li class="active">My Orders</li>';
                                 } elseif ($current_page == 'user_service_requests') {
-                                    echo '<li><a href="service.php">Services</a></li>';
+                                    echo '<li><a href="service">Services</a></li>';
                                     echo '<li class="active">My Services</li>';
                                 } elseif ($current_page != 'index') {
                                     echo '<li class="active">' . ucwords(str_replace(['-', '_'], ' ', $current_page)) . '</li>';

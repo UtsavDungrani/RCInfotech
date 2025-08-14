@@ -22,7 +22,7 @@ $product = $result->fetch_assoc();
 
 if (!$product) {
   // Handle case when product is not found
-  echo "<script>window.location.href='shop.php';</script>";
+  echo "<script>window.location.href='shop';</script>";
   exit;
 }
 
@@ -116,7 +116,7 @@ $total_products = $result_total->fetch_assoc()['total'];
             <div class="col-xl-6 col-lg-12 col-md-12">
               <div class="product_detail_feature_img hizoom hi2">
                 <div class="hizoom hi2">
-                  <img src="get_product_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
+                  <img src="get_product_image?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                   <br /><br />
                   <span class="stock fw_600"><?php echo (int) $product['stock']; ?> in stock</span>
                 </p>
-                <form class="cart" method="post" action="cart.php">
+                <form class="cart" method="post" action="cart">
                   <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                   <div class="quantity">
                     <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text"
@@ -311,10 +311,10 @@ $total_products = $result_total->fetch_assoc()['total'];
                 if ($related_product) {
                   echo '
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all product_grid_item">
-                                <a href="product.php?id=' . $related_product['id'] . '">
+                                <a href="product?id=' . $related_product['id'] . '">
                   <div class="product_list">
                     <div class="product_img">
-                                            <img class="img-responsive img-product" src="get_product_image.php?id=' . $related_product['id'] . '" alt="" />
+                                            <img class="img-responsive img-product" src="get_product_image?id=' . $related_product['id'] . '" alt="" />
                     </div>
                     <div class="product_detail_btm">
                       <div class="center">
@@ -366,7 +366,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                 Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
                 need to be done.
               </p>
-              <a class="btn sqaure_bt" href="service.php">View Service</a>
+              <a class="btn sqaure_bt" href="service">View Service</a>
             </div>
             <div class="side_bar_blog">
               <h4>OUR SERVICE</h4>
@@ -433,30 +433,6 @@ $total_products = $result_total->fetch_assoc()['total'];
   <!-- end section -->
   <!-- section -->
   <?php include 'testimonial.php'; ?>
-  <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon">
-                <img src="images/it_service/phone_icon.png" alt="#" />
-              </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont">
-                <a class="btn dark_gray_bt" href="contact.php">Contact us</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

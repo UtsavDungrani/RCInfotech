@@ -67,7 +67,7 @@ try {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ try {
                                 <td><?= $service['name'] ?></td>
                                 <td>
                                     <?php if (!empty($service['image'])): ?>
-                                        <img src="../../get_service_image.php?id=<?= $service['id'] ?>" alt="<?= $service['name'] ?>"
+                                        <img src="../../get_service_image?id=<?= $service['id'] ?>" alt="<?= $service['name'] ?>"
                                             class="max_width_100 height_auto">
                                     <?php else: ?>
                                         No Image
@@ -114,8 +114,8 @@ try {
                                 <td><?= $service['page_des'] ?></td>
                                 <td><?= $service['description'] ?></td>
                                 <td>
-                                    <a href="edit_service.php?id=<?= $service['id'] ?>" class="btn btn-primary">Edit</a>
-                                    <a href="delete_service.php?id=<?= $service['id'] ?>" class="btn btn-danger bg-danger"
+                                    <a href="edit_service?id=<?= $service['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_service?id=<?= $service['id'] ?>" class="btn btn-danger bg-danger"
                                         onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
                                 </td>
                             </tr>

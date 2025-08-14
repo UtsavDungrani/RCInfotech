@@ -123,7 +123,7 @@ try {
                                     <?php echo $_SESSION['admin_name'] ?? 'Admin'; ?> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="admin-dropdown">
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -232,7 +232,7 @@ try {
                                         </td>
                                         <td>
                                             <?php if ($status === 'pending'): ?>
-                                                <form action="update_status.php" method="POST" class="disp_inline">
+                                                <form action="update_status" method="POST" class="disp_inline">
                                                     <input type="hidden" name="id" value="<?php echo $request['id']; ?>">
                                                     <button type="submit" name="status" value="approved"
                                                         class="btn btn-success btn-sm btn_approve">Approve</button>

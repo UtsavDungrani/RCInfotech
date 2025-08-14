@@ -260,14 +260,14 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
           <div class="col-md-4 service_blog">
             <div class="full">
               <div class="service_img">
-                <img class="img-responsive ser_img" src="get_service_image.php?id=<?= $service['id'] ?>"
+                <img class="img-responsive ser_img" src="get_service_image?id=<?= $service['id'] ?>"
                   alt="<?= $service['name'] ?>" loading="lazy" />
               </div>
               <div class="service_cont">
                 <h3 class="service_head"><?= $service['name'] ?></h3>
                 <p class="text_justify"><?= $service['page_des'] ?></p>
                 <div class="bt_cont">
-                  <a class="btn sqaure_bt" href="service_display.php?id=<?= $service['id'] ?>">View Service</a>
+                  <a class="btn sqaure_bt" href="service_display?id=<?= $service['id'] ?>">View Service</a>
                 </div>
               </div>
             </div>
@@ -375,15 +375,15 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
           <div class="row">
             <?php foreach ($products as $product): ?>
               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
-                <a href="product.php?id=<?= $product['id'] ?>">
+                <a href="product?id=<?= $product['id'] ?>">
                   <div class="product_list">
                     <div class="product_img">
-                      <img class="img-responsive img-product" src="get_product_image.php?id=<?= $product['id'] ?>"
+                      <img class="img-responsive img-product" src="get_product_image?id=<?= $product['id'] ?>"
                         alt="<?= $product['name'] ?>" loading="lazy">
                     </div>
                     <div class="product_detail_btm">
                       <div class="center">
-                        <h4><a href="product.php?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h4>
+                        <h4><a href="product?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h4>
                       </div>
                       <div class="starratin">
                         <div class="center">
@@ -428,7 +428,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
                 Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
                 need to be done.
               </p>
-              <a class="btn sqaure_bt" href="service.php">View Service</a>
+              <a class="btn sqaure_bt" href="service">View Service</a>
             </div>
             <div class="side_bar_blog">
               <h4>OUR SERVICE</h4>
@@ -627,26 +627,6 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
     </div> -->
   <!-- section -->
   <?php include 'testimonial.php'; ?>
-  <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon"> <img src="images/it_service/phone_icon.png" alt="#" /> </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont"> <a class="btn dark_gray_bt" href="contact.php">Contact us</a> </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

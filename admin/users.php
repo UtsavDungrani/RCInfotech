@@ -65,7 +65,7 @@ try {
                                     <?php echo $_SESSION['admin_name'] ?? 'Admin'; ?> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="admin-dropdown">
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -123,8 +123,8 @@ try {
                                         <td><?php echo htmlspecialchars($user['address']); ?></td>
                                         <td><?php echo htmlspecialchars($user['reg_date']); ?></td>
                                         <td>
-                                            <a href="edit_user.php?id=<?= $user['id'] ?>" class="btn btn-primary">Edit</a>
-                                            <a href="delete_user.php?id=<?= $user['id'] ?>" class="btn btn-danger bg-danger"
+                                            <a href="edit_user?id=<?= $user['id'] ?>" class="btn btn-primary">Edit</a>
+                                            <a href="delete_user?id=<?= $user['id'] ?>" class="btn btn-danger bg-danger"
                                                 onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
                                         </td>
                                     </tr>

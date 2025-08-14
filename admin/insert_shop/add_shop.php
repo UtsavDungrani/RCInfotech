@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                         <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Add Shop</button>
-                        <a href="../admin_home.php" class="btn btn-secondary">Cancel</a>
+                        <a href="../admin_home" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>

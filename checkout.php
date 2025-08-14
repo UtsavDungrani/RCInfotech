@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 
 // Redirect to login if user is not logged in properly
 if ($_SESSION["username"] === "user") {
-  header("Location: login.php");
+  header("Location: login");
   exit;
 }
 
@@ -20,7 +20,7 @@ if (!isset($_SESSION['cart'])) {
 
 // Redirect to index.php if cart is empty
 if (empty($_SESSION['cart'])) {
-  header("Location: index.php");
+  header("Location: index");
   exit;
 }
 
@@ -234,7 +234,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
       unset($_SESSION['cart']);
 
       // Redirect to success page
-      header("Location: order_success.php?order_id=" . $order_id);
+      header("Location: order_success?order_id=" . $order_id);
       exit;
     } else {
       $errors[] = "Error processing order. Please try again.";
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
               </div>
             <?php endif; ?>
 
-            <form method="post" action="checkout.php">
+            <form method="post" action="checkout">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">

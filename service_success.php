@@ -2,14 +2,14 @@
 session_start();
 
 if (!isset($_SESSION["username"]) || $_SESSION["username"] === "user") {
-  header("Location: login.php");
+  header("Location: login");
   exit;
 }
 
 $booking_id = isset($_GET['booking_id']) ? (int) $_GET['booking_id'] : 0;
 
 if ($booking_id === 0) {
-  header("Location: index.php");
+  header("Location: index");
   exit;
 }
 
@@ -23,7 +23,7 @@ $stmt->execute([$booking_id, $_SESSION["email"]]);
 $booking = $stmt->fetch();
 
 if (!$booking) {
-  header("Location: index.php");
+  header("Location: index");
   exit;
 }
 ?>
@@ -120,7 +120,7 @@ if (!$booking) {
             </div>
 
             <div class="mt_30">
-              <a href="service.php" class="btn main_bt">Continue to Services</a>
+              <a href="service" class="btn main_bt">Continue to Services</a>
             </div>
           </div>
         </div>
@@ -129,30 +129,6 @@ if (!$booking) {
   </div>
   <!-- section -->
   <?php include 'testimonial.php'; ?>
-  <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon">
-                <img src="images/it_service/phone_icon.png" alt="#" />
-              </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont">
-                <a class="btn dark_gray_bt" href="contact.php">Contact us</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

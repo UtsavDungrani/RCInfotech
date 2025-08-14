@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $image_data = file_get_contents($_FILES['image']['tmp_name']);
         } else {
             $_SESSION['error'] = "File is not an image.";
-            header("Location: edit_service.php?id=$service_id");
+            header("Location: edit_service?id=$service_id");
             exit();
         }
     }
@@ -45,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             image = ?
             WHERE id = ?");
         $stmt->execute([$name, $description, $page_des, $image_data, $service_id]);
-        header("Location: update_service.php");
+        header("Location: update_service");
         exit();
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
         $_SESSION['error'] = "Error updating service.";
-        header("Location: edit_service.php?id=$service_id");
+        header("Location: edit_service?id=$service_id");
         exit();
     }
 }
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -158,14 +158,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($service['image'])): ?>
                             <div class="mt_10">
-                                <img src="../../get_service_image.php?id=<?= $service_id ?>" alt="Current Service Image"
+                                <img src="../../get_service_image?id=<?= $service_id ?>" alt="Current Service Image"
                                     class="max_width_200">
                                 <p class="mt_5">Current Image: <?= $service['name'] ?></p>
                             </div>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Service</button>
-                    <a href="update_service.php" class="btn btn-secondary">Cancel</a>
+                    <a href="update_service" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

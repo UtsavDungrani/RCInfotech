@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     } catch (PDOException $e) {
       echo "<script>alert('Database error: " . $e->getMessage() . "');</script>";
-      echo "<script>window.location.href='./login.php';</script>";
+      echo "<script>window.location.href='./login';</script>";
       exit;
     }
   }
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
               <input type="submit" class="btn btn-primary form-control" name="submit" value="Log In">
             </div>
-            <p class="mb-0">Don't have an account ? <a href="./register.php">Sign Up</a></p>
+            <p class="mb-0">Don't have an account ? <a href="./register">Sign Up</a></p>
           </form>
           <!-- form ends here -->
         </div>

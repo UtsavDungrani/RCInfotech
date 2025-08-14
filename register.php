@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ])
       ) {
         echo "<script>alert('Registration completed successfully! Please login.');</script>";
-        echo "<script>window.location.href='./login.php';</script>";
+        echo "<script>window.location.href='./login';</script>";
         exit;
       } else {
         echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
               <input type="submit" class="btn btn-primary form-control" name="submit" value="Sign Up">
             </div>
-            <p class="mb-0">Already have an account ? <a href="./login.php">Log In</a></p>
+            <p class="mb-0">Already have an account ? <a href="./login">Log In</a></p>
           </form>
           <!-- form ends here -->
         </div>

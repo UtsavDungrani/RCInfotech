@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 
         if (!in_array($_FILES['photo']['type'], $allowed_types)) {
             $_SESSION['error'] = "Please upload a valid image file (JPEG, PNG, GIF).";
-            header("Location: edit_user.php?id=" . $id);
+            header("Location: edit_user?id=" . $id);
             exit();
         }
 
         if ($_FILES['photo']['size'] > $max_size) {
             $_SESSION['error'] = "Image size should be less than 5MB.";
-            header("Location: edit_user.php?id=" . $id);
+            header("Location: edit_user?id=" . $id);
             exit();
         }
 
@@ -69,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
         $stmt->execute($params);
 
         $_SESSION['success'] = "User updated successfully!";
-        header("Location: users.php");
+        header("Location: users");
         exit();
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
         $_SESSION['error'] = "Failed to update user. Please try again.";
-        header("Location: users.php");
+        header("Location: users");
         exit();
     }
 }
@@ -91,7 +91,7 @@ if (isset($_GET['id'])) {
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
         $_SESSION['error'] = "Failed to fetch user details.";
-        header("Location: users.php");
+        header("Location: users");
         exit();
     }
 }
@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
                                     <?php echo $_SESSION['admin_name'] ?? 'Admin'; ?> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="admin-dropdown">
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@ if (isset($_GET['id'])) {
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update User</button>
-                    <a href="users.php" class="btn btn-secondary">Cancel</a>
+                    <a href="users" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

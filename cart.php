@@ -120,7 +120,7 @@ if (!empty($_SESSION['cart'])) {
       <div class="row">
         <div class="col-sm-12 col-md-12">
           <div class="product-table">
-            <form method="post" action="cart.php">
+            <form method="post" action="cart">
               <table class="table">
                 <thead>
                   <tr>
@@ -137,11 +137,11 @@ if (!empty($_SESSION['cart'])) {
                       <tr>
                         <td class="col-sm-8 col-md-6">
                           <div class="media">
-                            <a class="thumbnail pull-left" href="product.php?id=<?= $item['id'] ?>">
-                              <img class="media-object" src="get_product_image.php?id=<?= $item['id'] ?>" alt="#">
+                            <a class="thumbnail pull-left" href="product?id=<?= $item['id'] ?>">
+                              <img class="media-object" src="get_product_image?id=<?= $item['id'] ?>" alt="#">
                             </a>
                             <div class="media-body">
-                              <h4 class="media-heading"><a href="product.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></h4>
+                              <h4 class="media-heading"><a href="product?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></h4>
                               <span>Status: </span>
                               <span class="text-<?= $item['stock'] > 0 ? 'success' : 'danger' ?>">
                                 <?= $item['stock'] > 0 ? 'In Stock' : 'Out of Stock' ?>
@@ -160,7 +160,7 @@ if (!empty($_SESSION['cart'])) {
                           <p class="price_table">₹<?= number_format($item['total'], 2) ?></p>
                         </td>
                         <td class="col-sm-1 col-md-1">
-                          <a href="cart.php?remove=<?= $item['id'] ?>" class="bt_main">
+                          <a href="cart?remove=<?= $item['id'] ?>" class="bt_main">
                             <i class="fa fa-trash"></i> Remove
                           </a>
                         </td>
@@ -214,11 +214,11 @@ if (!empty($_SESSION['cart'])) {
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <a href="shop.php" class="button">Continue Shopping</a>
+                    <a href="shop" class="button">Continue Shopping</a>
                   </td>
                   <td class="text-center">
                     <?php if (!empty($cart_items)): ?>
-                      <a href="checkout.php" class="button">Proceed to Checkout</a>
+                      <a href="checkout" class="button">Proceed to Checkout</a>
                     <?php else: ?>
                       <a href="#" class="button check_out_btn">Proceed to Checkout</a>
                     <?php endif; ?>
@@ -233,26 +233,6 @@ if (!empty($_SESSION['cart'])) {
   </div>
   <!-- section -->
   <?php include 'testimonial.php'; ?>
-  <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon"> <img src="images/it_service/phone_icon.png" alt="#" /> </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont"> <a class="btn dark_gray_bt" href="contact.php">Contact us</a> </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- end section -->
   <!-- footer -->
   <?php include 'footer.php'; ?>

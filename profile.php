@@ -5,7 +5,7 @@ session_start();
 # Check if user is logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE || $_SESSION["username"] === "user") {
     echo "<script>alert('Please login to access your profile.');</script>";
-    echo "<script>window.location.href='./login.php';</script>";
+    echo "<script>window.location.href='./login';</script>";
     exit;
 }
 
@@ -289,10 +289,10 @@ try {
                                         role="tab">Change Password</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="orders-tab" href="user_orders.php" role="tab">My Orders</a>
+                                    <a class="nav-link" id="orders-tab" href="user_orders" role="tab">My Orders</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="services-tab" href="user_service_requests.php"
+                                    <a class="nav-link" id="services-tab" href="user_service_requests"
                                         role="tab">Service Requests</a>
                                 </li>
                             </ul>
@@ -455,7 +455,7 @@ try {
                                         <div class="text-center py-5">
                                             <h4>No orders found</h4>
                                             <p class="text-muted">You haven't placed any orders yet.</p>
-                                            <a href="shop.php" class="btn btn-profile">Start Shopping</a>
+                                            <a href="shop" class="btn btn-profile">Start Shopping</a>
                                         </div>
                                     <?php else: ?>
                                         <?php foreach ($orders as $order): ?>
@@ -476,7 +476,7 @@ try {
                                                         </span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <a href="user_orders.php" class="btn btn-sm btn-outline-primary">View
+                                                        <a href="user_orders" class="btn btn-sm btn-outline-primary">View
                                                             Details</a>
                                                     </div>
                                                 </div>
@@ -513,7 +513,7 @@ try {
                                                         </span>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <a href="user_service_requests.php"
+                                                        <a href="user_service_requests"
                                                             class="btn btn-sm btn-outline-primary">View Details</a>
                                                     </div>
                                                 </div>

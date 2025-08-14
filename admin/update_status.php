@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
                     error_log("Email sending failed: " . $mail->ErrorInfo);
                 }
 
-                header('Location: service_requests.php');
+                header('Location: service_requests');
                 exit;
             }
         }
@@ -125,6 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
     }
 }
 
-header('Location: service_requests.php');
+header('Location: service_requests');
 exit;
 ?>

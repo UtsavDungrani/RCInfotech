@@ -98,7 +98,7 @@ $result = $conn->query($sql);
             echo '<div class="col-md-4 shop_card">
                         <div class="product_list shop_list">
                             <div class="product_img shop_img"> 
-                                <img class="w-100 p-4 img_con" src="get_shop_image.php?id=' . $row['id'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
+                                <img class="w-100 p-4 img_con" src="get_shop_image?id=' . $row['id'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
                             </div>
                             <div class="product_detail_btm">
                                 <div class="center">
@@ -131,31 +131,7 @@ $result = $conn->query($sql);
   <!-- section -->
   <?php include 'testimonial.php'; ?>
   <!-- end section -->
-  <!-- section -->
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="contact_us_section">
-              <div class="call_icon">
-                <img src="images/it_service/phone_icon.png" alt="#" />
-              </div>
-              <div class="inner_cont">
-                <h2>REQUEST A FREE QUOTE</h2>
-                <p>Get answers and advice from people you want it from.</p>
-              </div>
-              <div class="button_Section_cont">
-                <a class="btn dark_gray_bt" href="contact.php">Contact us</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end section -->
-
+  
   <!-- footer -->
   <?php include 'footer.php'; ?>
   <!-- end footer -->

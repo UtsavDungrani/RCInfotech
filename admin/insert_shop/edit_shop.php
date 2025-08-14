@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             image = ?
             WHERE id = ?");
         $stmt->execute([$name, $address, $contact, $image_data, $shop_id]);
-        header("Location: update_shop.php");
+        header("Location: update_shop");
         exit();
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -140,13 +140,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="photo">Shop Photo:</label>
                         <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
                         <?php if (!empty($shop['image'])): ?>
-                            <img src="../../get_shop_image.php?id=<?= $shop['id'] ?>" alt="<?= $shop['Name'] ?>"
+                            <img src="../../get_shop_image?id=<?= $shop['id'] ?>" alt="<?= $shop['Name'] ?>"
                                 class="max_width_100 mt_10">
                             <p>Current Image: <?= $shop['Name'] ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Shop</button>
-                    <a href="update_shop.php" class="btn btn-secondary">Cancel</a>
+                    <a href="update_shop" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

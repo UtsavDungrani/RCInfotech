@@ -67,7 +67,7 @@ try {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="../logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="../logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@ try {
                                 <td><?= $product['name'] ?></td>
                                 <td>
                                     <?php if (!empty($product['image'])): ?>
-                                        <img src="../../get_product_image.php?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
+                                        <img src="../../get_product_image?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
                                             class="max_width_100 height_auto">
                                     <?php else: ?>
                                         No Image
@@ -120,8 +120,8 @@ try {
                                 <td><?= $product['description_small'] ?></td>
                                 <td><?= $product['description_large'] ?></td>
                                 <td>
-                                    <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
-                                    <a href="delete_product.php?id=<?= $product['id'] ?>" class="btn btn-danger bg-danger"
+                                    <a href="edit_product?id=<?= $product['id'] ?>" class="btn btn-primary">Edit</a>
+                                    <a href="delete_product?id=<?= $product['id'] ?>" class="btn btn-danger bg-danger"
                                         onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
                                 </td>
                             </tr>

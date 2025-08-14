@@ -32,13 +32,13 @@
                             <h2>Additional links</h2>
                         </div>
                         <ul class="footer-menu">
-                            <li><a href="about_us.php"><i class="fa fa-angle-right" aria-hidden="true"></i> About us</a>
+                            <li><a href="about_us"><i class="fa fa-angle-right" aria-hidden="true"></i> About us</a>
                             </li>
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Terms and
                                     conditions</a></li>
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Privacy policy</a></li>
                             <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> News</a></li>
-                            <li><a href="contact.php"><i class="fa fa-angle-right" aria-hidden="true"></i> Contact
+                            <li><a href="contact"><i class="fa fa-angle-right" aria-hidden="true"></i> Contact
                                     us</a></li>
                         </ul>
                     </div>

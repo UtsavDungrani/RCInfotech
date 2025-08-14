@@ -212,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
         $_SESSION['error'] = "Error updating order status";
     }
 
-    header("Location: manage_orders.php");
+    header("Location: manage_orders");
     exit;
 }
 
@@ -310,7 +310,7 @@ try {
                                     <?php echo $_SESSION['admin_name'] ?? 'Admin'; ?> <i class="fa fa-caret-down"></i>
                                 </div>
                                 <div class="admin-dropdown">
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
                                 </div>
                             </div>
                         </div>

@@ -58,11 +58,11 @@ foreach ($preload_js as $js) {
                     </div>
                     <div class="float-right2 d-flex flex-row mb-2 grp_btn">
                         <div class="make_appo">
-                            <a class="btn white_btn" href="make_appointment.php">Make Appointment</a>
+                            <a class="btn white_btn" href="make_appointment">Make Appointment</a>
                         </div>
                         <div class="make_appo">
                             <a class="btn white_btn"
-                                href="<?= htmlspecialchars($_SESSION["username"] === "user" ? "./login.php" : "./logout.php"); ?>">
+                                href="<?= htmlspecialchars($_SESSION["username"] === "user" ? "./login" : "./logout"); ?>">
                                 <?= htmlspecialchars($_SESSION["username"] === "user" ? "Login" : "Logout"); ?>
                             </a>
                         </div>
@@ -78,7 +78,7 @@ foreach ($preload_js as $js) {
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <!-- logo start -->
-                    <div class="logo"> <a href="index.php"><img src="images/logos/logo.png" alt="logo" /></a> </div>
+                    <div class="logo"> <a href="index"><img src="images/logos/logo.png" alt="logo" /></a> </div>
                     <!-- logo end -->
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -86,35 +86,35 @@ foreach ($preload_js as $js) {
                     <div class="menu_side">
                         <div id="navbar_menu">
                             <ul class="first-ul">
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>"
-                                        href="index.php">Home</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us.php' ? 'active' : '' ?>"
-                                        href="about_us.php">About Us</a></li>
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'index' ? 'active' : '' ?>"
+                                        href="index">Home</a></li>
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us' ? 'active' : '' ?>"
+                                        href="about_us">About Us</a></li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service.php' || basename($_SERVER['PHP_SELF']) == 'user_service_requests.php' || basename($_SERVER['PHP_SELF']) == 'service_display.php' || basename($_SERVER['PHP_SELF']) == 'service_success.php') ? 'active' : '' ?>"
-                                        href="service.php">Service</a>
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service' || basename($_SERVER['PHP_SELF']) == 'user_service_requests' || basename($_SERVER['PHP_SELF']) == 'service_display' || basename($_SERVER['PHP_SELF']) == 'service_success') ? 'active' : '' ?>"
+                                        href="service">Service</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="service.php">Services</a></li>
-                                        <li><a href="user_service_requests.php">Booked Services</a></li>
+                                        <li><a href="service">Services</a></li>
+                                        <li><a href="user_service_requests">Booked Services</a></li>
                                     </ul>
                                 </li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop.php' || basename($_SERVER['PHP_SELF']) == 'cart.php' || basename($_SERVER['PHP_SELF']) == 'user_orders.php' || basename($_SERVER['PHP_SELF']) == 'product.php' || basename($_SERVER['PHP_SELF']) == 'checkout.php' || basename($_SERVER['PHP_SELF']) == 'order_success.php') ? 'active' : '' ?>"
-                                        href="shop.php">Shop</a>
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop' || basename($_SERVER['PHP_SELF']) == 'cart' || basename($_SERVER['PHP_SELF']) == 'user_orders' || basename($_SERVER['PHP_SELF']) == 'product' || basename($_SERVER['PHP_SELF']) == 'checkout' || basename($_SERVER['PHP_SELF']) == 'order_success') ? 'active' : '' ?>"
+                                        href="shop">Shop</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="shop.php">All Products</a></li>
-                                        <li><a href="cart.php">Shopping Cart</a></li>
-                                        <li><a href="user_orders.php">My Orders</a></li>
+                                        <li><a href="shop">All Products</a></li>
+                                        <li><a href="cart">Shopping Cart</a></li>
+                                        <li><a href="user_orders">My Orders</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>"
-                                        href="contact.php">Contact</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop.php' ? 'active' : '' ?>"
-                                        href="search_shop.php">Near by shops</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq.php' || basename($_SERVER['PHP_SELF']) == 'feedback.php') ? 'active' : '' ?>"
-                                        href="faq.php">FAQ</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'active' : '' ?>"
-                                        href="profile.php">Profile</a></li>
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'contact' ? 'active' : '' ?>"
+                                        href="contact">Contact</a></li>
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop' ? 'active' : '' ?>"
+                                        href="search_shop">Near by shops</a></li>
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq' || basename($_SERVER['PHP_SELF']) == 'feedback') ? 'active' : '' ?>"
+                                        href="faq">FAQ</a></li>
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile') ? 'active' : '' ?>"
+                                        href="profile">Profile</a></li>
                             </ul>
                         </div>
                     </div>
