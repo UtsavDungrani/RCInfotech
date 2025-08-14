@@ -317,7 +317,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-  <!-- <script src="js/security.js"></script> -->
+  <script src="js/security.js"></script>
 </body>
 
 </html>

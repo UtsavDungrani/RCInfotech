@@ -96,8 +96,8 @@ $result = $conn->query($sql);
           // Output data of each row
           while ($row = $result->fetch_assoc()) {
             echo '<div class="col-md-4 shop_card">
-                        <div class="product_list">
-                            <div class="product_img"> 
+                        <div class="product_list shop_list">
+                            <div class="product_img shop_img"> 
                                 <img class="w-100 p-4 img_con" src="get_shop_image.php?id=' . $row['id'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
                             </div>
                             <div class="product_detail_btm">
@@ -190,7 +190,7 @@ $result = $conn->query($sql);
 
       // First, hide all product cards
       cards.forEach(card => {
-        if (card.querySelector('.product_list')) {
+        if (card.querySelector('.shop_list')) {
           card.style.display = 'none';
         }
       });
@@ -198,7 +198,7 @@ $result = $conn->query($sql);
       // Then show matching cards and maintain rows
       let visibleCount = 0;
       cards.forEach(card => {
-        if (card.querySelector('.product_list')) {
+        if (card.querySelector('.shop_list')) {
           const shopName = card.querySelector('.sname').textContent.toLowerCase();
           const address = card.querySelector('.address').textContent.toLowerCase();
           const contact = card.querySelector('.mno').textContent.toLowerCase();
