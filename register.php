@@ -114,11 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="css/main.css">
   <link rel="shortcut icon" href="images/logos/logo.png" type="image/x-icon">
   <script defer src="./js/script.js"></script>
-  <style>
-    .loader_animation {
-      animation: none;
-    }
-  </style>
 </head>
 
 <body id="default_theme" class="it_service">

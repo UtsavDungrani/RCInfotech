@@ -103,184 +103,6 @@ if (!empty($_SESSION['cart'])) {
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-  <style>
-    .button {
-      font-size: 15px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-
-    .loader_animation {
-      animation: none;
-    }
-
-    .grp_btn {
-      margin-top: 13px;
-    }
-
-    /* Dropdown styles */
-    .menu_side .first-ul li {
-      position: relative;
-    }
-
-    .menu_side .first-ul li:hover .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #fff;
-      min-width: 200px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      padding: 0;
-      margin: 0;
-      border-radius: 4px;
-    }
-
-    .dropdown-menu li {
-      display: block;
-      width: 100%;
-    }
-
-    .dropdown-menu li a {
-      display: block;
-      padding: 10px 15px;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-menu li a:hover {
-      background: #039ee3;
-      color: #fff;
-    }
-
-    .menu_side .first-ul li.shop-dropdown>a:after {
-      content: '\f107';
-      font-family: FontAwesome;
-      margin-left: 5px;
-    }
-
-    .footer_mail-section .field input {
-      max-width: 210px;
-    }
-
-    .float-right2 {
-      gap: 10px;
-    }
-
-    .make_appo .btn.white_btn {
-      margin-right: 10px;
-    }
-
-    .text_center {
-      text-align: center !important;
-    }
-
-    .check_out_btn {
-      background-color: #ccc !important;
-      cursor: not-allowed !important;
-      pointer-events: none !important;
-    }
-
-    @media only screen and (max-width: 767px) {
-      .grp_btn {
-        margin-bottom: 10px !important;
-      }
-
-      .make_appo {
-        margin: 0 !important;
-      }
-
-      .make_appo .btn {
-        width: 160px !important;
-        padding: 0 10px !important;
-        font-size: 12px !important;
-        margin: 0 !important;
-        white-space: nowrap;
-      }
-
-      .float-right2 {
-        justify-content: center !important;
-        gap: 18px !important;
-        padding: 0 10px !important;
-      }
-
-      /* Make logo smaller and adjust header layout */
-      .logo {
-        text-align: center;
-        padding: 5px 0;
-      }
-
-      .logo img {
-        max-width: 100px !important;
-        height: auto !important;
-      }
-
-      #navbar_menu.small-screen #menu-button {
-        top: -90px;
-      }
-
-      .menu_side .first-ul li.shop-dropdown>a:after {
-        display: none;
-      }
-
-      .footer_blog .row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        /* 2 columns */
-        gap: 20px;
-        /* Space between columns */
-      }
-
-      .footer_blog .col-md-6 {
-        width: 100%;
-        /* Full width for each column */
-      }
-
-      .footer_blog .col-md-6:nth-child(1) {
-        grid-row: 1;
-        /* Social media and additional links in the first row */
-      }
-
-      .footer_blog .col-md-6:nth-child(2) {
-        grid-row: 1;
-        /* Services and contact us in the first row */
-      }
-
-      .footer_blog .col-md-6:nth-child(3) {
-        grid-row: 2;
-        /* Move to the second row if needed */
-      }
-
-      .footer_blog .col-md-6:nth-child(4) {
-        grid-row: 2;
-        /* Move to the second row if needed */
-      }
-
-      .footer_blog .col-md-6:nth-child(1),
-      .footer_blog .col-md-6:nth-child(3) {
-        width: 130%;
-      }
-
-      .footer_mail-section .field input {
-        max-width: 160px;
-      }
-
-      .contact_us_section {
-        margin-top: -75px;
-        margin-bottom: 15px;
-      }
-
-      .contact_us_section h2 {
-        font-size: 24px;
-      }
-    }
-  </style>
 </head>
 
 <body id="default_theme" class="it_serv_shopping_cart shopping-cart">
@@ -315,11 +137,11 @@ if (!empty($_SESSION['cart'])) {
                       <tr>
                         <td class="col-sm-8 col-md-6">
                           <div class="media">
-                            <a class="thumbnail pull-left" href="#">
+                            <a class="thumbnail pull-left" href="product.php?id=<?= $item['id'] ?>">
                               <img class="media-object" src="get_product_image.php?id=<?= $item['id'] ?>" alt="#">
                             </a>
                             <div class="media-body">
-                              <h4 class="media-heading"><a href="#"><?= $item['name'] ?></a></h4>
+                              <h4 class="media-heading"><a href="product.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></h4>
                               <span>Status: </span>
                               <span class="text-<?= $item['stock'] > 0 ? 'success' : 'danger' ?>">
                                 <?= $item['stock'] > 0 ? 'In Stock' : 'Out of Stock' ?>
@@ -327,7 +149,7 @@ if (!empty($_SESSION['cart'])) {
                             </div>
                           </div>
                         </td>
-                        <td class="col-sm-1 col-md-1 text_center">
+                        <td class="col-sm-1 col-md-1 text_center align-middle">
                           <input class="form-control" name="quantity[<?= $item['id'] ?>]" value="<?= $item['quantity'] ?>"
                             type="number" min="1" max="10">
                         </td>

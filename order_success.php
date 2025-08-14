@@ -60,230 +60,6 @@ if (!$order) {
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/all.min.css">
   <!-- end zoom effect -->
-  <style>
-    .success-page {
-      text-align: center;
-    }
-
-    .success-page i {
-      color: #4CAF50;
-      font-size: 100px;
-      line-height: 200px;
-      margin-bottom: 20px;
-    }
-
-    .success-page h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .order-details {
-      background: #f8f8f8;
-      padding: 20px;
-      border-radius: 5px;
-      margin-top: 30px;
-      text-align: left;
-    }
-
-    .loader_animation {
-      animation: none;
-    }
-
-    .grp_btn {
-      margin-top: 13px;
-    }
-
-    .button {
-      font-size: 15px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-
-    /* Dropdown styles */
-    .menu_side .first-ul li {
-      position: relative;
-    }
-
-    .menu_side .first-ul li:hover .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #fff;
-      min-width: 200px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      padding: 0;
-      margin: 0;
-      border-radius: 4px;
-    }
-
-    .dropdown-menu li {
-      display: block;
-      width: 100%;
-    }
-
-    .dropdown-menu li a {
-      display: block;
-      padding: 10px 15px;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-menu li a:hover {
-      background: #039ee3;
-      color: #fff;
-    }
-
-    .menu_side .first-ul li.shop-dropdown>a:after {
-      content: '\f107';
-      font-family: FontAwesome;
-      margin-left: 5px;
-    }
-
-    .shopping-cart table tbody tr td {
-      padding: 25px 13px;
-    }
-
-    .footer_mail-section .field input {
-      max-width: 210px;
-    }
-
-    .float-right2 {
-      gap: 10px;
-    }
-
-    .make_appo .btn.white_btn {
-      margin-right: 10px;
-    }
-
-    .mt_30 {
-      margin-top: 30px;
-    }
-
-    .mb_15 {
-      margin-bottom: 15px !important;
-    }
-
-    @media only screen and (max-width: 767px) {
-      .grp_btn {
-        margin-bottom: 10px !important;
-      }
-
-      .make_appo {
-        margin: 0 !important;
-      }
-
-      .make_appo .btn {
-        width: 160px !important;
-        padding: 0 10px !important;
-        font-size: 12px !important;
-        margin: 0 !important;
-        white-space: nowrap;
-      }
-
-      .float-right2 {
-        justify-content: center !important;
-        gap: 18px !important;
-        padding: 0 10px !important;
-      }
-
-      /* Make logo smaller and adjust header layout */
-      .logo {
-        text-align: center;
-        padding: 5px 0;
-      }
-
-      .logo img {
-        max-width: 100px !important;
-        height: auto !important;
-      }
-
-      #navbar_menu.small-screen #menu-button {
-        top: -90px;
-      }
-
-      .menu_side .first-ul li.shop-dropdown>a:after {
-        display: none;
-      }
-
-      .footer_blog .row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        /* 2 columns */
-        gap: 20px;
-        /* Space between columns */
-      }
-
-      .footer_blog .col-md-6 {
-        width: 100%;
-        /* Full width for each column */
-      }
-
-      .footer_blog .col-md-6:nth-child(1) {
-        grid-row: 1;
-        /* Social media and additional links in the first row */
-      }
-
-      .footer_blog .col-md-6:nth-child(2) {
-        grid-row: 1;
-        /* Services and contact us in the first row */
-      }
-
-      .footer_blog .col-md-6:nth-child(3) {
-        grid-row: 2;
-        /* Move to the second row if needed */
-      }
-
-      .footer_blog .col-md-6:nth-child(4) {
-        grid-row: 2;
-        /* Move to the second row if needed */
-      }
-
-      .footer_blog .col-md-6:nth-child(1),
-      .footer_blog .col-md-6:nth-child(3) {
-        width: 130%;
-      }
-
-      .footer_mail-section .field input {
-        max-width: 160px;
-      }
-
-      .contact_us_section {
-        margin-top: -75px;
-        margin-bottom: 15px;
-      }
-
-      .contact_us_section h2 {
-        font-size: 24px;
-      }
-
-      .main_bt {
-        width: 150px !important;
-      }
-
-      .table_detail {
-        margin-left: -20px;
-      }
-
-      .shopping-cart thead th {
-        padding: 18px 22px 18px !important;
-      }
-
-      .shopping-cart tr th {
-        font-size: 14px;
-      }
-
-      .shopping-cart .table_detail tbody tr td {
-        text-align: center;
-      }
-    }
-  </style>
 </head>
 
 <body id="default_theme" class="it_serv_shopping_cart shopping-cart">
@@ -353,12 +129,12 @@ if (!$order) {
                   for ($i = 0; $i < count($product_names); $i++):
                     $item_total = $prices[$i] * $quantities[$i];
                     ?>
-                      <tr>
-                        <td><?= htmlspecialchars($product_names[$i]) ?></td>
-                        <td><?= $quantities[$i] ?></td>
-                        <td>₹<?= number_format($prices[$i], 2) ?></td>
-                        <td>₹<?= number_format($item_total, 2) ?></td>
-                      </tr>
+                    <tr>
+                      <td><?= htmlspecialchars($product_names[$i]) ?></td>
+                      <td><?= $quantities[$i] ?></td>
+                      <td>₹<?= number_format($prices[$i], 2) ?></td>
+                      <td>₹<?= number_format($item_total, 2) ?></td>
+                    </tr>
                   <?php endfor; ?>
                   <tr>
                     <td colspan="3" class="text-right"><strong>Subtotal:</strong></td>
@@ -424,7 +200,7 @@ if (!$order) {
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-  <script src="js/security.js"></script>
+  <!-- <script src="js/security.js"></script> -->
 </body>
 
 </html>

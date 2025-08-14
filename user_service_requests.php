@@ -123,12 +123,6 @@ try {
       color: white;
     }
 
-    padding: 10px 15px;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    }
-
     .dropdown-menu li a:hover {
       background: #039ee3;
       color: #fff;
@@ -151,8 +145,6 @@ try {
     .make_appo .btn.white_btn {
       margin-right: 10px;
     }
-
-    .status_display {}
 
     @media only screen and (max-width: 767px) {
       .grp_btn {
