@@ -118,16 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="section padding_layout_1">
             <div class="container">
-                <!-- Display success/error messages -->
-                <?php if (isset($_SESSION['success'])): ?>
-                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                    <?php unset($_SESSION['success']); ?>
-                <?php endif; ?>
-                <?php if (isset($_SESSION['error'])): ?>
-                    <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
@@ -170,13 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-
-    <script>
-        // Add loader script
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
 
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>

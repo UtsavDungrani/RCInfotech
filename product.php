@@ -448,16 +448,7 @@ $total_products = $result_total->fetch_assoc()['total'];
   <script src="js/custom.js"></script>
   <!-- zoom effect -->
   <script src="js/hizoom.js"></script>
-  <script>
-    $(".hi1").hiZoom({
-      width: 300,
-      position: "right",
-    });
-    $(".hi2").hiZoom({
-      width: 400,
-      position: "right",
-    });
-  </script>
+  <script src="js/product_hizoom.js"></script>
   <script src="js/security.js"></script>
 </body>
 

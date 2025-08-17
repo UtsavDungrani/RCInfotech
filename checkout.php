@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
   $first_name = trim($_POST['first_name']);
   $last_name = trim($_POST['last_name']);
   $email = trim($_POST['email']);
-  $phone = trim($_POST['phone']);
+  $phone = trim($_POST['frm_contact']);
   $address = trim($_POST['address']);
   $city = trim($_POST['city']);
   $state = trim($_POST['state']);
@@ -334,7 +334,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Phone Number *</label>
-                    <input type="tel" name="phone" class="form-control" required pattern="^[6-9][0-9]{9}$"
+                    <input type="tel" name="frm_contact" class="form-control" required pattern="^[6-9][0-9]{9}$"
                       maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
                       title="Please enter valid 10 digit Indian mobile number starting with 6-9">
                   </div>
@@ -417,30 +417,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
   <!-- custom js -->
   <script src="js/custom.js"></script>
 
-  <script>
-    // Phone number validation
-    document.querySelector('input[name="phone"]').addEventListener('input', function (e) {
-      // Remove any non-numeric characters
-      this.value = this.value.replace(/[^0-9]/g, '');
-
-      // Ensure first digit is 6-9
-      if (this.value.length > 0) {
-        const firstDigit = parseInt(this.value[0]);
-        if (firstDigit < 6) {
-          this.value = '';
-        }
-      }
-    });
-
-    // Prevent paste of non-numeric characters
-    document.querySelector('input[name="phone"]').addEventListener('paste', function (e) {
-      e.preventDefault();
-      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-      if (/^[6-9][0-9]*$/.test(pastedText)) {
-        this.value = pastedText.slice(0, 10);
-      }
-    });
-  </script>
+  <script src="js/form_validation.js"></script>
   <script src="js/security.js"></script>
 </body>
 

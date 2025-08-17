@@ -233,22 +233,6 @@ try {
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-  <script>
-    $(".hi1").hiZoom({
-      width: 300,
-      position: "right",
-    });
-    $(".hi2").hiZoom({
-      width: 400,
-      position: "right",
-    });
-  </script>
-  <script>
-    // Add this script to hide the loader after a specific duration
-    setTimeout(function () {
-      document.querySelector('.bg_load').style.display = 'none';
-    }, 2000);
-  </script>
   <script src="js/security.js"></script>
 </body>
 

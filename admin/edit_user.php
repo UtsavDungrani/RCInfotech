@@ -156,16 +156,6 @@ if (isset($_GET['id'])) {
         </header>
         <div class="section padding_layout_1">
             <div class="container">
-                <!-- Display success/error messages -->
-                <?php if (isset($_SESSION['success'])): ?>
-                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                    <?php unset($_SESSION['success']); ?>
-                <?php endif; ?>
-                <?php if (isset($_SESSION['error'])): ?>
-                    <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
-                    <?php unset($_SESSION['error']); ?>
-                <?php endif; ?>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="full">
@@ -228,45 +218,13 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
+    
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menumaker.js"></script>
     <script src="../js/wow.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/security.js"></script>
-    <script>
-        document.getElementById('photo').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('photoPreview');
-
-            if (file) {
-                if (!file.type.match('image.*')) {
-                    alert('Please select an image file');
-                    this.value = '';
-                    return;
-                }
-
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('File size must be less than 5MB');
-                    this.value = '';
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 </body>
 
 </html>

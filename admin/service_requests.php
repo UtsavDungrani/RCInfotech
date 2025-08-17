@@ -293,14 +293,7 @@ try {
             </div>
         </div>
     </div>
-
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
-
+    
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menumaker.js"></script>

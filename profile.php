@@ -530,6 +530,25 @@ try {
     </div>
     <!-- end section -->
 
+    <!-- Image Modal (Updated for Profile Photo) -->
+    <div id="imageModal" class="modal main_img_con" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered main_inner_con">
+            <div class="modal-content main_inner_content_con">
+                <div class="modal-header border-0 main_content_header">
+                    <h5 class="modal-title w-100 text-center main_header_text" id="profilePhotoModalLabel">
+                        <?= htmlspecialchars($user_data['name'] ?? $username) ?>'s Profile Photo
+                    </h5>
+                </div>
+                <div class="modal-body text-center main_con_body">
+                    <img class="modal-image main_image" id="modalImage" alt="Profile Photo">
+                </div>
+                <div class="modal-footer border-0 justify-content-center image_close_btn">
+                    <button type="button" class="btn btn-primary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- footer -->
     <?php include 'footer.php'; ?>
     <!-- end footer -->
@@ -555,132 +574,7 @@ try {
     <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
     <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
     <script src="js/security.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Photo upload preview
-            const photoInput = document.getElementById('photo');
-            if (photoInput) {
-                photoInput.addEventListener('change', function (e) {
-                    const file = e.target.files[0];
-                    const reader = new FileReader();
-                    const imagePreview = document.getElementById('imagePreview');
-
-                    if (file) {
-                        if (!file.type.match('image.*')) {
-                            alert('Please select an image file');
-                            this.value = '';
-                            return;
-                        }
-
-                        if (file.size > 5 * 1024 * 1024) {
-                            alert('File size must be less than 5MB');
-                            this.value = '';
-                            return;
-                        }
-
-                        reader.onload = function (e) {
-                            imagePreview.src = e.target.result;
-                            imagePreview.style.display = 'block';
-                        }
-
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
-
-            // Updated Image Modal functionality
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeBtn = document.querySelector('.close-modal');
-
-            window.openModal = function (src) {
-                if (imageModal && modalImage) {
-                    imageModal.style.display = 'flex';
-                    modalImage.src = src;
-                    document.body.style.overflow = 'hidden';
-                }
-            };
-
-            function closeModal() {
-                if (imageModal) {
-                    imageModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeModal);
-            }
-
-            if (imageModal) {
-                imageModal.addEventListener('click', function (e) {
-                    if (e.target === imageModal) {
-                        closeModal();
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-            });
-        });
-    </script>
-
-    <!-- Image Modal (Updated for Profile Photo) -->
-    <div id="imageModal" class="modal main_img_con" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered main_inner_con">
-            <div class="modal-content main_inner_content_con">
-                <div class="modal-header border-0 main_content_header">
-                    <h5 class="modal-title w-100 text-center main_header_text" id="profilePhotoModalLabel">
-                        <?= htmlspecialchars($user_data['name'] ?? $username) ?>'s Profile Photo
-                    </h5>
-                </div>
-                <div class="modal-body text-center main_con_body">
-                    <img class="modal-image main_image" id="modalImage" alt="Profile Photo">
-                </div>
-                <div class="modal-footer border-0 justify-content-center image_close_btn">
-                    <button type="button" class="btn btn-primary" id="closeModalBtn">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeBtn = document.getElementById('closeModalBtn');
-            window.openModal = function (src) {
-                if (imageModal && modalImage) {
-                    imageModal.style.display = 'flex';
-                    modalImage.src = src;
-                    document.body.style.overflow = 'hidden';
-                }
-            };
-            function closeModal() {
-                if (imageModal) {
-                    imageModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeModal);
-            }
-            if (imageModal) {
-                imageModal.addEventListener('click', function (e) {
-                    if (e.target === imageModal) {
-                        closeModal();
-                    }
-                });
-            }
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-            });
-        });
-    </script>
+    <script src="js/profile_image.js"></script>
 </body>
 
 </html>

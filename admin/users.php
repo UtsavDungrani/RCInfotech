@@ -137,13 +137,6 @@ try {
         </div>
     </div>
 
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
-
     <!-- Image Modal (Updated for User Photos) -->
     <div id="imageModal" class="modal main_img_con" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered main_inner_con">
@@ -169,48 +162,7 @@ try {
     <script src="../js/wow.js"></script>
     <script src="../js/custom.js"></script>
     <script src="../js/security.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeBtn = document.getElementById('closeModalBtn');
-            const modalTitle = document.getElementById('userPhotoModalLabel');
-
-            window.openModal = function (src, userName) {
-                if (imageModal && modalImage) {
-                    imageModal.style.display = 'flex';
-                    modalImage.src = src;
-                    modalTitle.textContent = userName + "'s Profile Photo";
-                    document.body.style.overflow = 'hidden';
-                }
-            };
-
-            function closeModal() {
-                if (imageModal) {
-                    imageModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-
-            if (closeBtn) {
-                closeBtn.addEventListener('click', closeModal);
-            }
-
-            if (imageModal) {
-                imageModal.addEventListener('click', function (e) {
-                    if (e.target === imageModal) {
-                        closeModal();
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-            });
-        });
-    </script>
+    <script src="../js/profile_image.js"></script>
 </body>
 
 </html>
