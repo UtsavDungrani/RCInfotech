@@ -361,13 +361,11 @@ if (!isset($_SESSION["username"])) {
   <?php include 'footer.php'; ?>
   <!-- end footer -->
   <!-- js section -->
+  
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- menu js -->
   <script src="js/menumaker.js"></script>
-  <!-- wow animation -->
   <script src="js/wow.js"></script>
-  <!-- custom js -->
   <script src="js/custom.js"></script>
   <script src="revolution/js/jquery.themepunch.tools.min.js"></script>
   <script src="revolution/js/jquery.themepunch.revolution.min.js"></script>

@@ -46,13 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
   $services = $_POST["frm_services"];
   $description = $_POST["frm_descri"];
+  $address = $_POST["frm_addr"];
   $email = $_SESSION["email"]; // Email from the session (logged-in user)
 
   // Use PDO prepared statement
-  $sql = "INSERT INTO bookser (fname, lname, email, mobile, subject, description, status) 
-            VALUES (?, ?, ?, ?, ?, ?, 'pending')";
+  $sql = "INSERT INTO bookser (fname, lname, email, mobile, address, subject, description, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')";
   $stmt = $link->prepare($sql);
-  $result = $stmt->execute([$fname, $lname, $email, $mobile, $services, $description]);
+  $result = $stmt->execute([$fname, $lname, $email, $mobile, $address, $services, $description]);
 
   if ($result) {
     // Get the last inserted booking ID
@@ -128,6 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <tr>
               <td class='strong'>Contact Number:</td>
               <td>{$mobile}</td>
+            </tr>
+            <tr>
+              <td class='strong'>Address:</td>
+              <td>{$address}</td>
             </tr>
           </table>
           <p>Your service request has been received and is currently pending. We will review it and update you on any status changes.</p>
@@ -234,6 +239,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                           onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
                           title="Please enter valid 10 digit Indian mobile number starting with 6-9"
                           value="<?php echo isset($user_row["phone"]) ? htmlspecialchars($user_row["phone"]) : '' ?>" />
+                      </div>
+                      <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input class="field_custom" placeholder="Address" type="text" name="frm_addr" required/>
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <select class="field_custom" name="frm_services" required>
