@@ -373,7 +373,10 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
       <div class="row">
         <div class="col-md-9">
           <div class="row">
-            <?php foreach ($products as $product): ?>
+            <?php $count = 0;
+            foreach ($products as $product): ?>
+              <?php if ($count >= 9)
+                break; ?>
               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
                 <a href="product?id=<?= $product['id'] ?>">
                   <div class="product_list">
@@ -404,7 +407,11 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
                   </div>
                 </a>
               </div>
+              <?php $count++; ?>
             <?php endforeach; ?>
+            <div class="col-12 text-center">
+              <a href="shop" class="btn sqaure_bt">View More</a>
+            </div>
           </div>
         </div>
         <div class="col-md-3">
@@ -652,7 +659,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-  <script src="js/security.js"></script>
+  <!-- <script src="js/security.js"></script> -->
   <script src="js/index_slider.js"></script>
 </body>
 
