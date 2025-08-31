@@ -35,13 +35,6 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <meta name="author" content="">
   <!-- site icons -->
   <link rel="icon" href="images/logos/logo-1.png" type="image/gif" />
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="css/bootstrap.min.css" as="style">
-  <link rel="preload" href="css/style.css" as="style">
-  <link rel="preload" href="js/jquery.min.js" as="script">
-  <link rel="preload" href="js/bootstrap.min.js" as="script">
-
   <!-- bootstrap css -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- Site css -->
@@ -59,10 +52,6 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <link rel="stylesheet" type="text/css" href="revolution/css/settings.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/layers.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css" />
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
 </head>
 
 <body id="default_theme" class="it_service">
@@ -659,7 +648,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
   <script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
-  <!-- <script src="js/security.js"></script> -->
+  <script src="js/security.js"></script>
   <script src="js/index_slider.js"></script>
 </body>
 

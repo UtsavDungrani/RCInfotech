@@ -273,11 +273,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
   <!-- wow Animation css -->
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/all.min.css">
-  <!-- end zoom effect -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
 </head>
 
 <body id="default_theme" class="it_serv_shopping_cart shopping-cart">
