@@ -13,26 +13,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sh_description = $_POST['sh_description'];
     $description = $_POST['description'];
 
-    // Read image as binary data
-    $image_data = file_get_contents($_FILES['image']['tmp_name']);
+    // Validate file upload
+    if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+        echo "<script>alert('Error: Invalid file upload.');</script>";
+    } else {
+        // Validate file type
+        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+        $file_type = mime_content_type($_FILES['image']['tmp_name']);
 
-    try {
-        // Prepare SQL statement
-        $stmt = $link->prepare("INSERT INTO services (name, page_des, image, description) 
-                               VALUES (:name, :page_des, :image, :description)");
+        if (!in_array($file_type, $allowed_types)) {
+            echo "<script>alert('Error: Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.');</script>";
+        } elseif ($_FILES['image']['size'] > 5 * 1024 * 1024) { // 5MB limit
+            echo "<script>alert('Error: File size exceeds 5MB limit.');</script>";
+        } else {
+            // Create uploads directory if it doesn't exist
+            $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/services/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
 
-        // Bind parameters
-        $stmt->execute([
-            ':name' => $name,
-            ':page_des' => $sh_description,
-            ':image' => $image_data,
-            ':description' => $description
-        ]);
+            // Generate unique filename
+            $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $filename = 'service_' . time() . '_' . rand(1000, 9999) . '.' . $file_extension;
+            $filepath = $upload_dir . $filename;
+            $image_path = 'uploads/services/' . $filename;
 
-        echo "<script>alert('Service added successfully!');</script>";
-    } catch (PDOException $e) {
-        error_log("Database error: " . $e->getMessage());
-        echo "<script>alert('Error adding service. Please try again.');</script>";
+            // Move uploaded file to uploads directory
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
+                try {
+                    // Prepare SQL statement
+                    $stmt = $link->prepare("INSERT INTO services (name, page_des, image_path, description) 
+                                           VALUES (:name, :page_des, :image_path, :description)");
+
+                    // Bind parameters
+                    $stmt->execute([
+                        ':name' => $name,
+                        ':page_des' => $sh_description,
+                        ':image_path' => $image_path,
+                        ':description' => $description
+                    ]);
+
+                    echo "<script>alert('Service added successfully!');</script>";
+                } catch (PDOException $e) {
+                    // Delete file if database insertion failed
+                    unlink($filepath);
+                    error_log("Database error: " . $e->getMessage());
+                    echo "<script>alert('Error adding service. Please try again.');</script>";
+                }
+            } else {
+                echo "<script>alert('Error: Failed to upload image file.');</script>";
+            }
+        }
     }
 }
 ?>

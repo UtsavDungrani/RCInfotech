@@ -29,11 +29,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
     $description_small = $_POST['description_small'];
     $description_large = $_POST['description_large'];
-    $image_data = $product['image']; // Keep existing image if no new one is uploaded
+    $image_path = $product['image_path'] ?? $product['image'] ?? null; // Keep existing image if no new one is uploaded
 
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $image_data = file_get_contents($_FILES['image']['tmp_name']);
+        // Validate file type
+        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+        $file_type = mime_content_type($_FILES['image']['tmp_name']);
+
+        if (!in_array($file_type, $allowed_types)) {
+            echo "<script>alert('Error: Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.');</script>";
+        } elseif ($_FILES['image']['size'] > 5 * 1024 * 1024) { // 5MB limit
+            echo "<script>alert('Error: File size exceeds 5MB limit.');</script>";
+        } else {
+            // Create uploads directory if it doesn't exist
+            $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/products/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            // Generate unique filename
+            $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $filename = 'product_' . time() . '_' . rand(1000, 9999) . '.' . $file_extension;
+            $filepath = $upload_dir . $filename;
+            $new_image_path = 'uploads/products/' . $filename;
+
+            // Move uploaded file to uploads directory
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
+                // Delete old image file if it exists
+                if (!empty($product['image_path']) && file_exists($_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/' . $product['image_path'])) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/' . $product['image_path']);
+                }
+                $image_path = $new_image_path;
+            }
+        }
     }
 
     try {
@@ -44,9 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             stock = ?, 
             description_small = ?, 
             description_large = ?,
-            image = ?
+            image_path = ?
             WHERE id = ?");
-        $stmt->execute([$name, $old_price, $new_price, $stock, $description_small, $description_large, $image_data, $product_id]);
+        $stmt->execute([$name, $old_price, $new_price, $stock, $description_small, $description_large, $image_path, $product_id]);
         header("Location: update_product");
         exit();
     } catch (PDOException $e) {
@@ -161,10 +190,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="image">Product Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
-                        <?php if (!empty($product['image'])): ?>
-                            <img src="../../get_product_image?id=<?= $product['id'] ?>" alt="Current Product Image"
-                                class="max_width_200 mt_10">
-                            <p>Current Image: <?= $product['name'] ?></p>
+                        <?php if (!empty($product['image_path'])): ?>
+                            <img src="/rcinfotech/<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                                alt="Current Product Image" class="max_width_200 mt_10">
+                            <p>Current Image: <?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?></p>
                         <?php endif; ?>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Product</button>

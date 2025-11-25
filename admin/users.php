@@ -106,15 +106,30 @@ try {
                                     <tr>
                                         <td><?php echo htmlspecialchars($user['id']); ?></td>
                                         <td>
-                                            <?php if (!empty($user['photo'])): ?>
+                                            <?php
+                                            // Prefer stored file path (photo_path) and fall back to binary blob (photo)
+                                            if (!empty($user['photo_path'])) {
+                                                // Ensure correct relative path when in admin/ folder
+                                                $imgSrc = (strpos($user['photo_path'], '/') === 0) ? $user['photo_path'] : '../' . $user['photo_path'];
+                                                ?>
+                                                <img src="<?= htmlspecialchars($imgSrc) ?>" alt="User Photo" class="user-photo"
+                                                    title="Click to view larger"
+                                                    onclick="openModal(this.src, '<?= htmlspecialchars($user['name'] ?? $user['username']) ?>')">
+                                                <?php
+                                            } elseif (!empty($user['photo'])) {
+                                                ?>
                                                 <img src="data:image/jpeg;base64,<?= base64_encode($user['photo']) ?>"
                                                     alt="User Photo" class="user-photo" title="Click to view larger"
                                                     onclick="openModal(this.src, '<?= htmlspecialchars($user['name'] ?? $user['username']) ?>')">
-                                            <?php else: ?>
+                                                <?php
+                                            } else {
+                                                ?>
                                                 <div class="user-avatar">
                                                     <?= strtoupper(substr($user['username'], 0, 1)) ?>
                                                 </div>
-                                            <?php endif; ?>
+                                                <?php
+                                            }
+                                            ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($user['username']); ?></td>
                                         <td><?php echo htmlspecialchars($user['name']); ?></td>

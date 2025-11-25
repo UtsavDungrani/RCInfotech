@@ -111,7 +111,7 @@ $total_products = $result_total->fetch_assoc()['total'];
             <div class="col-xl-6 col-lg-12 col-md-12">
               <div class="product_detail_feature_img hizoom hi2">
                 <div class="hizoom hi2">
-                  <img src="get_product_image?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>">
+                  <img src="<?= $product['image_path'] ?>" alt="<?= $product['name'] ?>">
                 </div>
               </div>
             </div>
@@ -309,7 +309,7 @@ $total_products = $result_total->fetch_assoc()['total'];
                                 <a href="product?id=' . $related_product['id'] . '">
                   <div class="product_list">
                     <div class="product_img">
-                                            <img class="img-responsive img-product" src="get_product_image?id=' . $related_product['id'] . '" alt="" />
+                                            <img class="img-responsive img-product" src="' . $related_product['image_path'] . '" alt="" />
                     </div>
                     <div class="product_detail_btm">
                       <div class="center">

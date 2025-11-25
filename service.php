@@ -156,7 +156,7 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="col-md-4 service_blog">
             <div class="full">
               <div class="service_img">
-                <img class="img-responsive ser_img" src="get_service_image?id=<?= $service['id'] ?>"
+                <img class="img-responsive ser_img" src="<?= $service['image_path'] ?>"
                   alt="<?= $service['name'] ?>" />
               </div>
               <div class="service_cont">

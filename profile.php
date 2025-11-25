@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Handle photo upload
-        $photo_data = null;
+        $photo_path = null;
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
             $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
             $max_size = 5 * 1024 * 1024; // 5MB
@@ -54,14 +54,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } elseif ($_FILES['photo']['size'] > $max_size) {
                 $photo_err = "Image size should be less than 5MB.";
             } else {
-                $photo_data = file_get_contents($_FILES['photo']['tmp_name']);
+                // Create uploads directory if it doesn't exist
+                $upload_dir = __DIR__ . '/uploads/profiles/';
+                if (!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
+
+                // Generate unique filename
+                $file_extension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                $filename = 'profile_' . $user_id . '_' . time() . '.' . $file_extension;
+                $filepath = $upload_dir . $filename;
+                $photo_path = 'uploads/profiles/' . $filename;
+
+                // Move uploaded file
+                if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
+                    $photo_err = "Failed to upload image file.";
+                }
             }
         }
 
         if (empty($name_err) && empty($phone_err) && empty($address_err) && empty($photo_err)) {
-            if ($photo_data) {
-                // Update with photo
-                $sql = "UPDATE users SET name = :name, phone = :phone, address = :address, username = :username, email = :email, photo = :photo WHERE id = :id";
+            if ($photo_path) {
+                // Update with photo path
+                $sql = "UPDATE users SET name = :name, phone = :phone, address = :address, username = :username, email = :email, photo_path = :photo_path WHERE id = :id";
                 try {
                     $stmt = $link->prepare($sql);
                     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -69,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
                     $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
                     $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-                    $stmt->bindParam(':photo', $photo_data, PDO::PARAM_LOB);
+                    $stmt->bindParam(':photo_path', $photo_path, PDO::PARAM_STR);
                     $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
 
                     if ($stmt->execute()) {
@@ -257,7 +272,10 @@ try {
                         <div class="profile-section">
                             <div class="profile-header">
                                 <div class="profile-avatar">
-                                    <?php if (!empty($user_data['photo'])): ?>
+                                    <?php if (!empty($user_data['photo_path'])): ?>
+                                        <img src="<?= $user_data['photo_path'] ?>" alt="Profile Photo" class="profile-photo"
+                                            onclick="openModal(this.src)">
+                                    <?php elseif (!empty($user_data['photo'])): ?>
                                         <img src="data:image/jpeg;base64,<?= base64_encode($user_data['photo']) ?>"
                                             alt="Profile Photo" class="profile-photo" onclick="openModal(this.src)">
                                     <?php else: ?>

@@ -22,11 +22,15 @@ echo "<style>";
 echo "#ser_" . $service_id . " { display: none; }";
 echo "</style>";
 
-// Get service details from database
-$sql = "SELECT name, description, image FROM services WHERE id = ?";
+$sql = "SELECT name, description, image_path FROM services WHERE id = ?";
 $stmt = $conn->prepare($sql);
+if ($stmt === false) {
+  die("Prepare failed: " . $conn->error);
+}
 $stmt->bind_param("i", $service_id);
-$stmt->execute();
+if (!$stmt->execute()) {
+  die("Execute failed: " . $stmt->error);
+}
 $result = $stmt->get_result();
 
 $serviceName = "Default Service"; // Default fallback name
@@ -37,16 +41,16 @@ if ($result && $result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $serviceName = $row['name'];
   $serviceDescription = $row['description'];
-  if ($row['image']) {
+  if ($row['image_path']) {
     // Use the image path directly instead of base64 encoding
-    $serviceImage = "" . $row['image'];
+    $serviceImage = "" . $row['image_path'];
   }
 }
 
 $stmt->close();
 
 // Add this code to fetch all services
-$sql_services = "SELECT id, name, image, page_des FROM services";
+$sql_services = "SELECT id, name, image_path, page_des FROM services";
 $result_services = $conn->query($sql_services);
 $services = [];
 if ($result_services && $result_services->num_rows > 0) {
@@ -113,18 +117,15 @@ $conn->close();
           <div class="row">
             <div class="col-md-12 service_blog margin_bottom_50">
               <div class="full">
-                <div class="service_img">
-                  <img class="img-responsive ser_main_img" src="get_service_image?id=<?= $service_id ?>"
-                    alt="Service Image" id="service_image" />
-                </div>
                 <div class="service_cont">
+                  <div class="service_img">
+                    <img class="img-responsive ser_main_img" src="<?php echo htmlspecialchars($serviceImage); ?>"
+                      alt="Service Image" id="service_image" />
+                  </div>
                   <h3 class="service_head" id="ser_des_name"><?php echo htmlspecialchars($serviceName); ?></h3>
                   <p class="text_justify" id="service_description">
                     <?php echo nl2br(htmlspecialchars($serviceDescription)); ?>
                   </p>
-                </div>
-                <div class="text-center">
-                  <a class="btn sqaure_bt btn_booking" href="make_appointment">Booking</a>
                 </div>
                 <hr class="hr" />
               </div>
@@ -134,8 +135,8 @@ $conn->close();
               <div class="col-md-4 service_blog" id="ser_<?= $service['id'] ?>">
                 <div class="full">
                   <div class="service_img">
-                    <img class="img-responsive ser_img" src="get_service_image?id=<?= $service['id'] ?>"
-                      alt="<?= $service['name'] ?>" />
+                    <img class="img-responsive ser_img" src="<?php echo htmlspecialchars($service['image_path']); ?>"
+                      alt="<?php echo htmlspecialchars($service['name']); ?>" />
                   </div>
                   <div class="service_cont">
                     <h3 class="service_head"><?= $service['name'] ?></h3>

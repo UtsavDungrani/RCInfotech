@@ -15,7 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../../csp.php';?> 
+<?php include '../../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,8 +104,9 @@ try {
                                 <td><?= $service['id'] ?></td>
                                 <td><?= $service['name'] ?></td>
                                 <td>
-                                    <?php if (!empty($service['image'])): ?>
-                                        <img src="../../get_service_image?id=<?= $service['id'] ?>" alt="<?= $service['name'] ?>"
+                                    <?php if (!empty($service['image_path'])): ?>
+                                        <img src="../../<?= htmlspecialchars($service['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                                            alt="<?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>"
                                             class="max_width_100 height_auto">
                                     <?php else: ?>
                                         No Image
@@ -131,7 +132,7 @@ try {
     <script src="../../js/menumaker.js"></script>
     <script src="../../js/wow.js"></script>
     <script src="../../js/custom.js"></script>
-    <script src="../../js/security.js"></script>
+    <!-- <script src="../../js/security.js"></script> -->
 </body>
 
 </html>

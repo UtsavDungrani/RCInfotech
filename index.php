@@ -249,7 +249,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
           <div class="col-md-4 service_blog">
             <div class="full">
               <div class="service_img">
-                <img class="img-responsive ser_img" src="get_service_image?id=<?= $service['id'] ?>"
+                <img class="img-responsive ser_img" src="<?= $service['image_path'] ?>"
                   alt="<?= $service['name'] ?>" loading="lazy" />
               </div>
               <div class="service_cont">
@@ -370,7 +370,7 @@ $services = $stmt1->fetchAll(PDO::FETCH_ASSOC);  // Changed to use $stmt1 and st
                 <a href="product?id=<?= $product['id'] ?>">
                   <div class="product_list">
                     <div class="product_img">
-                      <img class="img-responsive img-product" src="get_product_image?id=<?= $product['id'] ?>"
+                      <img class="img-responsive img-product" src="<?= $product['image_path'] ?>"
                         alt="<?= $product['name'] ?>" loading="lazy">
                     </div>
                     <div class="product_detail_btm">

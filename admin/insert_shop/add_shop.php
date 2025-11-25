@@ -16,24 +16,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST['name'];
         $address = $_POST['address'];
         $contact = $_POST['contact'];
-        $image_data = null;
+        $image_path = null;
 
         // Handle file upload
-        if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-            $image_data = file_get_contents($_FILES['photo']['tmp_name']);
-        } else {
+        if (!isset($_FILES['photo']) || $_FILES['photo']['error'] !== UPLOAD_ERR_OK) {
             echo "<script>alert('Please select a photo for the shop.');</script>";
             exit();
+        } else {
+            // Validate file type
+            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+            $file_type = mime_content_type($_FILES['photo']['tmp_name']);
+
+            if (!in_array($file_type, $allowed_types)) {
+                echo "<script>alert('Error: Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.');</script>";
+                exit();
+            } elseif ($_FILES['photo']['size'] > 5 * 1024 * 1024) { // 5MB limit
+                echo "<script>alert('Error: File size exceeds 5MB limit.');</script>";
+                exit();
+            } else {
+                // Create uploads directory if it doesn't exist
+                $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/shop/';
+                if (!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
+
+                // Generate unique filename
+                $file_extension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                $filename = 'shop_' . time() . '_' . rand(1000, 9999) . '.' . $file_extension;
+                $filepath = $upload_dir . $filename;
+                $image_path = 'uploads/shop/' . $filename;
+
+                // Move uploaded file to uploads directory
+                if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
+                    echo "<script>alert('Error: Failed to upload image file.');</script>";
+                    exit();
+                }
+            }
         }
 
         // Insert new shop
-        $sql = "INSERT INTO shop (Name, Address, `Contact no`, image) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO shop (Name, Address, `Contact no`, image_path) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$name, $address, $contact, $image_data]);
+        if (!$stmt) {
+            throw new Exception('Prepare failed: ' . $conn->error);
+        }
+
+        // Bind parameters (all as strings to be safe) and execute
+        if (!$stmt->bind_param('ssss', $name, $address, $contact, $image_path)) {
+            throw new Exception('Bind failed: ' . $stmt->error);
+        }
+
+        if (!$stmt->execute()) {
+            throw new Exception('Execute failed: ' . $stmt->error);
+        }
 
         if ($stmt->affected_rows > 0) {
             echo "<script>alert('Shop added successfully!');</script>";
         } else {
+            // Delete file if database insertion failed
+            if (file_exists($filepath)) {
+                unlink($filepath);
+            }
             throw new Exception("Error: Failed to insert shop.");
         }
 

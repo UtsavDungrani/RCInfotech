@@ -132,7 +132,7 @@ if (!empty($_SESSION['cart'])) {
                         <td class="col-sm-8 col-md-6">
                           <div class="media">
                             <a class="thumbnail pull-left" href="product?id=<?= $item['id'] ?>">
-                              <img class="media-object" src="get_product_image?id=<?= $item['id'] ?>" alt="#">
+                              <img class="media-object" src="<?= $item['image_path'] ?>" alt="#">
                             </a>
                             <div class="media-body">
                               <h4 class="media-heading"><a href="product?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></h4>

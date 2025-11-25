@@ -23,17 +23,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $page_des = $_POST['page_des'];
-    $image_data = $service['image']; // Use current image if no new one uploaded
+    $image_path = $service['image_path'] ?? $service['image'] ?? null; // Use current image if no new one uploaded
 
     // Handle image upload
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $check = getimagesize($_FILES['image']['tmp_name']);
-        if ($check !== false) {
-            $image_data = file_get_contents($_FILES['image']['tmp_name']);
-        } else {
-            $_SESSION['error'] = "File is not an image.";
+        // Validate file type
+        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+        $file_type = mime_content_type($_FILES['image']['tmp_name']);
+
+        if (!in_array($file_type, $allowed_types)) {
+            $_SESSION['error'] = "Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.";
             header("Location: edit_service?id=$service_id");
             exit();
+        } elseif ($_FILES['image']['size'] > 5 * 1024 * 1024) { // 5MB limit
+            $_SESSION['error'] = "File size exceeds 5MB limit.";
+            header("Location: edit_service?id=$service_id");
+            exit();
+        } else {
+            // Create uploads directory if it doesn't exist
+            $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/services/';
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0755, true);
+            }
+
+            // Generate unique filename
+            $file_extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $filename = 'service_' . time() . '_' . rand(1000, 9999) . '.' . $file_extension;
+            $filepath = $upload_dir . $filename;
+            $new_image_path = 'uploads/services/' . $filename;
+
+            // Move uploaded file to uploads directory
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $filepath)) {
+                // Delete old image file if it exists
+                if (!empty($service['image_path']) && file_exists($_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/' . $service['image_path'])) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/' . $service['image_path']);
+                }
+                $image_path = $new_image_path;
+            }
         }
     }
 
@@ -42,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name = ?, 
             description = ?,
             page_des = ?,
-            image = ?
+            image_path = ?
             WHERE id = ?");
-        $stmt->execute([$name, $description, $page_des, $image_data, $service_id]);
+        $stmt->execute([$name, $description, $page_des, $image_path, $service_id]);
         header("Location: update_service");
         exit();
     } catch (PDOException $e) {
@@ -146,11 +172,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="image">Service Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
-                        <?php if (!empty($service['image'])): ?>
+                        <?php if (!empty($service['image_path'])): ?>
                             <div class="mt_10">
-                                <img src="../../get_service_image?id=<?= $service_id ?>" alt="Current Service Image"
-                                    class="max_width_200">
-                                <p class="mt_5">Current Image: <?= $service['name'] ?></p>
+                                <img src="/rcinfotech/<?= htmlspecialchars(ltrim($service['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                                    alt="Current Service Image" class="max_width_200">
+                                <p class="mt_5">Current Image:
+                                    <?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                         <?php endif; ?>
                     </div>

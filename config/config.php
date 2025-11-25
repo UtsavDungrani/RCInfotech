@@ -7,7 +7,7 @@ if ($is_localhost) {
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $db = "cms";
+    $db = "rcinfotech";
 } else {
     // Hostinger (Production) configuration
     $host = "localhost";  // Change this to your Hostinger database host

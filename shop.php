@@ -80,7 +80,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="product?id=<?= $product['id'] ?>">
                   <div class="product_list">
                     <div class="product_img">
-                      <img class="img-responsive img-product" src="get_product_image?id=<?= $product['id'] ?>"
+                      <img class="img-responsive img-product" src="<?= $product['image_path'] ?>"
                         alt="<?= $product['name'] ?>">
                     </div>
                     <div class="product_detail_btm">

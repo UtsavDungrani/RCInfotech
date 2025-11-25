@@ -168,13 +168,24 @@ if (isset($_GET['id'])) {
                 <form method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $user['id'] ?? '' ?>">
 
-                    <!-- Current Photo Display -->
-                    <?php if (!empty($user['photo'])): ?>
+                    <!-- Current Photo Display: prefer photo_path (file) then photo (BLOB) -->
+                    <?php
+                    if (!empty($user['photo_path'])) {
+                        $imgSrc = (strpos($user['photo_path'], '/') === 0) ? $user['photo_path'] : '../' . $user['photo_path'];
+                        ?>
+                        <div class="text-center mb-3">
+                            <img src="<?= htmlspecialchars($imgSrc) ?>" alt="Current Profile Photo" class="profile-photo">
+                        </div>
+                        <?php
+                    } elseif (!empty($user['photo'])) {
+                        ?>
                         <div class="text-center mb-3">
                             <img src="data:image/jpeg;base64,<?= base64_encode($user['photo']) ?>"
                                 alt="Current Profile Photo" class="profile-photo">
                         </div>
-                    <?php endif; ?>
+                        <?php
+                    }
+                    ?>
 
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -218,7 +229,7 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
-    
+
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menumaker.js"></script>

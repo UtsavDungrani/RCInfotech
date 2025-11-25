@@ -94,7 +94,7 @@ $result = $conn->query($sql);
             echo '<div class="col-md-4 shop_card">
                         <div class="product_list shop_list">
                             <div class="product_img shop_img"> 
-                                <img class="w-100 p-4 img_con" src="get_shop_image?id=' . $row['id'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
+                                <img class="w-100 p-4 img_con" src="' . $row['image_path'] . '" alt="' . $row['Name'] . '" loading="lazy"> 
                             </div>
                             <div class="product_detail_btm">
                                 <div class="center">

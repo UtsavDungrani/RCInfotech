@@ -15,7 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../../csp.php';?> 
+<?php include '../../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,9 +104,10 @@ try {
                                 <td><?= $shop['id'] ?></td>
                                 <td><?= $shop['Name'] ?></td>
                                 <td>
-                                    <?php if (!empty($shop['image'])): ?>
-                                        <img src="../../get_shop_image?id=<?= $shop['id'] ?>"
-                                            alt="<?= $shop['Name'] ?>" class="max_width_100 max_height_auto">
+                                    <?php if (!empty($shop['image_path'])): ?>
+                                        <img src="../../<?= htmlspecialchars($shop['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                                            alt="<?= htmlspecialchars($shop['Name'], ENT_QUOTES, 'UTF-8') ?>"
+                                            class="max_width_100 max_height_auto">
                                     <?php else: ?>
                                         No Image
                                     <?php endif; ?>

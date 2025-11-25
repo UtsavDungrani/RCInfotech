@@ -9,29 +9,56 @@ checkAdminAuth();
 // Add database connection and file upload handling
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        // Read the image file as binary data
-        $image_data = file_get_contents($_FILES["image"]["tmp_name"]);
-
-        if ($image_data === false) {
-            echo "<script>alert('Error: Could not read uploaded file.');</script>";
+        // Validate file upload
+        if (!isset($_FILES["image"]) || $_FILES["image"]["error"] !== UPLOAD_ERR_OK) {
+            echo "<script>alert('Error: Invalid file upload.');</script>";
         } else {
-            // Use PDO connection for consistency
-            $stmt = $link->prepare("INSERT INTO product (name, image, old_price, new_price, stock, description_small, description_large) VALUES (:name, :image, :old_price, :new_price, :stock, :small_des, :large_des)");
+            // Validate file type
+            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+            $file_type = mime_content_type($_FILES["image"]["tmp_name"]);
 
-            $result = $stmt->execute([
-                ':name' => $_POST['name'],
-                ':image' => $image_data,
-                ':old_price' => $_POST['old_price'],
-                ':new_price' => $_POST['new_price'],
-                ':stock' => $_POST['stock'],
-                ':small_des' => $_POST['description_small'],
-                ':large_des' => $_POST['description_large']
-            ]);
-
-            if ($result) {
-                echo "<script>alert('Product added successfully!');</script>";
+            if (!in_array($file_type, $allowed_types)) {
+                echo "<script>alert('Error: Invalid file type. Only JPEG, PNG, GIF, and WebP images are allowed.');</script>";
+            } elseif ($_FILES["image"]["size"] > 5 * 1024 * 1024) { // 5MB limit
+                echo "<script>alert('Error: File size exceeds 5MB limit.');</script>";
             } else {
-                echo "<script>alert('Error adding product: " . implode(", ", $stmt->errorInfo()) . "');</script>";
+                // Create uploads directory if it doesn't exist
+                $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/products/';
+                if (!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
+
+                // Generate unique filename
+                $file_extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+                $filename = 'product_' . time() . '_' . rand(1000, 9999) . '.' . $file_extension;
+                $filepath = $upload_dir . $filename;
+                $relative_path = 'uploads/products/' . $filename;
+
+                // Move uploaded file to uploads directory
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $filepath)) {
+                    // Use PDO connection for consistency
+                    $stmt = $link->prepare("INSERT INTO product (name, image_path, old_price, new_price, stock, description_small, description_large) VALUES (:name, :image_path, :old_price, :new_price, :stock, :small_des, :large_des)");
+
+                    $result = $stmt->execute([
+                        ':name' => $_POST['name'],
+                        ':image_path' => $relative_path,
+                        ':old_price' => $_POST['old_price'],
+                        ':new_price' => $_POST['new_price'],
+                        ':stock' => $_POST['stock'],
+                        ':small_des' => $_POST['description_small'],
+                        ':large_des' => $_POST['description_large']
+                    ]);
+
+                    if ($result) {
+                        echo "<script>alert('Product added successfully!');</script>";
+                    } else {
+                        // Delete file if database insertion failed
+                        unlink($filepath);
+                        echo "<script>alert('Error adding product: " . implode(", ", $stmt->errorInfo()) . "');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Error: Failed to upload image file.');</script>";
+                }
             }
         }
     } catch (PDOException $e) {

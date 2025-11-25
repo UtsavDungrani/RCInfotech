@@ -15,7 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../../csp.php';?> 
+<?php include '../../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,8 +107,9 @@ try {
                                 <td><?= $product['id'] ?></td>
                                 <td><?= $product['name'] ?></td>
                                 <td>
-                                    <?php if (!empty($product['image'])): ?>
-                                        <img src="../../get_product_image?id=<?= $product['id'] ?>" alt="<?= $product['name'] ?>"
+                                    <?php if (!empty($product['image_path'])): ?>
+                                        <img src="/rcinfotech/<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                                            alt="<?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?>"
                                             class="max_width_100 height_auto">
                                     <?php else: ?>
                                         No Image
