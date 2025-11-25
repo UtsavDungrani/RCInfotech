@@ -1,9 +1,20 @@
 <?php
-$host = 'localhost';
-$db = 'RCInfotech';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
+
+$is_localhost = ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1' || $_SERVER['HTTP_HOST'] === 'localhost:80' || $_SERVER['HTTP_HOST'] === 'localhost:8080');
+
+if ($is_localhost) {
+    // Localhost configuration
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $db = "cms";
+} else {
+    // Hostinger (Production) configuration
+    $host = "localhost";  // Change this to your Hostinger database host
+    $user = "u221873998_utsav";       // Change this to your Hostinger database user
+    $pass = "Uts@v1907";   // Change this to your Hostinger database password
+    $db = "u221873998_cms";   // Change this to your Hostinger database name
+}
 
 $conn = new mysqli($host, $user, $pass, $db);
 
