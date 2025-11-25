@@ -11,9 +11,9 @@ if ($is_localhost) {
 } else {
     // Hostinger (Production) configuration
     $host = "localhost";  // Change this to your Hostinger database host
-    $user = "u221873998_utsav";       // Change this to your Hostinger database user
+    $user = "u221873998_rcinfotech";       // Change this to your Hostinger database user
     $pass = "Uts@v1907";   // Change this to your Hostinger database password
-    $db = "u221873998_cms";   // Change this to your Hostinger database name
+    $db = "u221873998_rcinfotech";   // Change this to your Hostinger database name
 }
 
 $conn = new mysqli($host, $user, $pass, $db);
