@@ -69,11 +69,6 @@ $total_products = $result_total->fetch_assoc()['total'];
   <!-- zoom effect -->
   <link rel="stylesheet" href="css/hizoom.css" />
   <!-- end zoom effect -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <!-- Add this CSS in the head section or in your custom.css file -->
   <style>
     <?php
     // Show next 3 products after current product
@@ -448,16 +443,7 @@ $total_products = $result_total->fetch_assoc()['total'];
   <script src="js/custom.js"></script>
   <!-- zoom effect -->
   <script src="js/hizoom.js"></script>
-  <script>
-    $(".hi1").hiZoom({
-      width: 300,
-      position: "right",
-    });
-    $(".hi2").hiZoom({
-      width: 400,
-      position: "right",
-    });
-  </script>
+  <script src="js/product_hizoom.js"></script>
   <script src="js/security.js"></script>
 </body>
 

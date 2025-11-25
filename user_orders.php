@@ -16,12 +16,26 @@ if ($_SESSION["username"] === "user") {
 // Database connection
 require './config/config.php';
 
-// Get user's orders
+// Pagination logic
 $email = $_SESSION['email'];
-$sql = "SELECT * FROM orders WHERE email = ? ORDER BY order_date DESC";
+$orders_per_page = 5;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
+$offset = ($page - 1) * $orders_per_page;
 
+// Get total orders count
+$count_sql = "SELECT COUNT(*) FROM orders WHERE email = ?";
+$count_stmt = $link->prepare($count_sql);
+$count_stmt->execute([$email]);
+$total_orders = $count_stmt->fetchColumn();
+$total_pages = ceil($total_orders / $orders_per_page);
+
+// Get paginated orders
+$sql = "SELECT * FROM orders WHERE email = ? ORDER BY order_date DESC LIMIT ? OFFSET ?";
 $stmt = $link->prepare($sql);
-$stmt->execute([$email]);
+$stmt->bindParam(1, $email, PDO::PARAM_STR);
+$stmt->bindParam(2, $orders_per_page, PDO::PARAM_INT);
+$stmt->bindParam(3, $offset, PDO::PARAM_INT);
+$stmt->execute();
 $orders = $stmt->fetchAll();
 ?>
 <?php include 'csp.php'; ?>
@@ -126,6 +140,23 @@ $orders = $stmt->fetchAll();
                   </div>
                 </div>
               <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if (!empty($orders) && $total_pages > 1): ?>
+              <nav aria-label="Order pagination" class="mt-4">
+                <ul class="pagination justify-content-center">
+                  <?php if ($page > 1): ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>">&laquo;</a></li>
+                  <?php endif; ?>
+                  <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item<?= $i == $page ? ' active' : '' ?>">
+                      <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                  <?php endfor; ?>
+                  <?php if ($page < $total_pages): ?>
+                    <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">&raquo;</a></li>
+                  <?php endif; ?>
+                </ul>
+              </nav>
             <?php endif; ?>
           </div>
         </div>

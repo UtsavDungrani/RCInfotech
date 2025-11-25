@@ -44,7 +44,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../csp.php';?> 
+<?php include '../csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +96,7 @@ try {
                                 <div class="admin-dropdown">
                                     <!-- <a href="profile.php"><i class="fa fa-user"></i> Profile</a>
                                     <a href="settings.php"><i class="fa fa-cog"></i> Settings</a> -->
-                                    <a href="logout"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a href="logout"><i class="fa fa-sign-out"></i>Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -161,13 +161,6 @@ try {
             </div>
         </div>
     </div>
-
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

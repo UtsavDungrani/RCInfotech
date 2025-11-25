@@ -188,6 +188,7 @@ try {
                                     <th>First Name</th>
                                     <th class="word_wrap_brk_world max_width_130">Email</th>
                                     <th>Mobile</th>
+                                    <th>Address</th>
                                     <th>Service</th>
                                     <th class="word_wrap_brk_world max_width_120">Description</th>
                                     <th class="word_wrap_brk_world min_width_101">Booking Time</th>
@@ -207,6 +208,7 @@ try {
                                             <?php echo htmlspecialchars($request['email']); ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($request['mobile']); ?></td>
+                                        <td><?php echo htmlspecialchars($request['address']); ?></td>
                                         <td><?php echo htmlspecialchars($request['subject']); ?></td>
                                         <td class="word_wrap_brk_world max_width_120">
                                             <?php echo htmlspecialchars($request['description']); ?>
@@ -293,14 +295,7 @@ try {
             </div>
         </div>
     </div>
-
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-    </script>
-
+    
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/menumaker.js"></script>

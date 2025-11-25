@@ -42,10 +42,6 @@ if (!isset($_SESSION["username"])) {
   <link rel="stylesheet" type="text/css" href="revolution/css/settings.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/layers.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css" />
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
 </head>
 
 <body id="default_theme" class="it_service">
@@ -361,13 +357,11 @@ if (!isset($_SESSION["username"])) {
   <?php include 'footer.php'; ?>
   <!-- end footer -->
   <!-- js section -->
+  
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- menu js -->
   <script src="js/menumaker.js"></script>
-  <!-- wow animation -->
   <script src="js/wow.js"></script>
-  <!-- custom js -->
   <script src="js/custom.js"></script>
   <script src="revolution/js/jquery.themepunch.tools.min.js"></script>
   <script src="revolution/js/jquery.themepunch.revolution.min.js"></script>
@@ -381,38 +375,7 @@ if (!isset($_SESSION["username"])) {
   <script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
   <script src="js/security.js"></script>
-  <script>
-    $(document).ready(function () {
-      // Initialize the accordion with the first panel expanded
-      $('#collapseOne').collapse('show');
-
-      // Ensure only one panel is open at a time
-      $('#accordion').on('show.bs.collapse', function (e) {
-        $('#accordion .panel-collapse').not(e.target).collapse('hide');
-      });
-
-      // ---------- Fix the arrow icon alignment on page load ----------
-      $('#accordion .panel-heading a').each(function () {
-        var $this = $(this);
-        var target = $($this.attr('href'));
-
-        if (target.hasClass('in')) {
-          $this.removeClass('collapsed');
-        } else {
-          $this.addClass('collapsed');
-        }
-      });
-
-      // Update arrow icon on collapse toggle
-      $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-        $(this).prev('.panel-heading').find('a').removeClass('collapsed');
-      });
-
-      $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-        $(this).prev('.panel-heading').find('a').addClass('collapsed');
-      });
-    });
-  </script>
+  <script src="js/accordion.js"></script>
 </body>
 
 </html>

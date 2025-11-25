@@ -8,52 +8,34 @@ checkAdminAuth();
 
 // Add database connection and file upload handling
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if file was uploaded without errors
-    if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
-        // Validate file type
-        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-        $file_type = $_FILES["image"]["type"];
+    try {
+        // Read the image file as binary data
+        $image_data = file_get_contents($_FILES["image"]["tmp_name"]);
 
-        if (!in_array($file_type, $allowed_types)) {
-            echo "<script>alert('Error: Only JPG, JPEG, PNG & GIF files are allowed.');</script>";
+        if ($image_data === false) {
+            echo "<script>alert('Error: Could not read uploaded file.');</script>";
         } else {
-            // Check file size (limit to 5MB)
-            if ($_FILES["image"]["size"] > 5 * 1024 * 1024) {
-                echo "<script>alert('Error: File size must be less than 5MB.');</script>";
+            // Use PDO connection for consistency
+            $stmt = $link->prepare("INSERT INTO product (name, image, old_price, new_price, stock, description_small, description_large) VALUES (:name, :image, :old_price, :new_price, :stock, :small_des, :large_des)");
+
+            $result = $stmt->execute([
+                ':name' => $_POST['name'],
+                ':image' => $image_data,
+                ':old_price' => $_POST['old_price'],
+                ':new_price' => $_POST['new_price'],
+                ':stock' => $_POST['stock'],
+                ':small_des' => $_POST['description_small'],
+                ':large_des' => $_POST['description_large']
+            ]);
+
+            if ($result) {
+                echo "<script>alert('Product added successfully!');</script>";
             } else {
-                try {
-                    // Read the image file as binary data
-                    $image_data = file_get_contents($_FILES["image"]["tmp_name"]);
-
-                    if ($image_data === false) {
-                        echo "<script>alert('Error: Could not read uploaded file.');</script>";
-                    } else {
-                        // Use PDO connection for consistency
-                        $stmt = $link->prepare("INSERT INTO product (name, image, old_price, new_price, stock, description_small, description_large) VALUES (:name, :image, :old_price, :new_price, :stock, :small_des, :large_des)");
-
-                        $result = $stmt->execute([
-                            ':name' => $_POST['name'],
-                            ':image' => $image_data,
-                            ':old_price' => $_POST['old_price'],
-                            ':new_price' => $_POST['new_price'],
-                            ':stock' => $_POST['stock'],
-                            ':small_des' => $_POST['description_small'],
-                            ':large_des' => $_POST['description_large']
-                        ]);
-
-                        if ($result) {
-                            echo "<script>alert('Product added successfully!'); window.location.href='../admin_home';</script>";
-                        } else {
-                            echo "<script>alert('Error adding product: " . implode(", ", $stmt->errorInfo()) . "');</script>";
-                        }
-                    }
-                } catch (PDOException $e) {
-                    echo "<script>alert('Database error: " . $e->getMessage() . "');</script>";
-                }
+                echo "<script>alert('Error adding product: " . implode(", ", $stmt->errorInfo()) . "');</script>";
             }
         }
-    } else {
-        echo "<script>alert('Error: Please select a valid image file.');</script>";
+    } catch (PDOException $e) {
+        echo "<script>alert('Database error: " . $e->getMessage() . "');</script>";
     }
 }
 ?>
@@ -185,49 +167,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-
-    <script>
-        // Add this script to hide the loader after a specific duration
-        setTimeout(function () {
-            document.querySelector('.bg_load').style.display = 'none';
-        }, 2000);
-
-        // Image preview and validation
-        document.getElementById('image').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('preview');
-            const previewDiv = document.getElementById('imagePreview');
-
-            if (file) {
-                // Check file size (5MB limit)
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('File size must be less than 5MB');
-                    this.value = '';
-                    previewDiv.style.display = 'none';
-                    return;
-                }
-
-                // Check file type
-                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-                if (!allowedTypes.includes(file.type)) {
-                    alert('Only JPG, JPEG, PNG & GIF files are allowed');
-                    this.value = '';
-                    previewDiv.style.display = 'none';
-                    return;
-                }
-
-                // Show preview
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    previewDiv.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                previewDiv.style.display = 'none';
-            }
-        });
-    </script>
 
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>

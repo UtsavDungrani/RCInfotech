@@ -46,13 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
   $services = $_POST["frm_services"];
   $description = $_POST["frm_descri"];
+  $address = $_POST["frm_addr"];
   $email = $_SESSION["email"]; // Email from the session (logged-in user)
 
   // Use PDO prepared statement
-  $sql = "INSERT INTO bookser (fname, lname, email, mobile, subject, description, status) 
-            VALUES (?, ?, ?, ?, ?, ?, 'pending')";
+  $sql = "INSERT INTO bookser (fname, lname, email, mobile, address, subject, description, status) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')";
   $stmt = $link->prepare($sql);
-  $result = $stmt->execute([$fname, $lname, $email, $mobile, $services, $description]);
+  $result = $stmt->execute([$fname, $lname, $email, $mobile, $address, $services, $description]);
 
   if ($result) {
     // Get the last inserted booking ID
@@ -129,6 +130,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
               <td class='strong'>Contact Number:</td>
               <td>{$mobile}</td>
             </tr>
+            <tr>
+              <td class='strong'>Address:</td>
+              <td>{$address}</td>
+            </tr>
           </table>
           <p>Your service request has been received and is currently pending. We will review it and update you on any status changes.</p>
           <p>You can track your service request status in the 'Booked Services' section of your account.</p>
@@ -186,10 +191,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <link rel="stylesheet" type="text/css" href="revolution/css/settings.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/layers.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css" />
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
 </head>
 
 <body id="default_theme" class="it_service">
@@ -236,6 +237,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                           value="<?php echo isset($user_row["phone"]) ? htmlspecialchars($user_row["phone"]) : '' ?>" />
                       </div>
                       <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input class="field_custom" placeholder="Address" type="text" name="frm_addr" required/>
+                      </div>
+                      <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <select class="field_custom" name="frm_services" required>
                           <option value="">Select a Service</option>
                           <?php
@@ -278,42 +282,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <script src="js/wow.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
-
-  <script>
-    // Phone number validation
-    document.querySelector('input[name="frm_contact"]').addEventListener('input', function (e) {
-      // Remove any non-numeric characters
-      this.value = this.value.replace(/[^0-9]/g, '');
-
-      // Ensure first digit is 6-9
-      if (this.value.length > 0) {
-        const firstDigit = parseInt(this.value[0]);
-        if (firstDigit < 6) {
-          this.value = '';
-        }
-      }
-    });
-
-    // Prevent paste of non-numeric characters
-    document.querySelector('input[name="frm_contact"]').addEventListener('paste', function (e) {
-      e.preventDefault();
-      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-      if (/^[6-9][0-9]*$/.test(pastedText)) {
-        this.value = pastedText.slice(0, 10);
-      }
-    });
-  </script>
-  <script>
-    $(".hi1").hiZoom({
-      width: 300,
-      position: "right",
-    });
-    $(".hi2").hiZoom({
-      width: 400,
-      position: "right",
-    });
-  </script>
   <script src="js/security.js"></script>
+  <script src="js/form_validation.js"></script>
 </body>
 
 </html>

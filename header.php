@@ -86,12 +86,12 @@ foreach ($preload_js as $js) {
                     <div class="menu_side">
                         <div id="navbar_menu">
                             <ul class="first-ul">
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'index' ? 'active' : '' ?>"
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>"
                                         href="index">Home</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us' ? 'active' : '' ?>"
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us.php' ? 'active' : '' ?>"
                                         href="about_us">About Us</a></li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service' || basename($_SERVER['PHP_SELF']) == 'user_service_requests' || basename($_SERVER['PHP_SELF']) == 'service_display' || basename($_SERVER['PHP_SELF']) == 'service_success') ? 'active' : '' ?>"
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service.php' || basename($_SERVER['PHP_SELF']) == 'user_service_requests.php' || basename($_SERVER['PHP_SELF']) == 'service_display.php' || basename($_SERVER['PHP_SELF']) == 'service_success.php') ? 'active' : '' ?>"
                                         href="service">Service</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="service">Services</a></li>
@@ -99,7 +99,7 @@ foreach ($preload_js as $js) {
                                     </ul>
                                 </li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop' || basename($_SERVER['PHP_SELF']) == 'cart' || basename($_SERVER['PHP_SELF']) == 'user_orders' || basename($_SERVER['PHP_SELF']) == 'product' || basename($_SERVER['PHP_SELF']) == 'checkout' || basename($_SERVER['PHP_SELF']) == 'order_success') ? 'active' : '' ?>"
+                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop.php' || basename($_SERVER['PHP_SELF']) == 'cart.php' || basename($_SERVER['PHP_SELF']) == 'user_orders.php' || basename($_SERVER['PHP_SELF']) == 'product.php' || basename($_SERVER['PHP_SELF']) == 'checkout.php' || basename($_SERVER['PHP_SELF']) == 'order_success.php') ? 'active' : '' ?>"
                                         href="shop">Shop</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="shop">All Products</a></li>
@@ -107,13 +107,13 @@ foreach ($preload_js as $js) {
                                         <li><a href="user_orders">My Orders</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'contact' ? 'active' : '' ?>"
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>"
                                         href="contact">Contact</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop' ? 'active' : '' ?>"
+                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop.php' ? 'active' : '' ?>"
                                         href="search_shop">Near by shops</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq' || basename($_SERVER['PHP_SELF']) == 'feedback') ? 'active' : '' ?>"
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq.php' || basename($_SERVER['PHP_SELF']) == 'feedback.php') ? 'active' : '' ?>"
                                         href="faq">FAQ</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile') ? 'active' : '' ?>"
+                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'active' : '' ?>"
                                         href="profile">Profile</a></li>
                             </ul>
                         </div>

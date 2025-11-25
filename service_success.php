@@ -109,6 +109,10 @@ if (!$booking) {
                   <td><?= htmlspecialchars($booking['mobile']) ?></td>
                 </tr>
                 <tr>
+                  <td><strong>Address:</strong></td>
+                  <td><?= htmlspecialchars($booking['address']) ?></td>
+                </tr>
+                <tr>
                   <td><strong>Service:</strong></td>
                   <td><?= htmlspecialchars($booking['subject']) ?></td>
                 </tr>
