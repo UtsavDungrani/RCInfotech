@@ -6,6 +6,23 @@ require_once 'auth_check.php';
 // Check authentication
 checkAdminAuth();
 
+// Fetch the user's current details first
+$user = [];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    try {
+        $stmt = $link->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Database error: " . $e->getMessage());
+        $_SESSION['error'] = "Failed to fetch user details.";
+        header("Location: users");
+        exit();
+    }
+}
+
 // Handle form submission for editing a user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
@@ -17,9 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $role = $_POST['role'] ?? 'user';
 
     // Handle photo upload
-    $photo_data = null;
-    $photo_sql = "";
-    $photo_params = [];
+    $photo_path = null;
 
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
@@ -37,9 +52,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             exit();
         }
 
-        $photo_data = file_get_contents($_FILES['photo']['tmp_name']);
-        $photo_sql = ", photo = :photo";
-        $photo_params[':photo'] = $photo_data;
+        // Create uploads directory if it doesn't exist
+        $upload_dir = __DIR__ . '/../uploads/profiles/';
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
+        }
+
+        // Generate unique filename
+        $file_extension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+        $filename = 'profile_' . $id . '_' . time() . '.' . $file_extension;
+        $filepath = $upload_dir . $filename;
+        $photo_path = 'uploads/profiles/' . $filename;
+
+        // Move uploaded file to uploads directory
+        if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
+            $_SESSION['error'] = "Failed to upload image file.";
+            header("Location: edit_user?id=" . $id);
+            exit();
+        }
+
+        // Delete old photo file if it exists
+        if (!empty($user['photo_path']) && file_exists(__DIR__ . '/../' . $user['photo_path'])) {
+            unlink(__DIR__ . '/../' . $user['photo_path']);
+        }
     }
 
     try {
@@ -49,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             name = :name,
             phone = :phone, 
             address = :address" .
-            ($photo_data ? ", photo = :photo" : "") .
+            ($photo_path ? ", photo_path = :photo_path" : "") .
             " WHERE id = :id";
 
         $params = [
@@ -61,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             ':id' => $id
         ];
 
-        if ($photo_data) {
-            $params[':photo'] = $photo_data;
+        if ($photo_path) {
+            $params[':photo_path'] = $photo_path;
         }
 
         $stmt = $link->prepare($sql);
@@ -74,23 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     } catch (PDOException $e) {
         error_log("Database error: " . $e->getMessage());
         $_SESSION['error'] = "Failed to update user. Please try again.";
-        header("Location: users");
-        exit();
-    }
-}
-
-// Fetch the user's current details for the form
-$user = [];
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    try {
-        $stmt = $link->prepare("SELECT * FROM users WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log("Database error: " . $e->getMessage());
-        $_SESSION['error'] = "Failed to fetch user details.";
         header("Location: users");
         exit();
     }
@@ -122,7 +140,7 @@ if (isset($_GET['id'])) {
     <!-- end loader -->
 
     <!-- Sidebar -->
-     <?php
+    <?php
     // Try primary address first, fallback to relative path if it doesn't exist
     $navbar_primary = $_SERVER['DOCUMENT_ROOT'] . '/rcinfotech/admin/navbar.php';
     $navbar_fallback = $_SERVER['DOCUMENT_ROOT'] . '/admin/navbar.php';

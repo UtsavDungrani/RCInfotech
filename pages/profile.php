@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $photo_err = "Image size should be less than 5MB.";
             } else {
                 // Create uploads directory if it doesn't exist
-                $upload_dir = __DIR__ . '/uploads/profiles/';
+                $upload_dir = __DIR__ . '/../uploads/profiles/';
                 if (!is_dir($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }
