@@ -19,9 +19,9 @@ try {
 ?>
 <div class="sidebar">
     <a href="/admin/admin_home"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
     <a href="/admin/service_requests"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests' ? 'active' : '' ?>">
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'service_requests' ? 'active' : '' ?>">
         Service Requests
         <?php if ($pending_service_count > 0): ?>
             <span class="pending_req_counter">
@@ -30,29 +30,29 @@ try {
         <?php endif; ?>
     </a>
     <a href="/admin/insert_product/add_product"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_product' ? 'active' : '' ?>">Add Product</a>
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_product' ? 'active' : '' ?>">Add Product</a>
     <a href="/admin/insert_services/add_service"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_service' ? 'active' : '' ?>">Add Service</a>
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_service' ? 'active' : '' ?>">Add Service</a>
     <a href="/admin/insert_shop/add_shop"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
     <a href="/admin/insert_product/update_product"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_product' || basename($_SERVER['PHP_SELF']) == 'edit_product') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_product' || basename($_SERVER['PHP_SELF']) == 'edit_product') ? 'active' : '' ?>">Manage
         Products</a>
     <a href="/admin/insert_services/update_service"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_service' || basename($_SERVER['PHP_SELF']) == 'edit_service') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_service' || basename($_SERVER['PHP_SELF']) == 'edit_service') ? 'active' : '' ?>">Manage
         Services</a>
     <a href="/admin/insert_shop/update_shop"
-        class="<?= (basename($_SERVER['PHP_SELF']) == 'update_shop' || basename($_SERVER['PHP_SELF']) == 'edit_shop') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_shop' || basename($_SERVER['PHP_SELF']) == 'edit_shop') ? 'active' : '' ?>">Manage
         Shop</a>
     <a href="/admin/manage_orders"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders' ? 'active' : '' ?>">Orders
+        class="<?= basename($_SERVER['REQUEST_URI']) == 'manage_orders' ? 'active' : '' ?>">Orders
         <?php if ($pending_order_count > 0): ?>
             <span class="pending_req_counter">
                 <?= $pending_order_count ?>
             </span>
         <?php endif; ?>
     </a>
-    <a href="/admin/users" class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
+    <a href="/admin/users" class="<?= basename($_SERVER['REQUEST_URI']) == 'users' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
     <a href="/index">Back to Site</a>
 </div>
