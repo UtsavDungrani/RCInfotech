@@ -9,7 +9,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
 }
 
 # Include connection
-require_once "./config/config.php"; // Ensure $link is the PDO object
+require_once __DIR__ . '/../config/config.php'; // Ensure $link is the PDO object
 
 # Define variables
 $user_login_err = $user_password_err = $login_err = "";
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" type="text/css" href="revolution/css/settings.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/layers.css" />
   <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css" />
-  
+
   <link href="css/form.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <link rel="shortcut icon" href="images/logos/logo.png" type="image/x-icon">
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <h1>Log In</h1>
           <p>Please login to continue</p>
           <!-- form starts here -->
-          <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+          <form action="<?= htmlspecialchars($_SERVER['REQUEST_URI']); ?>" method="post" novalidate>
             <div class="mb-3">
               <label for="user_login" class="form-label">Email or username</label>
               <input type="text" class="form-control" name="user_login" id="user_login" value="<?= $user_login; ?>">

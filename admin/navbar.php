@@ -1,4 +1,5 @@
 <?php
+// Load global config from project root
 require_once __DIR__ . '/../config/config.php';
 // Fetch pending service requests count
 $pending_service_count = 0;
@@ -51,8 +52,7 @@ try {
             </span>
         <?php endif; ?>
     </a>
-    <a href="/RCInfotech/admin/users"
-        class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
+    <a href="/RCInfotech/admin/users" class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
     <a href="/RCInfotech/index">Back to Site</a>
 </div>

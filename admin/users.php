@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/config.php';
+require_once 'config/config.php';
 require_once 'auth_check.php';
 
 // Check authentication
@@ -15,7 +15,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Service Requests</title>
+    <title>Users</title>
     <link rel="icon" href="../images/logos/logo-1.png" type="image/gif" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/style.css" />

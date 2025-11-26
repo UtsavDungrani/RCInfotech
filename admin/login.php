@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/config.php';
+require_once __DIR__ . '/../config/config.php';
 
 // Check if already logged in
 if (isset($_SESSION['admin_id'])) {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<?php include '../csp.php';?> 
+<?php include 'pages/csp.php';?> 
 
 <!DOCTYPE html>
 <html lang="en">

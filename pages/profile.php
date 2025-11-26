@@ -10,7 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== TRUE || $_SESSION
 }
 
 # Include connection
-require_once "./config/config.php";
+require_once __DIR__ . '/../config/config.php';
 
 $user_id = $_SESSION["id"];
 $username = $_SESSION["username"];

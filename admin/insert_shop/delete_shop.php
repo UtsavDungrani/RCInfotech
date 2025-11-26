@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../../config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 
-include '../../csp.php';
+include __DIR__ . '/../../pages/csp.php';
 
 // Check if shop ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {

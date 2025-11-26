@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/config.php';
+require_once 'config/config.php';
 require_once 'auth_check.php';
 
 // Check authentication
@@ -96,7 +96,7 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
-<?php include '../csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

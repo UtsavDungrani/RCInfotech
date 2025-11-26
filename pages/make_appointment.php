@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 appointment_form">
                 <div class="form_section">
-                  <form class="form_contant" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                  <form class="form_contant" action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post">
                     <fieldset class="row">
                       <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <input class="field_custom" placeholder="First Name*" type="text" required name="frm_name" />

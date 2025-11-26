@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
 
   $first_name = trim($_POST['first_name']);
   $last_name = trim($_POST['last_name']);
-  $email = trim($_POST['email']);
+  $email = $_SESSION["email"];
   $phone = trim($_POST['frm_contact']);
   $address = trim($_POST['address']);
   $city = trim($_POST['city']);
@@ -323,7 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Email Address *</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="email" class="form-control" value="<?= $_SESSION["email"] ?>" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">

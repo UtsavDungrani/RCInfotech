@@ -7,11 +7,11 @@ if (!isset($_SESSION["username"])) {
   $_SESSION["username"] = "user";
 }
 
-require_once "./config/config.php";
+require_once __DIR__ . '/../config/config.php';
 
-// Fetch services from database
-$stmt = $link->query("SELECT * FROM services");
-$services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch products from database
+$stmt = $link->query("SELECT * FROM product");
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include 'csp.php'; ?>
 
@@ -58,117 +58,139 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- header -->
   <?php include 'header.php'; ?>
   <!-- end header -->
-
   <!-- inner page banner -->
   <?php include 'breadcrumbs.php'; ?>
   <!-- end inner page banner -->
-  <div class="section padding_layout_1 light_silver gross_layout">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="main_heading text_align_left">
-              <h2>Service Process</h2>
-              <p class="large">Easy and effective way to get your device repaired.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si1.png" alt="#" /></div>
-                  <h4 class="service-heading">Fast service</h4>
-                  <p>You get fast service within 2 hour responce.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si2.png" alt="#" /></div>
-                  <h4 class="service-heading">Secure payments</h4>
-                  <p>Your payment and account detail will be safe.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si3.png" alt="#" /></div>
-                  <h4 class="service-heading">Expert team</h4>
-                  <p>We have hired expert team to provide best services.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si4.png" alt="#" /></div>
-                  <h4 class="service-heading">Affordable services</h4>
-                  <p>We provides services which can affordable for everyone.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si5.png" alt="#" /></div>
-                  <h4 class="service-heading">90 Days warranty</h4>
-                  <p>You can get 90 Days warranty on any services.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="full">
-                <div class="service_blog_inner">
-                  <div class="icon text_align_left"><img src="images/it_service/si6.png" alt="#" /></div>
-                  <h4 class="service-heading">Award winning</h4>
-                  <p>Work in progress.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!-- section -->
-  <div class="section padding_layout_1 light_silver service_list">
+  <div class="section padding_layout_1 product_list_main">
+    <div class="main_heading text_align_center">
+      <h2 class="ms-2">Our Products</h2>
+      <p class="large">
+        We package the products with best services to make you a happy
+        customer.
+      </p>
+    </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="full">
-            <div class="main_heading text_align_center">
-              <h2>Our Services</h2>
-              <p class="large">
-                We provide a wide range of IT services to meet your needs.
-              </p>
-            </div>
+        <div class="col-md-9">
+          <div class="row">
+            <?php foreach ($products as $product): ?>
+              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 margin_bottom_30_all">
+                <a href="product?id=<?= $product['id'] ?>">
+                  <div class="product_list">
+                    <div class="product_img">
+                      <img class="img-responsive img-product" src="<?= $product['image_path'] ?>"
+                        alt="<?= $product['name'] ?>">
+                    </div>
+                    <div class="product_detail_btm">
+                      <div class="center">
+                        <h4><a href="product?id=<?= $product['id'] ?>"><?= $product['name'] ?></a></h4>
+                      </div>
+                      <div class="starratin">
+                        <div class="center">
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                      <div class="product_price">
+                        <p>
+                          <span class="old_price">₹<?= $product['old_price'] ?></span> –
+                          <span class="new_price"> ₹<?= $product['new_price'] ?></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <?php foreach ($services as $service): ?>
-          <div class="col-md-4 service_blog">
-            <div class="full">
-              <div class="service_img">
-                <img class="img-responsive ser_img" src="<?= $service['image_path'] ?>"
-                  alt="<?= $service['name'] ?>" />
-              </div>
-              <div class="service_cont">
-                <h3 class="service_head"><?= $service['name'] ?></h3>
-                <p class="text_justify"><?= $service['page_des'] ?></p>
-                <div class="bt_cont">
-                  <a class="btn sqaure_bt" href="service_display?id=<?= $service['id'] ?>">View Service</a>
+        <div class="col-md-3">
+          <div class="side_bar">
+            <div class="side_bar_blog">
+              <h4>SEARCH</h4>
+              <div class="side_bar_search">
+                <div class="input-group stylish-input-group">
+                  <input class="form-control" placeholder="Search" type="text" />
+                  <span class="input-group-addon">
+                    <button type="submit">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
+            <div class="side_bar_blog">
+              <h4>GET A QUOTE</h4>
+              <p>
+                Computers make it easier to do a lot of things, but most of the things they make it easier to do don't
+                need to be done.
+              </p>
+              <a class="btn sqaure_bt" href="service">View Service</a>
+            </div>
+            <div class="side_bar_blog">
+              <h4>OUR SERVICE</h4>
+              <div class="categary">
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Data recovery</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Computer repair</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Mobile service</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Network solutions</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Technical support</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="side_bar_blog">
+              <h4>RECENT NEWS</h4>
+              <div class="categary">
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Land lights let be
+                      divided</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Seasons over bearing
+                      air</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Greater open after
+                      grass</a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-angle-right"></i> Gathered was divide
+                      second</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="side_bar_blog">
+              <h4>TAG</h4>
+              <div class="tags">
+                <ul>
+                  <li><a href="#">Bootstrap</a></li>
+                  <li><a href="#">HTML5</a></li>
+                  <li><a href="#">Wordpress</a></li>
+                  <li><a href="#">Bootstrap</a></li>
+                  <li><a href="#">HTML5</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        <?php endforeach; ?>
+        </div>
       </div>
     </div>
   </div>

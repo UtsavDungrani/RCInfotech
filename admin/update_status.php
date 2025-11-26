@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../config/config.php';
+require_once 'config/config.php';
 require_once 'auth_check.php';
 
-include '../csp.php';
+include '../pages/csp.php';
 
 // Include PHPMailer classes
 use PHPMailer\PHPMailer\PHPMailer;

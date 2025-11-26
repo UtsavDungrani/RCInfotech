@@ -1,44 +1,7 @@
 RewriteEngine On
-RewriteBase /RCInfotech/
-
-# Enable directory listing and file access
-Options +Indexes +FollowSymLinks +MultiViews
-
-# Redirect /admin or /admin/ to admin/login.php
-RewriteRule ^admin/?$ admin/login.php [L]
-
-# Allow direct access to PHP files
-<FilesMatch "\.php$">
-    Order Allow,Deny
-    Allow from all
-</FilesMatch>
-
-# Enable browser caching
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/x-javascript "access plus 1 month"
-    ExpiresByType text/html "access plus 1 day"
-    ExpiresByType application/xhtml+xml "access plus 1 day"
-</IfModule>
-
-# Enable compression
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-</IfModule>
-    
+# Allow direct access to real files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# Route everything else to index.php, sending the URL as a variable 'q'
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]

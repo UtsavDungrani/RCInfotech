@@ -1,5 +1,5 @@
 <?php
-require_once "./config/config.php"; // config.php must set up $link as a PDO connection
+require_once __DIR__ . '/../config/config.php'; // config.php must set up $link as a PDO connection
 
 $username_err = $email_err = $password_err = "";
 $username = $email = $password = "";
@@ -59,21 +59,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   # If no errors, insert new user
   if (empty($username_err) && empty($email_err) && empty($password_err)) {
     $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
-    if ($stmt = $link->prepare($sql)) {
+    try {
+      $stmt = $link->prepare($sql);
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-      if (
-        $stmt->execute([
-          'username' => $username,
-          'email' => $email,
-          'password' => $hashed_password
-        ])
-      ) {
-        echo "<script>alert('Registration completed successfully! Please login.');</script>";
-        echo "<script>window.location.href='./login';</script>";
+      $ok = $stmt->execute([
+        'username' => $username,
+        'email' => $email,
+        'password' => $hashed_password
+      ]);
+
+      if ($ok) {
+        // Registration successful
+        header('Location:login');
         exit;
       } else {
-        echo "<script>alert('Oops! Something went wrong. Please try again later.');</script>";
+        $err = $stmt->errorInfo();
+        error_log('Register execute failed: ' . print_r($err, true));
+        echo '<div class="alert alert-danger">Registration failed: ' . htmlspecialchars($err[2] ?? 'Unknown error') . '</div>';
       }
+    } catch (PDOException $e) {
+      error_log('Register exception: ' . $e->getMessage());
+      echo "<script>alert('Database error: " . htmlspecialchars($e->getMessage()) . "');</script>";
     }
   }
 }
@@ -123,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <h1>Sign up</h1>
           <p>Please fill this form to register</p>
           <!-- form starts here -->
-          <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+          <form action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post" novalidate>
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" name="username" id="username" value="<?= $username; ?>">
@@ -146,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
               <input type="submit" class="btn btn-primary form-control" name="submit" value="Sign Up">
             </div>
-            <p class="mb-0">Already have an account ? <a href="./login">Log In</a></p>
+            <p class="mb-0">Already have an account ? <a href="login">Log In</a></p>
           </form>
           <!-- form ends here -->
         </div>

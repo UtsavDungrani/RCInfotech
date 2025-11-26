@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../config/config.php';
-require_once 'auth_check.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/auth_check.php';
 
 // Check authentication
 checkAdminAuth();
@@ -44,7 +44,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

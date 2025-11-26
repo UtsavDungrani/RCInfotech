@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../../config/config.php';
-require_once '../auth_check.php';
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../auth_check.php';
 
 // Check authentication
 checkAdminAuth();
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<?php include '../../csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -177,7 +177,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <img src="/rcinfotech/<?= htmlspecialchars(ltrim($service['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
                                     alt="Current Service Image" class="max_width_200">
                                 <p class="mt_5">Current Image:
-                                    <?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?></p>
+                                    <?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>
+                                </p>
                             </div>
                         <?php endif; ?>
                     </div>

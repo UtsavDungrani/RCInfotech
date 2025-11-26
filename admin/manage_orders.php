@@ -2,7 +2,7 @@
 
 // Initialize the session
 session_start();
-require_once '../config/config.php';
+require_once 'config/config.php';
 require_once 'auth_check.php';
 
 // Check authentication
@@ -12,7 +12,7 @@ checkAdminAuth();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../phpmailer/vendor/autoload.php';
+require 'phpmailer/vendor/autoload.php';
 
 // Process status update
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_status'])) {
@@ -260,7 +260,7 @@ try {
     $orders = [];
 }
 ?>
-<?php include '../csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

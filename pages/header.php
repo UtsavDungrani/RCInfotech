@@ -85,13 +85,16 @@ foreach ($preload_js as $js) {
                     <!-- menu start -->
                     <div class="menu_side">
                         <div id="navbar_menu">
+                            <?php
+                            $current_route = isset($_GET['q']) ? trim($_GET['q'], '/') : 'home';
+                            ?>
                             <ul class="first-ul">
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>"
+                                <li><a class="<?= (!$current_route || $current_route === 'home') ? 'active' : '' ?>"
                                         href="index">Home</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'about_us.php' ? 'active' : '' ?>"
+                                <li><a class="<?= ($current_route === 'about_us' || $current_route === 'about') ? 'active' : '' ?>"
                                         href="about_us">About Us</a></li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'service.php' || basename($_SERVER['PHP_SELF']) == 'user_service_requests.php' || basename($_SERVER['PHP_SELF']) == 'service_display.php' || basename($_SERVER['PHP_SELF']) == 'service_success.php') ? 'active' : '' ?>"
+                                    <a class="<?= in_array($current_route, ['service', 'service_display', 'user_service_requests', 'service_success', 'make_appointment']) ? 'active' : '' ?>"
                                         href="service">Service</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="service">Services</a></li>
@@ -99,7 +102,7 @@ foreach ($preload_js as $js) {
                                     </ul>
                                 </li>
                                 <li class="shop-dropdown">
-                                    <a class="<?= (basename($_SERVER['PHP_SELF']) == 'shop.php' || basename($_SERVER['PHP_SELF']) == 'cart.php' || basename($_SERVER['PHP_SELF']) == 'user_orders.php' || basename($_SERVER['PHP_SELF']) == 'product.php' || basename($_SERVER['PHP_SELF']) == 'checkout.php' || basename($_SERVER['PHP_SELF']) == 'order_success.php') ? 'active' : '' ?>"
+                                    <a class="<?= in_array($current_route, ['shop', 'cart', 'user_orders', 'product', 'checkout', 'order_success']) ? 'active' : '' ?>"
                                         href="shop">Shop</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="shop">All Products</a></li>
@@ -107,13 +110,13 @@ foreach ($preload_js as $js) {
                                         <li><a href="user_orders">My Orders</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>"
+                                <li><a class="<?= $current_route === 'contact' ? 'active' : '' ?>"
                                         href="contact">Contact</a></li>
-                                <li><a class="<?= basename($_SERVER['PHP_SELF']) == 'search_shop.php' ? 'active' : '' ?>"
+                                <li><a class="<?= $current_route === 'search_shop' ? 'active' : '' ?>"
                                         href="search_shop">Near by shops</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'faq.php' || basename($_SERVER['PHP_SELF']) == 'feedback.php') ? 'active' : '' ?>"
+                                <li><a class="<?= in_array($current_route, ['faq', 'feedback']) ? 'active' : '' ?>"
                                         href="faq">FAQ</a></li>
-                                <li><a class="<?= (basename($_SERVER['PHP_SELF']) == 'profile.php') ? 'active' : '' ?>"
+                                <li><a class="<?= $current_route === 'profile' ? 'active' : '' ?>"
                                         href="profile">Profile</a></li>
                             </ul>
                         </div>

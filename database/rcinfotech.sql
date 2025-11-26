@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2025 at 04:41 PM
+-- Generation Time: Nov 26, 2025 at 05:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -54,6 +54,7 @@ CREATE TABLE `bookser` (
   `lname` text NOT NULL,
   `email` varchar(55) DEFAULT NULL,
   `mobile` bigint(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `subject` text NOT NULL,
   `description` text NOT NULL,
   `booking_time` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -64,55 +65,56 @@ CREATE TABLE `bookser` (
 -- Dumping data for table `bookser`
 --
 
-INSERT INTO `bookser` (`id`, `fname`, `lname`, `email`, `mobile`, `subject`, `description`, `booking_time`, `status`) VALUES
-(7, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, 'General services', 'hi', '2025-04-17 23:12:04', 'pending'),
-(8, 'Ayush', 'Joshi', 'ayushjoshi876@gmail.com', 1234567890, 'Web development', 'hi', '2025-04-17 23:18:06', 'pending'),
-(9, 'Jasmin', 'Dungarani', 'ayushjoshi876@gmail.com', 2147483647, 'Laptop repairing', 'hi', '2025-04-17 23:18:52', 'pending'),
-(10, 'Jasmin', 'Dungarani', 'ayushjoshi876@gmail.com', 2147483647, 'Laptop repairing', 'hi', '2025-04-17 23:22:55', 'pending'),
-(12, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, 'Laptop repairing', 'hi', '2025-04-17 23:27:38', 'approved'),
-(13, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, 'General services', 'hi', '2025-04-17 23:55:37', 'approved'),
-(14, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'General services', 'hi', '2025-04-17 23:58:51', 'approved'),
-(15, 'lin', 'eve', 'lineviv529@f5url.com', 9173283815, 'Computer Repair', 'hi', '2025-04-18 23:15:08', 'rejected'),
-(16, 'AMD', '`123', 'lineviv529@f5url.com', 1234567890, 'Laptop repairing', 'need new service', '2025-04-19 00:13:24', 'rejected'),
-(17, 'Utsav', 'Dungrani', 'lineviv529@f5url.com', 9173283815, 'Data Recovery', 'hi', '2025-04-19 23:45:58', 'pending'),
-(18, 'Utsav', 'Dungrani', 'lineviv529@f5url.com', 9173283815, 'Software development', 'i need person', '2025-04-20 05:32:29', 'approved'),
-(19, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', 'hi', '2025-04-22 23:55:17', 'approved'),
-(20, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Computer Repair', 'hi1', '2025-04-23 00:18:08', 'pending'),
-(21, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network Solutions', 'hello', '2025-04-23 00:22:59', 'approved'),
-(22, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Web development', 'the new service', '2025-04-24 13:17:24', 'approved'),
-(23, 'Utsav', 'Dungrani', 'dahedo3148@ingitel.com', 9173283815, 'Network Solutions', 'hi', '2025-04-27 00:54:42', 'approved'),
-(24, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'App development', 'hgvgvhg', '2025-04-30 22:54:37', 'pending'),
-(25, 'Utsav', 'Dungrani', 'wejole9158@harinv.com', 9173283815, 'Web development', 'ijjoijoijoijoijoijso[\'iqdju2oiwqkdnweokmc', '2025-04-30 22:59:16', 'pending'),
-(26, 'Ayush', 'Joshi', 'ayushjoshi876@gmail.com', 1234567890, 'App development', 'new service', '2025-04-30 23:03:58', 'pending'),
-(27, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Software development', 'hi', '2025-05-02 21:20:53', 'approved'),
-(28, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Software Installation', 'hi', '2025-05-05 23:48:13', 'approved'),
-(29, 'Jasmin', 'Dungarani', 'utsavdungrani7@gmail.com', 9824123815, 'Laptop repairing', 'hi', '2025-05-05 23:50:22', 'rejected'),
-(30, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Computer Repair', 'hi', '2025-05-05 23:52:17', 'approved'),
-(31, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', 'hi', '2025-05-05 23:53:19', 'approved'),
-(32, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Web development', 'hi', '2025-05-05 23:57:23', 'approved'),
-(33, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'hi', '2025-05-23 22:59:30', 'approved'),
-(34, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'hi', '2025-05-23 23:01:32', 'approved'),
-(35, 'Utsav', 'Dungrani', 'new@gmail.com', 9173283815, 'Network solutions', 'i need a service in 1 day..', '2025-05-25 08:44:28', 'approved'),
-(36, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', 'hi', '2025-06-06 03:35:00', 'approved'),
-(37, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', '<script>alert(\"this is me\");</script>', '2025-06-06 21:00:10', 'rejected'),
-(38, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'hi1', '2025-08-11 02:48:01', 'pending'),
-(39, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Printer toner refill', 'neno', '2025-08-11 02:48:48', 'pending'),
-(70, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', '1230', '2025-08-11 02:50:02', 'pending'),
-(71, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Web development', 'nwkldmwlk', '2025-08-11 02:50:41', 'pending'),
-(72, 'hdlk', 'jfoq', 'utsavdungrani7@gmail.com', 9173283815, 'General services', 'lkjndwejkn', '2025-08-11 02:53:18', 'pending'),
-(73, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Computer repairing', 'hi', '2025-08-11 02:55:29', 'pending'),
-(74, 'jqwbi', 'ijiji', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'hqiwqnskqjwn d', '2025-08-11 02:56:01', 'approved'),
-(75, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 6666666666, 'Laptop repairing', 'lwkjbdoweiduwh', '2025-08-11 02:57:55', 'pending'),
-(76, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', '`12knenw2dpoewnd', '2025-08-12 03:44:27', 'approved'),
-(77, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'General services', 'shjsn', '2025-08-13 18:57:24', 'rejected'),
-(78, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'jasjkaskjkasj', '2025-08-14 07:39:25', 'pending'),
-(79, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Web development', 'kjnkasn', '2025-08-14 07:41:46', 'pending'),
-(80, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Laptop repairing', 'helllo', '2025-08-14 07:43:37', 'approved'),
-(81, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'jnkjnkjn', '2025-08-14 07:44:30', 'approved'),
-(82, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'General services', 'l;kns;lkdms;lkmd', '2025-08-14 07:47:33', 'rejected'),
-(83, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Web development', 'jkhjhkj', '2025-08-14 07:50:24', 'approved'),
-(84, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Printer toner refill', 'hii', '2025-08-14 08:49:23', 'rejected'),
-(85, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, 'Network solutions', 'kjndskjndkjsandkjsandkjsandkj', '2025-08-14 10:13:31', 'approved');
+INSERT INTO `bookser` (`id`, `fname`, `lname`, `email`, `mobile`, `address`, `subject`, `description`, `booking_time`, `status`) VALUES
+(7, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, '', 'General services', 'hi', '2025-04-17 23:12:04', 'pending'),
+(8, 'Ayush', 'Joshi', 'ayushjoshi876@gmail.com', 1234567890, '', 'Web development', 'hi', '2025-04-17 23:18:06', 'pending'),
+(9, 'Jasmin', 'Dungarani', 'ayushjoshi876@gmail.com', 2147483647, '', 'Laptop repairing', 'hi', '2025-04-17 23:18:52', 'pending'),
+(10, 'Jasmin', 'Dungarani', 'ayushjoshi876@gmail.com', 2147483647, '', 'Laptop repairing', 'hi', '2025-04-17 23:22:55', 'pending'),
+(12, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, '', 'Laptop repairing', 'hi', '2025-04-17 23:27:38', 'approved'),
+(13, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 2147483647, '', 'General services', 'hi', '2025-04-17 23:55:37', 'approved'),
+(14, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'General services', 'hi', '2025-04-17 23:58:51', 'approved'),
+(15, 'lin', 'eve', 'lineviv529@f5url.com', 9173283815, '', 'Computer Repair', 'hi', '2025-04-18 23:15:08', 'rejected'),
+(16, 'AMD', '`123', 'lineviv529@f5url.com', 1234567890, '', 'Laptop repairing', 'need new service', '2025-04-19 00:13:24', 'rejected'),
+(17, 'Utsav', 'Dungrani', 'lineviv529@f5url.com', 9173283815, '', 'Data Recovery', 'hi', '2025-04-19 23:45:58', 'pending'),
+(18, 'Utsav', 'Dungrani', 'lineviv529@f5url.com', 9173283815, '', 'Software development', 'i need person', '2025-04-20 05:32:29', 'approved'),
+(19, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', 'hi', '2025-04-22 23:55:17', 'approved'),
+(20, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Computer Repair', 'hi1', '2025-04-23 00:18:08', 'pending'),
+(21, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network Solutions', 'hello', '2025-04-23 00:22:59', 'approved'),
+(22, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Web development', 'the new service', '2025-04-24 13:17:24', 'approved'),
+(23, 'Utsav', 'Dungrani', 'dahedo3148@ingitel.com', 9173283815, '', 'Network Solutions', 'hi', '2025-04-27 00:54:42', 'approved'),
+(24, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'App development', 'hgvgvhg', '2025-04-30 22:54:37', 'pending'),
+(25, 'Utsav', 'Dungrani', 'wejole9158@harinv.com', 9173283815, '', 'Web development', 'ijjoijoijoijoijoijso[\'iqdju2oiwqkdnweokmc', '2025-04-30 22:59:16', 'pending'),
+(26, 'Ayush', 'Joshi', 'ayushjoshi876@gmail.com', 1234567890, '', 'App development', 'new service', '2025-04-30 23:03:58', 'pending'),
+(27, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Software development', 'hi', '2025-05-02 21:20:53', 'approved'),
+(28, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Software Installation', 'hi', '2025-05-05 23:48:13', 'approved'),
+(29, 'Jasmin', 'Dungarani', 'utsavdungrani7@gmail.com', 9824123815, '', 'Laptop repairing', 'hi', '2025-05-05 23:50:22', 'rejected'),
+(30, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Computer Repair', 'hi', '2025-05-05 23:52:17', 'approved'),
+(31, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', 'hi', '2025-05-05 23:53:19', 'approved'),
+(32, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Web development', 'hi', '2025-05-05 23:57:23', 'approved'),
+(33, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'hi', '2025-05-23 22:59:30', 'approved'),
+(34, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'hi', '2025-05-23 23:01:32', 'approved'),
+(35, 'Utsav', 'Dungrani', 'new@gmail.com', 9173283815, '', 'Network solutions', 'i need a service in 1 day..', '2025-05-25 08:44:28', 'approved'),
+(36, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', 'hi', '2025-06-06 03:35:00', 'approved'),
+(37, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', '<script>alert(\"this is me\");</script>', '2025-06-06 21:00:10', 'rejected'),
+(38, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'hi1', '2025-08-11 02:48:01', 'pending'),
+(39, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Printer toner refill', 'neno', '2025-08-11 02:48:48', 'pending'),
+(70, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', '1230', '2025-08-11 02:50:02', 'pending'),
+(71, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Web development', 'nwkldmwlk', '2025-08-11 02:50:41', 'pending'),
+(72, 'hdlk', 'jfoq', 'utsavdungrani7@gmail.com', 9173283815, '', 'General services', 'lkjndwejkn', '2025-08-11 02:53:18', 'pending'),
+(73, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Computer repairing', 'hi', '2025-08-11 02:55:29', 'pending'),
+(74, 'jqwbi', 'ijiji', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'hqiwqnskqjwn d', '2025-08-11 02:56:01', 'approved'),
+(75, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 6666666666, '', 'Laptop repairing', 'lwkjbdoweiduwh', '2025-08-11 02:57:55', 'pending'),
+(76, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', '`12knenw2dpoewnd', '2025-08-12 03:44:27', 'approved'),
+(77, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'General services', 'shjsn', '2025-08-13 18:57:24', 'rejected'),
+(78, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'jasjkaskjkasj', '2025-08-14 07:39:25', 'pending'),
+(79, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Web development', 'kjnkasn', '2025-08-14 07:41:46', 'pending'),
+(80, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Laptop repairing', 'helllo', '2025-08-14 07:43:37', 'approved'),
+(81, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'jnkjnkjn', '2025-08-14 07:44:30', 'approved'),
+(82, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'General services', 'l;kns;lkdms;lkmd', '2025-08-14 07:47:33', 'rejected'),
+(83, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Web development', 'jkhjhkj', '2025-08-14 07:50:24', 'approved'),
+(84, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Printer toner refill', 'hii', '2025-08-14 08:49:23', 'rejected'),
+(85, 'Utsav', 'Dungrani', 'utsavdungrani7@gmail.com', 9173283815, '', 'Network solutions', 'kjndskjndkjsandkjsandkjsandkj', '2025-08-14 10:13:31', 'approved'),
+(86, 'Utsav', 'Dungrani', 'utsavdungrani17@gmail.com', 9173283815, 'C-2071 Ocean Park, Bhavnagar, Ocean Park-2', 'Computer repairing', 'hi', '2025-11-26 03:39:20', 'pending');
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,10 @@ INSERT INTO `orders` (`id`, `email`, `first_name`, `last_name`, `phone`, `shippi
 (22, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Bhavnagar, Gujarat - 364002', 749.00, 'Wireless mouse', '1', '700', '2025-08-14 14:26:59', 'processing', '2025-08-14 08:56:59'),
 (23, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Bhavnagar, Gujarat - 364002', 2149.00, 'Wireless mouse', '3', '700', '2025-08-14 14:28:58', 'processing', '2025-08-14 08:58:58'),
 (24, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Bhavnagar, Gujarat - 364002', 928.00, 'Wireless keyboard', '1', '879', '2025-08-14 14:56:57', 'pending', '2025-08-14 09:26:57'),
-(25, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Bhavnagar, Gujarat - 364002', 2686.00, 'Wireless keyboard', '3', '879', '2025-08-14 15:44:15', 'shipped', '2025-08-14 10:14:15');
+(25, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Bhavnagar, Gujarat - 364002', 2686.00, 'Wireless keyboard', '3', '879', '2025-08-14 15:44:15', 'shipped', '2025-08-14 10:14:15'),
+(26, 'utsavdungrani7@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Ocean Park-2, Bhavnagar, Gujarat - 364002', 2149.00, 'Wireless mouse', '3', '700', '2025-11-26 09:01:58', 'processing', '2025-11-26 03:31:58'),
+(27, 'utsavdungrani17@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Ocean Park-2, Bhavnagar, Gujarat - 364002', 568.00, 'Power cable desktop', '1', '519', '2025-11-26 09:04:05', 'shipped', '2025-11-26 03:34:05'),
+(28, 'utsavdungrani17@gmail.com', 'Utsav', 'Dungrani', '9173283815', 'C-2071 Ocean Park, Bhavnagar, Ocean Park-2, Bhavnagar, Gujarat - 364002', 4390.00, 'Hard disk H.D.D', '1', '4341', '2025-11-26 09:12:26', 'shipped', '2025-11-26 03:42:26');
 
 -- --------------------------------------------------------
 
@@ -190,14 +195,14 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `name`, `image_path`, `old_price`, `new_price`, `stock`, `description_small`, `description_large`) VALUES
 (1, 'Charging cable laptop', 'uploads/products/product_1_1764081093.jpg', 999, 799, 15, 'This is a polarized power cable designed to connect a wall socket and your Laptop/notebook power brick. The female connector plugs directly into the device while the male connector plugs into a standard outlet. Fits most branded- Laptop Adapter/ Chargers: Universal AU 3-Prong AC Power Cord 3 Pin Adapter Cable.', 'A laptop charging cable is a power cord designed to connect a laptop to an electrical outlet for recharging its battery. It typically has a connector at one end that plugs into the laptop and a standard electrical plug at the other end for connection to a power source.\r\n\r\nThis is a polarized power cable designed to connect a wall socket and your Laptop/notebook power brick. The female connector plugs directly into the device while the male connector plugs into a standard outlet. Fits most branded- Laptop Adapter/ Chargers: Universal AU 3-Prong AC Power Cord 3 Pin Adapter Cable.'),
-(2, 'Power cable desktop', 'uploads/products/product_2_1764081093.jpg', 649, 519, 10, 'A power cable, also known as a mains cable, electrical cable, or flex, is a cable that supplies electrical power to a desktop computer. It connects a computer\'s power supply unit (PSU) to a power source, such as an electrical outlet. The PSU then distributes the power to the computer\'s components.', 'A power cable is made of an insulated electrical cable with one or both ends molded with connectors. One end is usually a male connector or plug that goes into the electrical outlet. The other end is a female connector that attaches to the appliance or to another male connector. Power cables are also used with printers, monitors, external speakers, and other peripheral devices that can\'t get enough power through their data cables.\r\n\r\nA power cable, also known as a mains cable, electrical cable, or flex, is a cable that supplies electrical power to a desktop computer. It connects a computer\'s power supply unit (PSU) to a power source, such as an electrical outlet. The PSU then distributes the power to the computer\'s components.'),
+(2, 'Power cable desktop', 'uploads/products/product_2_1764081093.jpg', 649, 519, 9, 'A power cable, also known as a mains cable, electrical cable, or flex, is a cable that supplies electrical power to a desktop computer. It connects a computer\'s power supply unit (PSU) to a power source, such as an electrical outlet. The PSU then distributes the power to the computer\'s components.', 'A power cable is made of an insulated electrical cable with one or both ends molded with connectors. One end is usually a male connector or plug that goes into the electrical outlet. The other end is a female connector that attaches to the appliance or to another male connector. Power cables are also used with printers, monitors, external speakers, and other peripheral devices that can\'t get enough power through their data cables.\r\n\r\nA power cable, also known as a mains cable, electrical cable, or flex, is a cable that supplies electrical power to a desktop computer. It connects a computer\'s power supply unit (PSU) to a power source, such as an electrical outlet. The PSU then distributes the power to the computer\'s components.'),
 (3, 'Wireless keyboard', 'uploads/products/product_3_1764081093.jpg', 1099, 879, 1, 'A wireless keyboard is a computer keyboard that allows the user to communicate with computers, tablets, or laptops with the help of radio frequency (RF), such as WiFi and Bluetooth or with infrared (IR) technology. It is common for wireless keyboards available these days to be accompanied by a wireless mouse.', 'Wireless keyboards based on infrared technology use light waves to transmit signals to other infrared-enabled devices. But, in case of radio frequency technology, a wireless keyboard communicates using signals which range from 27 MHz to up to 2.4 GHz. Most wireless keyboards today work on 2.4 GHz radio frequency.[citation needed] Bluetooth is another technology that is being widely used by wireless keyboards. These devices connect and communicate to their parent device via the bluetooth protocol.\r\n\r\nA wireless keyboard is a computer keyboard that allows the user to communicate with computers, tablets, or laptops with the help of radio frequency (RF), such as WiFi and Bluetooth or with infrared (IR) technology. It is common for wireless keyboards available these days to be accompanied by a wireless mouse.'),
 (4, 'Wired keyboard', 'uploads/products/product_4_1764081093.jpg', 700, 576, 15, 'A wired keyboard is a keyboard that connects to a computer using a wire. The wire ends in a USB plug that goes into a USB port on the computer.', 'A wired keyboard means there is a wire connecting your keyboard to your computer. At the end of the wire is a USB plug that goes into a USB port on your computer. Wired keyboards are extremely reliable—there is little that could go wrong with this direct connection.\r\n\r\nA wired keyboard is a keyboard that connects to a computer using a wire. The wire ends in a USB plug that goes into a USB port on the computer.'),
 (5, 'Gaming keyboard', 'uploads/products/product_5_1764081093.jpg', 1299, 1039, 14, 'On gaming keyboards, which are mostly mechanical, the key switches require less depression and result in faster action for games. There may also be extra keys that are user configurable for macros.', 'Crafted with strong components and quality materials.\r\n\"BUILT & SUPPORT \": Does not support IPAD TABLET MOBILE Gaming model for long gaming, High quality backlit mouse, Soft wheel in rubber material, Corded, full-size comfort mouse.\r\n\"ERGONOMICAL\": Ergonomically designed, quality keys and soft clicks make for an incredible typing experience.\r\n\r\nOn gaming keyboards, which are mostly mechanical, the key switches require less depression and result in faster action for games. There may also be extra keys that are user configurable for macros.'),
-(6, 'Wireless mouse', 'uploads/products/product_6_1764081093.jpg', 875, 700, 7, 'Wireless mice transmit radio signals to a receiver connected to your computer. The computer accepts the signal and decodes how the cursor was moved or what buttons were clicked. While the freedom or range with wireless models is convenient, there are some drawbacks.', 'benefits of wireless mouse: Comfortable, space-saving design.\r\nSturdy build quality.\r\nMultiple color options.\r\nEasy setup.\r\nSupports Windows Swift Pair.\r\nLong rated battery life.\r\nAffordable.\r\nWireless mice transmit radio signals to a receiver connected to your computer. The computer accepts the signal and decodes how the cursor was moved or what buttons were clicked. While the freedom or range with wireless models is convenient, there are some drawbacks.'),
+(6, 'Wireless mouse', 'uploads/products/product_6_1764081093.jpg', 875, 700, 4, 'Wireless mice transmit radio signals to a receiver connected to your computer. The computer accepts the signal and decodes how the cursor was moved or what buttons were clicked. While the freedom or range with wireless models is convenient, there are some drawbacks.', 'benefits of wireless mouse: Comfortable, space-saving design.\r\nSturdy build quality.\r\nMultiple color options.\r\nEasy setup.\r\nSupports Windows Swift Pair.\r\nLong rated battery life.\r\nAffordable.\r\nWireless mice transmit radio signals to a receiver connected to your computer. The computer accepts the signal and decodes how the cursor was moved or what buttons were clicked. While the freedom or range with wireless models is convenient, there are some drawbacks.'),
 (7, 'Wired mouse', 'uploads/products/product_7_1764081093.jpg', 475, 380, 15, 'A wired mouse connects to a computer or laptop via a USB port or PS/2 port. The cord transmits information, providing fast response times and minimal latency. Wired mice are preferred by gamers for their speed and lack of lag and interference.', 'A wired mouse connects directly to your desktop or laptop, usually through a USB port, and transmits information via the cord. The cord connection provides several key advantages. For starters, wired mice provide fast response times, as the data is transmitted directly through the cable.\r\n\r\nA wired mouse connects to a computer or laptop via a USB port or PS/2 port. The cord transmits information, providing fast response times and minimal latency. Wired mice are preferred by gamers for their speed and lack of lag and interference.'),
 (8, 'Gaming mouse', 'uploads/products/product_8_1764081093.jpg', 1049, 839, 10, 'A gaming mouse is a computer mouse designed for gaming.', 'Description\r\nReviews (2)\r\nA gaming mouse is a computer mouse designed for gaming. It\'s different from a regular mouse because it has features like:\r\n\r\nSensitivity: Gaming mice have adjustable sensitivity, which is configurable as the number of dots per inch (DPI). The greater the DPI, the farther the cursor moves on screen with the same amount of mouse movement.\r\n\r\nButtons: Gaming mice have customizable buttons, including a clickable scroll wheel, a button for adjusting sensitivity, and two buttons where your thumb rests.\r\n\r\nDesign: Gaming mice are ergonomically designed.\r\n\r\nResponse time: Gaming mice have faster response times.\r\n\r\nEngine: Gaming mice are usually equipped with a professional game engine, which makes them perform better and react faster.'),
-(9, 'Hard disk H.D.D', 'uploads/products/product_9_1764081093.jpg', 5420, 4341, 15, 'A hard disk drive (HDD) is a computer storage device that uses magnetic disks to store data permanently. HDDs are also known as hard disks, hard drives, or fixed disks.', 'HDDs can have storage capacities ranging from 16 GB to over 2 TB. The capacity of a personal computer hard disk is typically between 160 GB and 2 TB. HDDs are electro-mechanical devices that use magnetic storage to store and retrieve data. HDDs are different from solid-state drives (SSDs), which use flash memory and have no moving parts.\r\n\r\nA hard disk drive (HDD) is a computer storage device that uses magnetic disks to store data permanently. HDDs are also known as hard disks, hard drives, or fixed disks.'),
+(9, 'Hard disk H.D.D', 'uploads/products/product_9_1764081093.jpg', 5420, 4341, 14, 'A hard disk drive (HDD) is a computer storage device that uses magnetic disks to store data permanently. HDDs are also known as hard disks, hard drives, or fixed disks.', 'HDDs can have storage capacities ranging from 16 GB to over 2 TB. The capacity of a personal computer hard disk is typically between 160 GB and 2 TB. HDDs are electro-mechanical devices that use magnetic storage to store and retrieve data. HDDs are different from solid-state drives (SSDs), which use flash memory and have no moving parts.\r\n\r\nA hard disk drive (HDD) is a computer storage device that uses magnetic disks to store data permanently. HDDs are also known as hard disks, hard drives, or fixed disks.'),
 (10, 'S.S.D', 'uploads/products/product_10_1764081093.jpg', 6799, 5439, 15, 'A solid-state drive (SSD) is a storage device that uses flash memory to store data. SSDs are non-volatile, meaning they can store data permanently. They are used in computers and perform the same basic functions as a hard disk drive (HDD).', 'SSDs are more expensive than HDDs, but the price difference has decreased since SSDs first came out. SSDs store data permanently inside an integrated circuit. The flash memory inside an SSD means data is written, transferred, and erased electronically and silently.\r\n\r\nA solid-state drive (SSD) is a storage device that uses flash memory to store data. SSDs are non-volatile, meaning they can store data permanently. They are used in computers and perform the same basic functions as a hard disk drive (HDD).'),
 (11, 'NVME', 'uploads/products/product_11_1764081093.jpg', 8799, 3919, 15, 'Non-Volatile Memory Express (NVMe) is a protocol that connects solid-state drive (SSD) storage to CPUs or servers using the PCI Express (PCIe) bus. NVMe was created in 2008 by a group of large IT providers to improve performance and speed.', 'NVMe is a storage interface and transfer protocol for PCIe-based SSDs. It allows for efficient data storage and increased data transfer rates. NVMe is a protocol for highly parallel data transfer with reduced system overheads per input/output (I/O). It takes advantage of the parallel I/O in PCI Express and low latency of SSDs.\r\n\r\nNon-Volatile Memory Express (NVMe) is a protocol that connects solid-state drive (SSD) storage to CPUs or servers using the PCI Express (PCIe) bus. NVMe was created in 2008 by a group of large IT providers to improve performance and speed.'),
 (12, 'M.2 NVME', 'uploads/products/product_12_1764081093.jpg', 4723, 3778, 15, 'M.2. NVMe is a communication protocol designed to work with flash memory using the PCIe interface.', 'NVMe M.2 SSDs are much more performance driven compared to SATA M.2 SSDs. By leveraging the PCIe bus, NVMe M.2 SSDs have theoretical transfer speeds of up to 20Gbps which is already faster compared to SATA M.2 SSDs with 6Gbps. PCIe buses can support 1x, 4x, 8x, and 16x lanes.\r\n\r\nM.2. NVMe is a communication protocol designed to work with flash memory using the PCIe interface.'),
@@ -205,8 +210,7 @@ INSERT INTO `product` (`id`, `name`, `image_path`, `old_price`, `new_price`, `st
 (14, 'Desktop ram DDR2', 'uploads/products/product_14_1764081093.jpg', 3280, 2620, 15, 'DDR2 was introduced in 2003 and operates twice as fast as DDR due to an improved bus signal.', 'DDR2 was introduced in 2003 and operates twice as fast as DDR due to an improved bus signal. DDR2 uses the same internal clock speed as DDR, however, the transfer rates are faster due to the enhanced input/output bus signal.'),
 (15, 'Desktop ram DDR3', 'uploads/products/product_15_1764081093.jpg', 4042, 3233, 15, 'DDR3 modules can transfer data at a rate of 800–2133 MT/s using both rising and falling edges of a 400–1066 MHz I/O clock.', 'DDR3 modules can transfer data at a rate of 800–2133 MT/s using both rising and falling edges of a 400–1066 MHz I/O clock. This is twice DDR2\'s data transfer rates (400–1066 MT/s using a 200–533 MHz I/O clock) and four times the rate of DDR (200–400 MT/s using a 100–200 MHz I/O clock).'),
 (16, 'Desktop ram DDR4', 'uploads/products/product_16_1764081093.jpg', 2456, 1964, 15, 'DDR4 RAM is a type of system memory used in computers, laptops, and other devices. It\'s the latest internal computing update designed to improve performance. DDR4 RAM is short for \"double data rate fourth generation synchronous dynamic random-access memory\".', 'Speed and efficiency: DDR4 RAM has higher speed and efficiency due to increased transfer rates and decreased voltage. Power consumption: DDR4 RAM has less voltage and overall power consumption.\r\n\r\nPerformance and bandwidth: DDR4 RAM has 50% better performance and bandwidth than DDR3, and it cuts back voltage by 40%. Signals per cycle: DDR4 can carry two signals per cycle (per Hz).\r\n\r\nData: DDR4-3200 RAM can carry up to 25600 MB/s of data, which is faster than your SSD or hard drive.'),
-(17, 'Laptop ram DDR1', 'uploads/products/product_17_1764081093.jpg', 1542, 1233, 13, 'DDR-1 (Double Data Rate 1) is the first generation of DDR Synchronous Dynamic Random Access Memory (SDRAM) in laptop.', 'DDR-1 (Double Data Rate 1) is the first generation of DDR Synchronous Dynamic Random Access Memory (SDRAM). It was an improvement over traditional SDRAM, allowing data to be transferred on both the rising and falling edges of the clock signal, effectively doubling the data transfer rate. DDR-1 memory modules were widely used in computers around the early 2000s, providing faster and more efficient data access compared to its predecessor.'),
-(18, 'Laptop ram DDR2', 'uploads/products/product_18_1764081093.jpg', 3028, 2422, 15, 'DDR2 (Double Data Rate 2) is the second generation of DDR Synchronous Dynamic Random Access Memory. It brought further improvements over DDR1 by increasing the data transfer rates and providing better power efficiency.', 'DDR2 (Double Data Rate 2) is the second generation of DDR Synchronous Dynamic Random Access Memory. It brought further improvements over DDR1 by increasing the data transfer rates and providing better power efficiency. DDR2 RAM modules have a higher bandwidth and are capable of reaching higher speeds compared to DDR1. They were commonly used in computers from the mid-2000s, offering enhanced performance and efficiency in comparison to the earlier DDR technology.');
+(17, 'Laptop ram DDR1', 'uploads/products/product_17_1764081093.jpg', 1542, 1233, 13, 'DDR-1 (Double Data Rate 1) is the first generation of DDR Synchronous Dynamic Random Access Memory (SDRAM) in laptop.', 'DDR-1 (Double Data Rate 1) is the first generation of DDR Synchronous Dynamic Random Access Memory (SDRAM). It was an improvement over traditional SDRAM, allowing data to be transferred on both the rising and falling edges of the clock signal, effectively doubling the data transfer rate. DDR-1 memory modules were widely used in computers around the early 2000s, providing faster and more efficient data access compared to its predecessor.');
 
 -- --------------------------------------------------------
 
@@ -350,13 +354,13 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `bookser`
 --
 ALTER TABLE `bookser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -380,7 +384,7 @@ ALTER TABLE `shop`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

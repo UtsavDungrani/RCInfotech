@@ -1,5 +1,5 @@
 <?php
-require_once '../config/config.php';
+require_once 'config/config.php';
 
 try {
     if (isset($_POST['submit'])) {
@@ -23,7 +23,7 @@ try {
     echo "Error: " . $e->getMessage();
 }
 ?>
-<?php include '../csp.php';?> 
+<?php include '../pages/csp.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

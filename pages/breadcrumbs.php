@@ -1,5 +1,5 @@
 <?php
-require_once "./config/config.php";
+require_once __DIR__ . '/../config/config.php';
 
 // Fetch products from database
 $stmt = $link->query("SELECT * FROM product");
@@ -16,12 +16,25 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="title-holder">
                         <div class="title-holder-cell text-left">
                             <h1 class="page-title">
-                                <?php echo ucwords(str_replace(['-', '_'], ' ', basename($_SERVER['PHP_SELF'], '.php'))); ?>
+                                <?php
+                                $current_page = isset($_GET['q']) ? trim($_GET['q'], '/') : 'home';
+                                if (!$current_page || $current_page === 'home') {
+                                    $page_display = 'home';
+                                } else {
+                                    $page_display = explode('/', $current_page)[0];
+                                }
+                                echo ucwords(str_replace(['-', '_'], ' ', $page_display));
+                                ?>
                             </h1>
                             <ol class="breadcrumb">
                                 <li><a href="index">Home</a></li>
                                 <?php
-                                $current_page = basename($_SERVER['PHP_SELF'], '.php');
+                                $current_page = isset($_GET['q']) ? trim($_GET['q'], '/') : 'home';
+                                if (!$current_page || $current_page === 'home') {
+                                    $current_page = 'home';
+                                } else {
+                                    $current_page = explode('/', $current_page)[0];
+                                }
                                 if ($current_page == 'feedback') {
                                     echo '<li><a href="faq">FAQ</a></li>';
                                     echo '<li class="active">' . ucwords(str_replace('-', ' ', $current_page)) . '</li>';

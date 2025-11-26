@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../config/config.php';
+require_once 'config/config.php';
 
-include '../csp.php'; 
+include '../pages/csp.php';
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header('Location: users');

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../csp.php';
+include '../pages/csp.php';
 session_destroy();
 header("Location: login");
 exit();
