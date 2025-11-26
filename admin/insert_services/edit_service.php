@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($service['image_path'])): ?>
                             <div class="mt_10">
-                                <img src="/rcinfotech/<?= htmlspecialchars(ltrim($service['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                                <img src="../../<?= htmlspecialchars(ltrim($service['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
                                     alt="Current Service Image" class="max_width_200">
                                 <p class="mt_5">Current Image:
                                     <?= htmlspecialchars($service['name'], ENT_QUOTES, 'UTF-8') ?>

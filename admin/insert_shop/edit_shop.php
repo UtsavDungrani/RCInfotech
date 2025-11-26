@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="photo">Shop Photo:</label>
                         <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
                         <?php if (!empty($shop['image_path'])): ?>
-                            <img src="/rcinfotech/<?= htmlspecialchars(ltrim($shop['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                            <img src="../../<?= htmlspecialchars(ltrim($shop['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
                                 alt="<?= htmlspecialchars($shop['Name'], ENT_QUOTES, 'UTF-8') ?>"
                                 class="max_width_100 mt_10">
                             <p>Current Image: <?= htmlspecialchars($shop['Name'], ENT_QUOTES, 'UTF-8') ?></p>

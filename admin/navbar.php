@@ -16,12 +16,12 @@ try {
 } catch (Exception $e) {
     $pending_order_count = 0;
 }
+// current request path (path only — excludes query string like ?id=1)
+$current = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 ?>
 <div class="sidebar">
-    <a href="/admin/admin_home"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
-    <a href="/admin/service_requests"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'service_requests' ? 'active' : '' ?>">
+    <a href="/admin/admin_home" class="<?= $current == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
+    <a href="/admin/service_requests" class="<?= $current == 'service_requests' ? 'active' : '' ?>">
         Service Requests
         <?php if ($pending_service_count > 0): ?>
             <span class="pending_req_counter">
@@ -29,30 +29,27 @@ try {
             </span>
         <?php endif; ?>
     </a>
-    <a href="/admin/insert_product/add_product"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_product' ? 'active' : '' ?>">Add Product</a>
-    <a href="/admin/insert_services/add_service"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_service' ? 'active' : '' ?>">Add Service</a>
-    <a href="/admin/insert_shop/add_shop"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
+    <a href="/admin/insert_product/add_product" class="<?= $current == 'add_product' ? 'active' : '' ?>">Add Product</a>
+    <a href="/admin/insert_services/add_service" class="<?= $current == 'add_service' ? 'active' : '' ?>">Add
+        Service</a>
+    <a href="/admin/insert_shop/add_shop" class="<?= $current == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
     <a href="/admin/insert_product/update_product"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_product' || basename($_SERVER['REQUEST_URI']) == 'edit_product') ? 'active' : '' ?>">Manage
+        class="<?= ($current == 'update_product' || $current == 'edit_product') ? 'active' : '' ?>">Manage
         Products</a>
     <a href="/admin/insert_services/update_service"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_service' || basename($_SERVER['REQUEST_URI']) == 'edit_service') ? 'active' : '' ?>">Manage
+        class="<?= ($current == 'update_service' || $current == 'edit_service') ? 'active' : '' ?>">Manage
         Services</a>
     <a href="/admin/insert_shop/update_shop"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_shop' || basename($_SERVER['REQUEST_URI']) == 'edit_shop') ? 'active' : '' ?>">Manage
+        class="<?= ($current == 'update_shop' || $current == 'edit_shop') ? 'active' : '' ?>">Manage
         Shop</a>
-    <a href="/admin/manage_orders"
-        class="<?= basename($_SERVER['REQUEST_URI']) == 'manage_orders' ? 'active' : '' ?>">Orders
+    <a href="/admin/manage_orders" class="<?= $current == 'manage_orders' ? 'active' : '' ?>">Orders
         <?php if ($pending_order_count > 0): ?>
             <span class="pending_req_counter">
                 <?= $pending_order_count ?>
             </span>
         <?php endif; ?>
     </a>
-    <a href="/admin/users" class="<?= basename($_SERVER['REQUEST_URI']) == 'users' ? 'active' : '' ?>">Users</a>
+    <a href="/admin/users" class="<?= $current == 'users' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
     <a href="/index">Back to Site</a>
 </div>
