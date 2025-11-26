@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         } else {
             // Create uploads directory if it doesn't exist
-            $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/services/';
+            $upload_dir = __DIR__ . '/../../uploads/services/';
             if (!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0755, true);
             }
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- end loader -->
 
     <!-- Sidebar -->
-     <?php
+    <?php
     // Try primary address first, fallback to relative path if it doesn't exist
     $navbar_primary = $_SERVER['DOCUMENT_ROOT'] . '/rcinfotech/admin/navbar.php';
     $navbar_fallback = $_SERVER['DOCUMENT_ROOT'] . '/admin/navbar.php';

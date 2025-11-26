@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<script>alert('Error: File size exceeds 5MB limit.');</script>";
             } else {
                 // Create uploads directory if it doesn't exist
-                $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/products/';
+                $upload_dir = __DIR__ . '/../../uploads/products/';
                 if (!is_dir($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }

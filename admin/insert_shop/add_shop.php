@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 // Create uploads directory if it doesn't exist
-                $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/uploads/shop/';
+                $upload_dir = __DIR__ . '/../../uploads/shop/';
                 if (!is_dir($upload_dir)) {
                     mkdir($upload_dir, 0755, true);
                 }
