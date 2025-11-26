@@ -93,7 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- end loader -->
 
     <!-- Sidebar -->
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/RCInfotech/admin/navbar.php'; ?>
+     <?php
+    // Try primary address first, fallback to relative path if it doesn't exist
+    $navbar_primary = $_SERVER['DOCUMENT_ROOT'] . '/rcinfotech/admin/navbar.php';
+    $navbar_fallback = $_SERVER['DOCUMENT_ROOT'] . '/admin/navbar.php';
+
+    if (file_exists($navbar_primary)) {
+        include_once $navbar_primary;
+    } elseif (file_exists($navbar_fallback)) {
+        include_once $navbar_fallback;
+    } else {
+        error_log("Navbar file not found at either: $navbar_primary or $navbar_fallback");
+    }
+    ?>
 
     <!-- Main Content -->
     <div class="main-content">
