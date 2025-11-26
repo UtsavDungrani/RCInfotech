@@ -120,7 +120,7 @@ try {
                                 <td><?= $product['name'] ?></td>
                                 <td>
                                     <?php if (!empty($product['image_path'])): ?>
-                                        <img src="/rcinfotech/<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                                        <img src="../../<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
                                             alt="<?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?>"
                                             class="max_width_100 height_auto">
                                     <?php else: ?>
@@ -150,7 +150,7 @@ try {
     <script src="../../js/menumaker.js"></script>
     <script src="../../js/wow.js"></script>
     <script src="../../js/custom.js"></script>
-    <script src="../../js/security.js"></script>
+    <!-- <script src="../../js/security.js"></script> -->
 </body>
 
 </html>

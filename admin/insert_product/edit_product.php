@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="image">Product Image:</label>
                         <input type="file" id="image" name="image" class="form-control" accept="image/*">
                         <?php if (!empty($product['image_path'])): ?>
-                            <img src="/rcinfotech/<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
+                            <img src="../../<?= htmlspecialchars(ltrim($product['image_path'], '/'), ENT_QUOTES, 'UTF-8') ?>"
                                 alt="Current Product Image" class="max_width_200 mt_10">
                             <p>Current Image: <?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?></p>
                         <?php endif; ?>

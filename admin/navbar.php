@@ -18,9 +18,9 @@ try {
 }
 ?>
 <div class="sidebar">
-    <a href="/RCInfotech/admin/admin_home"
+    <a href="/admin/admin_home"
         class="<?= basename($_SERVER['PHP_SELF']) == 'admin_home' ? 'active' : '' ?>">Dashboard</a>
-    <a href="/RCInfotech/admin/service_requests"
+    <a href="/admin/service_requests"
         class="<?= basename($_SERVER['PHP_SELF']) == 'service_requests' ? 'active' : '' ?>">
         Service Requests
         <?php if ($pending_service_count > 0): ?>
@@ -29,22 +29,22 @@ try {
             </span>
         <?php endif; ?>
     </a>
-    <a href="/RCInfotech/admin/insert_product/add_product"
+    <a href="/admin/insert_product/add_product"
         class="<?= basename($_SERVER['PHP_SELF']) == 'add_product' ? 'active' : '' ?>">Add Product</a>
-    <a href="/RCInfotech/admin/insert_services/add_service"
+    <a href="/admin/insert_services/add_service"
         class="<?= basename($_SERVER['PHP_SELF']) == 'add_service' ? 'active' : '' ?>">Add Service</a>
-    <a href="/RCInfotech/admin/insert_shop/add_shop"
+    <a href="/admin/insert_shop/add_shop"
         class="<?= basename($_SERVER['PHP_SELF']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
-    <a href="/RCInfotech/admin/insert_product/update_product"
+    <a href="/admin/insert_product/update_product"
         class="<?= (basename($_SERVER['PHP_SELF']) == 'update_product' || basename($_SERVER['PHP_SELF']) == 'edit_product') ? 'active' : '' ?>">Manage
         Products</a>
-    <a href="/RCInfotech/admin/insert_services/update_service"
+    <a href="/admin/insert_services/update_service"
         class="<?= (basename($_SERVER['PHP_SELF']) == 'update_service' || basename($_SERVER['PHP_SELF']) == 'edit_service') ? 'active' : '' ?>">Manage
         Services</a>
-    <a href="/RCInfotech/admin/insert_shop/update_shop"
+    <a href="/admin/insert_shop/update_shop"
         class="<?= (basename($_SERVER['PHP_SELF']) == 'update_shop' || basename($_SERVER['PHP_SELF']) == 'edit_shop') ? 'active' : '' ?>">Manage
         Shop</a>
-    <a href="/RCInfotech/admin/manage_orders"
+    <a href="/admin/manage_orders"
         class="<?= basename($_SERVER['PHP_SELF']) == 'manage_orders' ? 'active' : '' ?>">Orders
         <?php if ($pending_order_count > 0): ?>
             <span class="pending_req_counter">
@@ -52,7 +52,72 @@ try {
             </span>
         <?php endif; ?>
     </a>
-    <a href="/RCInfotech/admin/users" class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
+    <a href="/admin/users" class="<?= basename($_SERVER['PHP_SELF']) == 'users' ? 'active' : '' ?>">Users</a>
     <a href="#">Settings</a>
-    <a href="/RCInfotech/index">Back to Site</a>
+    <a href="/index">Back to Site</a>
 </div>
+<script>
+    // Fallback navigation: try primary URL, then try variants with/without /RCInfotech and with/without .php
+    (function () {
+        var projectPrefix = '/RCInfotech';
+
+        function hasExtension(path) { return /\.[^\/]+$/.test(path); }
+
+        function buildVariants(href) {
+            var v = href.replace(/\s+$/, '');
+            // ensure leading slash for consistency
+            if (v.charAt(0) !== '/') v = '/' + v;
+            var variants = [];
+            variants.push(v);
+            if (v.indexOf(projectPrefix) === 0) {
+                var without = v.substring(projectPrefix.length) || '/';
+                if (without.charAt(0) !== '/') without = '/' + without;
+                variants.push(without);
+            } else {
+                variants.push(projectPrefix + v);
+            }
+
+            var final = [];
+            variants.forEach(function (x) {
+                if (final.indexOf(x) === -1) final.push(x);
+                if (hasExtension(x)) {
+                    var noext = x.replace(/\.[^/.]+$/, '');
+                    if (final.indexOf(noext) === -1) final.push(noext);
+                } else {
+                    var withPhp = x + '.php';
+                    if (final.indexOf(withPhp) === -1) final.push(withPhp);
+                }
+            });
+            return final;
+        }
+
+        async function tryNavigateSequential(list) {
+            for (var i = 0; i < list.length; i++) {
+                var url = list[i];
+                try {
+                    var res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+                    if (res && res.ok) { window.location.href = url; return; }
+                } catch (e) { /* ignore and try next */ }
+            }
+            if (list.length) window.location.href = list[list.length - 1];
+        }
+
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('.sidebar a');
+            if (!a) return;
+            var href = a.getAttribute('href');
+            if (!href || href.startsWith('#') || href.indexOf('javascript:') === 0) return;
+
+            var explicit = a.getAttribute('data-fallback');
+            if (explicit) {
+                e.preventDefault();
+                tryNavigateSequential([href, explicit]);
+                return;
+            }
+
+            e.preventDefault();
+            var list = buildVariants(href);
+            tryNavigateSequential(list);
+        }, false);
+    })();
+</script>
