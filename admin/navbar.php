@@ -36,13 +36,13 @@ try {
     <a href="/admin/insert_shop/add_shop"
         class="<?= basename($_SERVER['REQUEST_URI']) == 'add_shop' ? 'active' : '' ?>">Add Shops</a>
     <a href="/admin/insert_product/update_product"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_product' || basename($_SERVER['PHP_SELF']) == 'edit_product') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_product' || basename($_SERVER['REQUEST_URI']) == 'edit_product') ? 'active' : '' ?>">Manage
         Products</a>
     <a href="/admin/insert_services/update_service"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_service' || basename($_SERVER['PHP_SELF']) == 'edit_service') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_service' || basename($_SERVER['REQUEST_URI']) == 'edit_service') ? 'active' : '' ?>">Manage
         Services</a>
     <a href="/admin/insert_shop/update_shop"
-        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_shop' || basename($_SERVER['PHP_SELF']) == 'edit_shop') ? 'active' : '' ?>">Manage
+        class="<?= (basename($_SERVER['REQUEST_URI']) == 'update_shop' || basename($_SERVER['REQUEST_URI']) == 'edit_shop') ? 'active' : '' ?>">Manage
         Shop</a>
     <a href="/admin/manage_orders"
         class="<?= basename($_SERVER['REQUEST_URI']) == 'manage_orders' ? 'active' : '' ?>">Orders
