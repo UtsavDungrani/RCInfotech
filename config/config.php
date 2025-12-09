@@ -16,13 +16,6 @@ if ($is_localhost) {
     $db = "u221873998_rcinfotech";   // Change this to your Hostinger database name
 }
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 $dsn = "mysql:host=$host;dbname=$db;";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
