@@ -1,6 +1,6 @@
 <?php
 
-$is_localhost = ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '127.0.0.1' || $_SERVER['HTTP_HOST'] === 'localhost:80' || $_SERVER['HTTP_HOST'] === 'localhost:8080');
+$is_localhost = ($_SERVER['HTTP_HOST'] === '127.0.0.1' || $_SERVER['HTTP_HOST'] === 'localhost:80' || $_SERVER['HTTP_HOST'] === 'localhost:8080');
 
 if ($is_localhost) {
     // Localhost configuration
@@ -9,7 +9,7 @@ if ($is_localhost) {
     $pass = "";
     $db = "rcinfotech";
 } 
-elseif ($_SERVER['HTTP_HOST'] === 'localhost:8001')
+elseif ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'localhost:8001')
 {
     $host = "localhost";
     $user = "root";
