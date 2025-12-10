@@ -44,7 +44,7 @@ try {
     error_log("Database error: " . $e->getMessage());
 }
 ?>
-<?php include '../pages/csp.php'; ?>
+<?php include 'pages/csp.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
