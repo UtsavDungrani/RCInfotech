@@ -8,7 +8,15 @@ if ($is_localhost) {
     $user = "root";
     $pass = "";
     $db = "rcinfotech";
-} else {
+} 
+elseif ($_SERVER['HTTP_HOST'] === 'localhost:8001')
+{
+    $host = "localhost";
+    $user = "root";
+    $pass = "Uts@v1907";
+    $db = "rcinfotech";
+}
+else {
     // Hostinger (Production) configuration
     $host = "localhost";  // Change this to your Hostinger database host
     $user = "u221873998_rcinfotech";       // Change this to your Hostinger database user
